@@ -1,0 +1,75 @@
+.navbar{
+background-color: #663a82;
+}
+
+.navbar-brand{
+ font-family:'Pacifico', cursive;
+
+}
+
+.index{
+background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+height: 500px;
+ background-repeat: no-repeat; /* Do not repeat the image */
+background-size: cover;
+}
+
+.search{
+    border: 1px solid grey;
+    border-radius: 12px;
+    height: 40px;
+    width: 100%;
+    padding: 20px;
+    outline: 0;
+    background-color: #f5f5f5;
+}
+
+.button1 {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #FF8242;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  font-family: "Pacifico", cursive;
+  padding: 20px;
+  width: 100%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

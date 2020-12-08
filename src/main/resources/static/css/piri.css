@@ -19,9 +19,13 @@ background-size: cover;
     border-radius: 12px;
     height: 40px;
     width: 100%;
-    padding: 20px;
+    padding-left: 20px;
     outline: 0;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
+    background-image: url("https://media.discordapp.net/attachments/579823439167094806/785639801742557184/unknown.png");
+    background-repeat: no-repeat;
+    background-position: right;
+
 }
 
 .button1 {
@@ -72,4 +76,14 @@ background-size: cover;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.login-box{
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+
+    font-size: 20px;
+
 }

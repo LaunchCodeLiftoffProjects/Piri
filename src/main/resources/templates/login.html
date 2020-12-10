@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Piri</title>
-</head>
+<head th:replace="fragments :: head">
 <body>
+    <div class="centered">
+        <div class="text-center">
+            <h2 class="login-header">Sign in to Piri</h2>
+        </div>
 
-<!--<header th:replace="fragments :: page-header"></header>-->
+        <form method="post" class="login-form">
+            <div class="form-group">
+                <label th:for="username">Username
+                    <input class="form-control login-input" th:field="${loginFormDTO.username}">
+                </label>
+                <p class="error" th:errors="${loginFormDTO.username}"></p>
+            </div>
+            <div class="form-group">
+                <label>Password
+                    <input class="form-control login-input" th:field="${loginFormDTO.password}" type="password">
+                </label>
+                <p class="error" th:errors="${loginFormDTO.password}"></p>
+            </div>
+            <div class="text-center">
+                <input type="submit" class="btn login-btn btn-success" value="Sign In" />
+            </div>
+        </form>
 
-<form method="post">
-    <div class="form-group">
-        <label th:for="username" style="padding-top:100px;">Username
-            <input class="form-control" th:field="${loginFormDTO.username}">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.username}"></p>
+        <div class="text-center login-form">
+            <p>Don't have an account? <a href="/register">Register for one.</a></p>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${loginFormDTO.password}" type="password">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.password}"></p>
-    </div>
-
-    <input type="submit" class="btn btn-primary" value="Log In" />
-</form>
-
-<p>Don't have an account? <a href="/register">Register for one.</a></p>
-
-</body>
-</html>
-
 </body>
 </html>

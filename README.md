@@ -1,7 +1,6 @@
-# Piri
+# Piri - Find your Place
 
 ### Overview
-Piri- Find your Place
 
 Piri is an application for people looking to relocate. The app offers information about cities based on factors like cost of living, safety and security ratings, employment prospects, local education etc. Piri supports community-driven approach to provide accurate information about the cities by encouraging local residents to comment and write reviews on the app.
 
@@ -11,12 +10,12 @@ Piri is named after the famous Turkish navigator Piri Reis, who's map of the New
 
 
 ### Technologies Used
-Java
-Spring Boot
-MySQL
-Hibernate
-Thymeleaf templates
-JavaScript
-Bootstrap
-HTML
+Java  
+Spring Boot  
+MySQL  
+Hibernate  
+Thymeleaf templates  
+JavaScript  
+Bootstrap  
+HTML  
 CSS

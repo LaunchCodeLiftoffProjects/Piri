@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="index">
+
+<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
+
+</div>
+
+<div class="centered">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <table th:fragment="listCities" class="city-listing">
+        <th:block th:each="city : ${cities}">
+            <tr>
+                <td>
+                    <p th:text="'City Name: ' + ${city.cityName}"></p>
+                    <p th:text="'Zip Code: ' + ${city.zipCode}"></p>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+
+</div>
+</body>

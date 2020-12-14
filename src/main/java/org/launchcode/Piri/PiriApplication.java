@@ -10,4 +10,5 @@ public class PiriApplication {
 		SpringApplication.run(PiriApplication.class, args);
 	}
 
+
 }

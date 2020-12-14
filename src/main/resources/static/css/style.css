@@ -87,3 +87,28 @@ background-size: cover;
     font-size: 20px;
 
 }
+
+/* CSS for login.html & register.html starts here */
+.login-form{
+    border: 1px solid #f6f8fa;
+    border-radius: 5px;
+    padding: 25px;
+    background-color: #eaecef;
+}
+
+.login-input{
+    display: inline-block;
+}
+
+.login-btn{
+    padding: 6px 120px;
+}
+
+.login-header{
+    font-family: 'Merriweather', serif;
+}
+
+.register-btn{
+    padding: 6px 50px;
+    margin: 0 50px;
+}

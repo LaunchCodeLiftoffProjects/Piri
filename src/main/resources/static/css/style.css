@@ -89,29 +89,43 @@ background-size: cover;
 }
 
 /* CSS for login.html & register.html starts here */
-.login-form{
+.login-register-container{
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.login-register-form{
     border: 1px solid #f6f8fa;
     border-radius: 5px;
     padding: 25px;
-    background-color: #eaecef;
+    margin-bottom: 5px;
+    background-color: #f2f2f7;
 }
 
-.login-input{
+.login-register-input{
     display: inline-block;
 }
 
-.login-btn{
-    padding: 6px 120px;
-}
-
-.login-header{
+.login-register-header{
     font-family: 'Merriweather', serif;
 }
 
-.register-btn{
-    padding: 6px 50px;
-    margin: 0 50px;
-}
 /* CSS for login.html & register.html  ends here */
 
+/* CSS for footer starts here */
+.footer-links{
+      display: inline;
+      color: black;
+      text-align: center;
+      padding: 16px;
+      text-decoration: none;
+      font-size: 12px;
+}
 
+.footer-container{
+    border-top: 1px solid #f7f8fa;
+    padding: 15px 0;
+}
+/* CSS for footer ends here */

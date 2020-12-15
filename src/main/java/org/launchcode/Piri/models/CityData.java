@@ -1,12 +1,20 @@
 package org.launchcode.Piri.models;
 
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -70,8 +78,8 @@ public class CityData {
             for (int i = 0; i < cities.length(); i++) {
                 JSONObject city = cities.getJSONObject(i);
                 int aZipcode = city.getInt("zip_code");
-                double aLatitude = city.getDouble("latitude");
-                double aLongitude = city.getDouble("longitude");
+                Double aLatitude = city.getDouble("latitude");
+                Double aLongitude = city.getDouble("longitude");
                 String aCityName = city.getString("city");
                 String aState = city.getString("state");
                 String aCounty = city.getString("county");
@@ -80,16 +88,14 @@ public class CityData {
               allCities.add(newCity);
             }
             isDataLoaded = true;
-            return;
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
     }
+
     private static String streamToString(InputStream inputStream) {
         String text = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
         return text;

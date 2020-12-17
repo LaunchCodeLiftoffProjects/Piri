@@ -1,5 +1,6 @@
 package org.launchcode.Piri.models;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class City {
@@ -12,7 +13,9 @@ public class City {
 
     private String stateName;
 
-    private Integer zipCode;
+    private String stateID;
+
+    private int[] zipCodes;
 
     private String county;
 
@@ -27,11 +30,12 @@ public class City {
         nextId++;
     }
 
-    public City(String cityName,String stateName, Integer zipCode, String county, Double latitude, Double longitude){
+    public City(String cityName,String stateName,String stateID, int[] zipCodes, String county, Double latitude, Double longitude){
         this();
         this.cityName = cityName;
         this.stateName = stateName;
-        this.zipCode = zipCode;
+        this.stateID = stateID;
+        this.zipCodes = zipCodes;
         this.county = county;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -55,7 +59,7 @@ public class City {
                 "Zip Code: %s\n" +
                 "County: %s\n" +
                 "Latitude: %s\n" +
-                "Longitude: %s\n", cityName, stateName, zipCode, county, latitude, longitude);
+                "Longitude: %s\n", cityName, stateName, zipCodes, county, latitude, longitude);
         return output;
     }
 
@@ -80,8 +84,8 @@ public class City {
         return cityName;
     }
 
-    public Integer getZipCode() {
-        return zipCode;
+    public String getZipCode() {
+        return Arrays.toString(zipCodes);
     }
 
     public String getStateName() {
@@ -121,6 +125,14 @@ public class City {
     }
 
     public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
+        this.zipCodes = zipCodes;
+    }
+
+    public String getStateID() {
+        return stateID;
+    }
+
+    public void setStateID(String stateID) {
+        this.stateID = stateID;
     }
 }

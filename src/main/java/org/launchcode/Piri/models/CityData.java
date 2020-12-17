@@ -1,26 +1,25 @@
 package org.launchcode.Piri.models;
 
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
+
 
 public class CityData {
 
-    private static String json;
+    private static final String DATA_FILE = "uscities.csv";
     private static boolean isDataLoaded = false;
     private static ArrayList<City> allCities;
 
@@ -62,43 +61,43 @@ public class CityData {
             return;
         }
         try {
-            URL url = new URL("https://raw.githubusercontent.com/millbj92/US-Zip-Codes-JSON/master/USCities.json");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setInstanceFollowRedirects(false);
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("charset", "utf-8");
-            connection.connect();
-            InputStream inStream = connection.getInputStream();
-            json = streamToString(inStream); // input stream to string
+            Resource resource = new ClassPathResource(DATA_FILE);
+            InputStream is = resource.getInputStream();
+            Reader reader = new InputStreamReader(is);
+            CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(reader);
+            List<CSVRecord> records = parser.getRecords();
+            Integer numberOfColumns = records.get(0).size();
+            String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
             allCities = new ArrayList<>();
-            JSONArray cities = new JSONArray(json);
-            for (int i = 0; i < cities.length(); i++) {
-                JSONObject city = cities.getJSONObject(i);
-                int aZipcode = city.getInt("zip_code");
-                Double aLatitude = city.getDouble("latitude");
-                Double aLongitude = city.getDouble("longitude");
-                String aCityName = city.getString("city");
-                String aState = city.getString("state");
-                String aCounty = city.getString("county");
-              City newCity = new City(aCityName,aState,aZipcode,aCounty,aLatitude,aLongitude);
 
-              allCities.add(newCity);
+            //Put records into a more friendly format
+            for (CSVRecord record : records) {
+
+                String aCity = record.get(0);
+                String aStateID = record.get(2);
+                String aStateName = record.get(3);
+                String aCountyName = record.get(5);
+                Double aLatitude = Double.parseDouble(record.get(6));
+                Double aLongitude = Double.parseDouble(record.get(7));
+                String[] zipCodesStrs = record.get(15).split(" ");
+                int[] zipCodes = new int[zipCodesStrs.length];
+                for(int i =0; i < zipCodes.length; i++){
+                    zipCodes[i] = Integer.parseInt(zipCodesStrs[i]);
+                }
+
+
+                City newCity = new City(aCity, aStateName, aStateID, zipCodes, aCountyName, aLatitude, aLongitude);
+
+                allCities.add(newCity);
             }
             isDataLoaded = true;
+        }catch (IOException e){
+            System.out.println("Failed to load city data");
+            e.printStackTrace();
+        }catch (NumberFormatException e){
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-    }
-
-    private static String streamToString(InputStream inputStream) {
-        String text = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
-        return text;
     }
 
 

@@ -112,3 +112,83 @@ background-size: cover;
     padding: 6px 50px;
     margin: 0 50px;
 }
+
+.card {
+    margin-left: 18%;
+    margin-right: 18%;
+    width: auto;
+}
+
+.wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.wrapper:hover a {
+    opacity: 1;
+    top: 0;
+    z-index: 500;
+}
+
+.wrapper:hover a span {
+    top: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.wrapper a {
+    display: block;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin-left: 80%;
+    margin-top: -55%;
+}
+
+#search-btn{
+background-color: #FF8C00 !important;
+}
+
+.fa-search{
+color: #FFF0F5 !important;
+}
+
+#sort-by-dropdown-btn{
+  background-color: #2E8B57 !important;
+  margin-left: 280%;
+}
+
+#search-input-group {
+    margin-left: 13%;
+}
+
+#filter-btn-toolbar{
+  padding: 20px 0px;
+  margin-left: 8%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-
-    <title th:text="'Piri' + ${title == null ? '' : ' :: ' + title}">Piri</title>
-
+<head th:replace="fragments :: head">
 </head>
-<body class="index">
+
+<body>
 
 <div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
 </div>
 
-<div class="centered">
 
-    <hr />
-    <hr />
+<!--    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>-->
+    <div th:fragment="listCities" class="city-listing" >
+        <th:block th:each="city : ${cities}">
 
+    <div class="card mb-3 " style="max-width: 1000px">
+    <div class="row g-0">
+        <div class="col-md-4 ">
+            <div class="wrapper">
+                <img
+                    src="/images/nycskyline.png"
+                    alt="..."
+                    class="img-fluid">
+                <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>
+            </div>
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
-    <table th:fragment="listCities" class="city-listing">
-            <th:block th:each="city : ${cities}">
-                <tr>
-                    <td>
-                        <p th:text="'City Name: ' + ${city.cityName}"></p>
-                        <p th:text="'Zip Code: ' + ${city.zipCode}"></p>
-                        <p th:text="'State: ' + ${city.stateName}"></p>
-                        <p th:text="'County: ' + ${city.county}"></p>
-                        <p th:text="'Latitude: ' + ${city.latitude}"></p>
-                        <p th:text="'Longitude: ' + ${city.longitude}"></p>
-                        <p th:text="'State Abbreviation: ' + ${city.stateID}"></p>
-
-                    </td>
-                </tr>
-            </th:block>
-    </table>
-
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <a href="https://github.com/LaunchCodeLiftoffProjects/Piri" class="card-link"><h5 class="card-title" th:text="${city.cityName} + '/' + ${city.stateID}"></h5></a>
+                <p class="card-text" th:text="${city.id}">
+                    Ratings...
+                </p>
+                <p class="card-text">
+                    <small class="text-muted"></small>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+    </th:block>
+
+  </div>
 </body>
 </html>

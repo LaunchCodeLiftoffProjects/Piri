@@ -1,13 +1,12 @@
 package org.launchcode.Piri.models;
 
-import java.util.Arrays;
-import java.util.Objects;
+import javax.persistence.Entity;
 
-public class City {
 
-    private int id;
 
-    private  static int nextId = 1;
+@Entity
+public class City extends AbstractEntity{
+
 
     private String cityName;
 
@@ -15,7 +14,7 @@ public class City {
 
     private String stateID;
 
-    private int[] zipCodes;
+    private String zipCodes;
 
     private String county;
 
@@ -24,14 +23,13 @@ public class City {
     private Double longitude;
 
 
-    //Initialize a unique Id
+
     public City(){
-        id =nextId;
-        nextId++;
+
     }
 
-    public City(String cityName,String stateName,String stateID, int[] zipCodes, String county, Double latitude, Double longitude){
-        this();
+    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude, Double longitude){
+
         this.cityName = cityName;
         this.stateName = stateName;
         this.stateID = stateID;
@@ -63,29 +61,9 @@ public class City {
         return output;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        City city = (City) o;
-        return id == city.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public int getId() {
-        return id;
-    }
 
     public String getCityName() {
         return cityName;
-    }
-
-    public String getZipCode() {
-        return Arrays.toString(zipCodes);
     }
 
     public String getStateName() {
@@ -124,15 +102,19 @@ public class City {
         this.stateName = stateName;
     }
 
-    public void setZipCode(Integer zipCode) {
-        this.zipCodes = zipCodes;
-    }
-
     public String getStateID() {
         return stateID;
     }
 
     public void setStateID(String stateID) {
         this.stateID = stateID;
+    }
+
+    public String getZipCodes() {
+        return zipCodes;
+    }
+
+    public void setZipCodes(String zipCodes) {
+        this.zipCodes = zipCodes;
     }
 }

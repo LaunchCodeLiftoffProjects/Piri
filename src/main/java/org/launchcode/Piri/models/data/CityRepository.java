@@ -9,4 +9,6 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface CityRepository extends CrudRepository<City, Integer> {
+
+
 }

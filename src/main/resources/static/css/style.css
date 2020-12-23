@@ -173,7 +173,14 @@ color: #FFF0F5 !important;
   margin-left: 8%;
 }
 
-
+/*css for view page starts here*/
+.view{
+    border: 50px solid #f6f8fa;
+    border-radius: 5px;
+    padding: 25px;
+    background-color: #eaecef;
+    text-align:left;
+}
 
 
 

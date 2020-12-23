@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="index">
+
+<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
+
+</div>
+
+<div class="view">
+
+        <h2 th:text="${city.cityName}"></h2>
+        <p th:text="${'County: ' + city.county}"></p>
+        <p th:text="${'State: ' + city.stateName}"></p>
+        <p th:text="${'Latitude: ' + city.latitude}"></p>
+        <p th:text="${'Longitude: ' + city.longitude}"></p>
+
+
+</div>
+<!--
+ <p th:text="${'State: ' + city.stateName}"></p>
+ <p> Zip Codes:
+ <ul>
+     <li th:each="zip : ${city.zipCodes}">
+
+     </li>
+ </ul>
+ </p>-->
+
+
+</body>
+
+</html>

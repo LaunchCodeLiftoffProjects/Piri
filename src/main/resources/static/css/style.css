@@ -174,16 +174,40 @@ color: #FFF0F5 !important;
 }
 
 /*css for view page starts here*/
-.view{
+.city-view-header{
+    font-family: 'Merriweather', serif;
     border: 50px solid #f6f8fa;
     border-radius: 5px;
     padding: 25px;
-    background-color: #eaecef;
+    position: relative;
+    /*background-color: #eaecef;*/
     text-align:left;
 }
 
+.checked{
+    color: orange;
+}
 
+.button2{
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
 
+/*.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}*/
 
 
 

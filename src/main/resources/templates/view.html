@@ -2,22 +2,51 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body class="index">
+<body id="search-background">
 
-<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
-
+<div th:replace="fragments :: page-header-search"></div>
 </div>
 
-<div class="view">
-
-        <h2 th:text="${city.cityName}"></h2>
-        <p th:text="${'County: ' + city.county}"></p>
-        <p th:text="${'State: ' + city.stateName}"></p>
-        <p th:text="${'Latitude: ' + city.latitude}"></p>
-        <p th:text="${'Longitude: ' + city.longitude}"></p>
 
 
+<div class="city-view-header">
+
+        <h3  th:text="${city.cityName} +', ' +${city.stateName}" ></h3>
+        <div class = "button2">
+        <a class="btn btn-primary" href="/compare" role="button">Compare</a>
+        </div>
+
+
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <span class="heading">Overall Rating: </span>
+
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <a href="/review" >Write a Review</a>
+                <p>4.1 average based on 254 reviews.</p>
+
+                <hr style="border:3px solid #f1f1f1">
+
+
+
+        </div>
 </div>
+
+
+
+<div class="container">
+        <p>Affordability:</p>
+        <p>Safety:</p>
+        <p>Transportation:</p>
+        <p>Job Growth:</p>
+</div>
+
+
 <!--
  <p th:text="${'State: ' + city.stateName}"></p>
  <p> Zip Codes:

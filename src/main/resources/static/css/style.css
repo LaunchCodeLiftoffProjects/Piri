@@ -12,7 +12,7 @@ color: white;
 
 .index{
 background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-height: 500px;
+height: 100vh;
 background-repeat: no-repeat; /* Do not repeat the image */
 background-size: cover;
 }

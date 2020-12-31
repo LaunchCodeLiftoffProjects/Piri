@@ -40,6 +40,10 @@
 </div>
     </th:block>
 
-  </div>
+        <div id="no-results">
+            <p th:unless="${cities} and ${cities.size()}">No results!</p>
+        </div>
+
+    </div>
 </body>
 </html>

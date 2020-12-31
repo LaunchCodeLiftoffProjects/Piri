@@ -29,6 +29,7 @@ public class HelloController {
 
             if(optCity.isPresent()) {
                 model.addAttribute("city", optCity.get());
+                model.addAttribute("rating", 4.3);
 
             }
 

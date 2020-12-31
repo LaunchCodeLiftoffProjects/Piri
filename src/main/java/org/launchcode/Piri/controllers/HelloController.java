@@ -19,5 +19,8 @@ public class HelloController {
             return "user/profile";
         }
 
+        @GetMapping("list-cities")
+        public String listCities(Model model) { return "list-cities";}
+
 }
 

@@ -15,6 +15,9 @@ public class CityData {
 
         for (City city : allCities) {
 
+            if(value == ""){
+                results.add(city);
+            }
             if (city.getCityName().toLowerCase().equals(value.toLowerCase())) {
                 results.add(city);
             } else if(city.getStateName().toLowerCase().equals(value.toLowerCase())) {

@@ -44,6 +44,72 @@
             <p th:unless="${cities} and ${cities.size()}">No results!</p>
         </div>
 
+
+<!--        <div th:if = "${totalPages > 1}">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-6 offset-lg-3 py-5 border">-->
+<!--                    <nav>-->
+<!--                        <ul class="pagination justify-content-center flex-wrap">-->
+
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1}}">Previous</a>-->
+<!--                                &lt;!&ndash;                            <span th:unless="${currentPage < totalPages}">Previous</span>&ndash;&gt;-->
+<!--                            </li>-->
+
+<!--                            <th:block th:if="${totalPages <= 10}">-->
+<!--                                <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">-->
+<!--                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>-->
+<!--                                    <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>-->
+
+<!--                                </li>-->
+<!--                            </th:block>-->
+
+<!--                            <th:block th:if="${totalPages > 10}">-->
+<!--                                <th:block th:if="${currentPage <= 5 || currentPage > totalPages - 4}">-->
+<!--                                    <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">-->
+<!--                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>-->
+<!--                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>-->
+
+<!--                                    </li>-->
+<!--                                    <a th:href="@{'/page/' + 6}" class="page-link">...</a>-->
+
+<!--                                    <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >-->
+<!--                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}" >[[${i}]]</a>-->
+<!--                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>-->
+
+<!--                                    </li>-->
+<!--                                </th:block>-->
+
+<!--                                <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">-->
+
+<!--                                    <a th:href="@{'/page/' + ${currentPage - 5}}" class="page-link">...</a>-->
+
+<!--                                    <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">-->
+<!--                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>-->
+<!--                                        <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>-->
+
+<!--                                    </li>-->
+
+<!--                                    <a th:href="@{'/page/' + ${currentPage + 5}}" class="page-link">...</a>-->
+
+<!--                                </th:block>-->
+
+<!--                            </th:block>-->
+
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>-->
+<!--                                &lt;!&ndash;                            <span th:unless="${currentPage < totalPages}">Next</span>&ndash;&gt;-->
+<!--                            </li>-->
+
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>-->
+<!--                                &lt;!&ndash;                            <span th:unless="${currentPage < totalPages}">Last</span>&ndash;&gt;-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </body>
 </html>

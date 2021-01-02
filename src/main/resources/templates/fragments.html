@@ -68,7 +68,7 @@
 
     <ul class="nav justify-content-center">
 
-        <form class="form-inline "  th:action="@{/index/results}" method="post">
+        <form class="form-inline "  th:action="@{'/page/' + 1}" method="get">
             <div class="input-group" id="search-input-group">
                 <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">
                 <div class="input-group-append">

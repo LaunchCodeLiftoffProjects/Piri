@@ -4,8 +4,11 @@
 </head>
 <body class="index">
 
-<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
-
+<div th:if="${session.user}">
+    <div th:replace="fragments :: page-header-loggedIn" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
 
 <div class="centered">
@@ -15,8 +18,6 @@
     </form>
 </div>
 
-
-
-
 </body>
+<div th:replace="fragments :: footer"></div>
 </html>

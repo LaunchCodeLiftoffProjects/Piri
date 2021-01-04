@@ -1,7 +1,6 @@
 package org.launchcode.Piri.service;
 
 import org.launchcode.Piri.models.City;
-import org.launchcode.Piri.models.CityData;
 import org.launchcode.Piri.models.data.PagingAndSortingCityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,12 +26,14 @@ public class CityService {
         return cities;
     }
 
-    public Page<City> findByValue(int pageNo, int cityCount, String value){
+    public Page<City> findPaginatedByValue(int pageNo, int cityCount, String value){
+
+        String lower_val = null;
 
         if(value == null){
             value = "";
         }else{
-            String lower_val = value.toLowerCase();
+            lower_val = value.toLowerCase();
         }
 
         Iterable<City> cities = this.pagingAndSortingCityRepository.findAll();
@@ -41,16 +42,16 @@ public class CityService {
 
         for (City city : cities) {
 
-//            if(value == "" ){
-//                results.add(city);
-//            }
-            if (city.getCityName().toLowerCase().equals(value.toLowerCase())) {
+            if(value == "" ){
                 results.add(city);
-            } else if(city.getStateName().toLowerCase().equals(value.toLowerCase())) {
+            }
+            if (city.getCityName().toLowerCase().equals(lower_val)) {
                 results.add(city);
-            }else if(city.getCounty().toLowerCase().equals(value.toLowerCase())) {
+            } else if(city.getStateName().toLowerCase().equals(lower_val)) {
                 results.add(city);
-            }else if(city.getStateID().toLowerCase().equals(value.toLowerCase())) {
+            }else if(city.getCounty().toLowerCase().equals(lower_val)) {
+                results.add(city);
+            }else if(city.getStateID().toLowerCase().equals(lower_val)) {
                 results.add(city);
             }
             else{
@@ -67,8 +68,7 @@ public class CityService {
 
         }
         Pageable pageable = PageRequest.of(pageNo - 1, cityCount);
-//        List<City> cities1 = new ArrayList<>();
-//        Page<City> newCities = new PageImpl<>(results, pageable, results.size());
+
         int total = results.size();
         int start = toIntExact(pageable.getOffset());
         int end = Math.min((start + pageable.getPageSize()), total);
@@ -85,18 +85,7 @@ public class CityService {
                 total
         );
 
-//        return new PageImpl<>(results, pageable, results.size());
-//        return newCities;
-//        return results;
     }
 
-    public Page<City> findPaginated(int pageNo, int cityCount) {
 
-        Pageable pageable = PageRequest.of(pageNo - 1, cityCount);
-//        List<City> cities = CityData.findByValue(searchTerm, this.pagingAndSortingCityRepository.findAll(pageable).getContent());
-//        Page<City> newPAge = new PageImpl<>(cities);
-//        return newPAge;
-//        Page<City> cityPage = new PageImpl<>(cities);
-        return this.pagingAndSortingCityRepository.findAll(pageable);
-    }
 }

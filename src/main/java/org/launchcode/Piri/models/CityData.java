@@ -15,16 +15,16 @@ public class CityData {
 
         for (City city : allCities) {
 
-            if(value == ""){
+            if(lower_val == ""){
                 results.add(city);
             }
-            if (city.getCityName().toLowerCase().equals(value.toLowerCase())) {
+            if (city.getCityName().toLowerCase().equals(lower_val)) {
                 results.add(city);
-            } else if(city.getStateName().toLowerCase().equals(value.toLowerCase())) {
+            } else if(city.getStateName().toLowerCase().equals(lower_val)) {
                 results.add(city);
-            }else if(city.getCounty().toLowerCase().equals(value.toLowerCase())) {
+            }else if(city.getCounty().toLowerCase().equals(lower_val)) {
                 results.add(city);
-            }else if(city.getStateID().toLowerCase().equals(value.toLowerCase())) {
+            }else if(city.getStateID().toLowerCase().equals(lower_val)) {
                 results.add(city);
             }
             else{

@@ -24,8 +24,10 @@
                 </div>
                 <div class="col-4">
                     <div class="card-user">
-                        <div class="title-name">USERNAME</div>
-                        <div class="title-name">FIRSTNAME LASTNAME</div>
+                        <div class="title-name" th:text="${user.getUsername}">USERNAME</div>
+                        <div
+                                class="title-name"><span th:text="${user.getFirstName}">FIRSTNAME</span><span
+                                th:text="${user.getLastName}">LASTNAME</span></div>
                         <br>LOCATION
                     </div>
                 </div>

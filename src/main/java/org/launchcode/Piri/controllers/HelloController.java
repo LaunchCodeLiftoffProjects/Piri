@@ -1,5 +1,6 @@
 package org.launchcode.Piri.controllers;
 
+import org.launchcode.Piri.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,9 @@ public class HelloController {
         }
 
         @GetMapping("user/profile")
-        public String viewProfile(Model model) {
+        public String viewProfile(Model model, User user) {
+            model.addAttribute("user", user);
+
             return "user/profile";
         }
 

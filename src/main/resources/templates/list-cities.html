@@ -68,7 +68,7 @@
                             </th:block>
 
                             <th:block th:if="${totalPages > 10}">
-                                <th:block th:if="${currentPage <= 5 || currentPage > totalPages - 4}">
+                                <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
                                     <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
                                         <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?searchTerm=' + ${searchTerm}}">[[${i}]]</a>
                                         <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>

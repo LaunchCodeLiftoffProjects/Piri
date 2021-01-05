@@ -63,7 +63,7 @@ public class AuthenticationController {
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
         if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+            errors.rejectValue("username", "username.already exists", "A user with that username already exists");
             model.addAttribute("title", "Register");
             return "register";
         }
@@ -80,7 +80,7 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "index";
     }
 
     @GetMapping("/login")
@@ -118,7 +118,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "index";
     }
 
     @GetMapping("/logout")

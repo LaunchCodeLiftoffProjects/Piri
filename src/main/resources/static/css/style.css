@@ -4,13 +4,16 @@ background-color: #663a82;
 
 .navbar-brand{
  font-family:'Pacifico', cursive;
+}
 
+.navbar a{
+color: white;
 }
 
 .index{
 background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-height: 500px;
- background-repeat: no-repeat; /* Do not repeat the image */
+height: 100vh;
+background-repeat: no-repeat; /* Do not repeat the image */
 background-size: cover;
 }
 

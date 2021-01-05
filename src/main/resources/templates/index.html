@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:replace="fragments :: head">
 </head>
-<body>
+<body class="index">
 
-<p>Hello, World!</p>
+<div th:if="${session.user}">
+    <div th:replace="fragments :: page-header-loggedIn" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+
+<div class="centered">
+    <form action="/">
+        <input type="text" class="search" id="piriSearch" placeholder="Enter a State, City, or Zip Code"/>
+        <button type="submit" class="button1"><span>Find Your Place</span></button>
+    </form>
+</div>
 
 </body>
 </html>

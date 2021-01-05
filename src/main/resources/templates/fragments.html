@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http.www.thymeleaf.org/">
+
+<head th:fragment="head">
+
+    <!-- Bootstrap stylesheets and script -->
+<!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />-->
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+    <title th:text="'Piri' + ${title == null ? '' : ' :: ' + title}">Piri</title>
+</head>
+
+<body>
+
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/}" class="navbar-brand">Piri</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/search}">Search</a></li>
+                <li><a th:href="@{/register}">Suggest</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- user info here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="page-header-index" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+    <ul class="nav justify-content-end">
+        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>
+    </ul>
+</div>
+
+<div th:fragment="page-header-loggedIn" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+    <ul class="nav justify-content-end">
+        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Log Out</a></li>
+    </ul>
+</div>
+
+<div th:fragment="page-header-login" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+</div>
+
+<div  class="footer-container" th:fragment="footer">
+    <ul class="list-inline text-center">
+        <li class="list-inline-item">
+            <a class="nav-link footer-links" th:href="@{/about}">About</a>
+        </li>
+        <li class="list-inline-item">
+            <a class="nav-link footer-links" th:href="@{/faq}">FAQ </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="nav-link footer-links" th:href="@{/contact}">Contact</a>
+        </li>
+    </ul>
+</div>
+
+</body>

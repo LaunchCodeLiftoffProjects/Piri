@@ -46,6 +46,15 @@
     </ul>
 </div>
 
+<div th:fragment="page-header-loggedIn" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+    <ul class="nav justify-content-end">
+        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Log Out</a></li>
+    </ul>
+</div>
+
 <div th:fragment="page-header-login" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar">
         <a th:href="@{/}" class="navbar-brand">Piri</a>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
+</div>
+
+
+<!--    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>-->
+    <div th:fragment="listCities" class="city-listing" >
+        <th:block th:each="city : ${cities}">
+
+    <div class="card mb-3 " style="max-width: 1000px">
+    <div class="row g-0">
+        <div class="col-md-4 ">
+            <div class="wrapper">
+                <img
+                    src="/images/nycskyline.png"
+                    alt="..."
+                    class="img-fluid">
+                <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <a th:href="@{'/view/' + ${city.id}}" th:text="${city.cityName}"></a> <h5 class="card-title" th:text="${city.cityName} + '/' + ${city.stateID}"></h5></a>
+                <p class="card-text" th:text="${city.id}">
+                    Ratings...
+                </p>
+                <p class="card-text" th:text="${city.zipCodes}">
+                    <small class="text-muted"></small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    </th:block>
+
+        <div id="no-results">
+            <p th:unless="${cities} and ${cities.size()}">No results!</p>
+        </div>
+
+
+        <div th:if = "${totalPages > 1}">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 py-5 border">
+                    <nav>
+                        <ul class="pagination justify-content-center flex-wrap">
+
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm}}">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm}}">Previous</a>
+                                <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
+                            </li>
+
+                            <th:block th:if="${totalPages <= 10}">
+                                <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?searchTerm=' + ${searchTerm}}">[[${i}]]</a>
+                                    <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                </li>
+                            </th:block>
+
+                            <th:block th:if="${totalPages > 10}">
+                                <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
+                                    <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?searchTerm=' + ${searchTerm}}">[[${i}]]</a>
+                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                    </li>
+                                    <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
+
+                                    <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?searchTerm=' + ${searchTerm}}" >[[${i}]]</a>
+                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                    </li>
+                                </th:block>
+
+                                <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
+
+                                    <a th:href="@{'/page/' + ${currentPage - 5} + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
+
+                                    <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?searchTerm=' + ${searchTerm}}">[[${i}]]</a>
+                                        <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
+
+                                    </li>
+
+                                    <a th:href="@{'/page/' + ${currentPage + 5} + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
+
+                                </th:block>
+
+                            </th:block>
+
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1} + '?searchTerm=' + ${searchTerm}}">Next</a>
+                                <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Next</a></span>-->
+                            </li>
+
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?searchTerm=' + ${searchTerm}}">Last</a>
+                                <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Last</a></span>-->
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

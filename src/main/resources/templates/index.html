@@ -12,11 +12,15 @@
 </div>
 
 <div class="centered">
-    <form action="/">
-        <input type="text" class="search" id="piriSearch" placeholder="Enter a State, City, or Zip Code"/>
-        <button type="submit" class="button1"><span>Find Your Place</span></button>
-    </form>
-</div>
 
+    <form th:action="@{'/page/' + 1}" method="get">
+
+
+        <input type="text" class="search" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
+        <button type="submit" class="button1" value="Search"  ><span>Find Your Place</span></button>
+
+    </form>
+
+</div>
 </body>
 </html>

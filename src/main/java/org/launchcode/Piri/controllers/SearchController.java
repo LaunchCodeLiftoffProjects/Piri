@@ -22,7 +22,7 @@ public class SearchController {
     private CityService cityService;
 
 
-    @RequestMapping(value = "/page/{pageNo}", params = "searchTerm")
+    @GetMapping(value = "/page/{pageNo}", params = "searchTerm")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model,@RequestParam String searchTerm){
 
         int cityCount = 6;

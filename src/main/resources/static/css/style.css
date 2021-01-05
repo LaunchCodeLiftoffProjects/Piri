@@ -1,14 +1,21 @@
+/* CSS for navigation bar starts here */
 .navbar{
 background-color: #663a82;
 }
 
 .navbar-brand{
  font-family:'Pacifico', cursive;
+ color: white;
 }
 
-.navbar a{
+.nav-link{
 color: white;
 }
+
+.nav-link:hover{
+color: white;
+}
+/* CSS for navigation bar ends here*/
 
 .index{
 background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
@@ -79,41 +86,6 @@ background-size: cover;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
-}
-
-.login-box{
-    position: absolute;
-    width: 400px;
-    height: 600px;
-    background-color: #ffffff;
-
-    font-size: 20px;
-
-}
-
-/* CSS for login.html & register.html starts here */
-.login-form{
-    border: 1px solid #f6f8fa;
-    border-radius: 5px;
-    padding: 25px;
-    background-color: #eaecef;
-}
-
-.login-input{
-    display: inline-block;
-}
-
-.login-btn{
-    padding: 6px 120px;
-}
-
-.login-header{
-    font-family: 'Merriweather', serif;
-}
-
-.register-btn{
-    padding: 6px 50px;
-    margin: 0 50px;
 }
 
 .card {
@@ -275,6 +247,8 @@ color: #FFF0F5 !important;
   box-sizing: border-box;
 }
 
+/* CSS for login.html & register.html starts here */
+
 .login-register-container{
     width: 400px;
     height: auto;
@@ -297,7 +271,6 @@ color: #FFF0F5 !important;
 .login-register-header{
     font-family: 'Merriweather', serif;
 }
-
 /* CSS for login.html & register.html  ends here */
 
 /* CSS for footer starts here */

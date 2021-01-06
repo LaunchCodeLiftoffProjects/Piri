@@ -183,6 +183,7 @@ color: #FFF0F5 !important;
 }
 
 /*css for view page starts here*/
+/*css for view page starts here*/
 .city-view-header{
     font-family: 'Merriweather', serif;
     border: 5px solid #606060;
@@ -210,9 +211,7 @@ color: #FFF0F5 !important;
 
 }
 
-.checked{
-    color: orange;
-}
+
 
 .button2{
     position: absolute;
@@ -232,23 +231,13 @@ color: #FFF0F5 !important;
     background-color: #f6f8fa
 }
 
-/*.rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-}
-.rating > span {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-}*/
 
+/* display star ratings*/
 
-@charset "UTF-8";
+.checked{
+    color: orange;
+}
+
 :root {
   --star-size: 50px;
   --star-color: #fff;
@@ -270,11 +259,30 @@ color: #FFF0F5 !important;
   -webkit-text-fill-color: transparent;
 }
 
-* {
-  position: relative;
-  box-sizing: border-box;
+/* ratings page*/
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before {
+  content: "\f005"; /* Star */
+  margin: 25px;
+  font-size: 4em;
+  font-family: FontAwesome;
+  display: inline-block;
 }
 
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
+/*login bar?*/
 .login-register-container{
     width: 400px;
     height: auto;
@@ -315,4 +323,5 @@ color: #FFF0F5 !important;
     padding: 15px 0;
 }
 /* CSS for footer ends here */
+
 

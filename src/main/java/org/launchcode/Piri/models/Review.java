@@ -1,6 +1,7 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ public class Review extends AbstractEntity {
     //private User username;
 
    @ManyToOne
+   @JoinColumn
    private City city;
 
     public Review(String title, String comment, int overallRating, City aCity) {
+        super();
         this.title = title;
         this.comment = comment;
         this.overallRating = overallRating;
@@ -28,7 +31,7 @@ public class Review extends AbstractEntity {
     }
 
     public Review(){
-
+        super();
     }
 
     public String getTitle() {

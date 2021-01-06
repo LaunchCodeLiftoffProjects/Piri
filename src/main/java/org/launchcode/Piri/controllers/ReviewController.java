@@ -46,9 +46,11 @@ public class ReviewController {
         Optional<City> optCity = cityRepository.findById(cityId);
 
         if (optCity.isPresent()) {
-            City city = (City) optCity.get();
+            City city = optCity.get();
             newReview.setCity(city);
+
         }
+
         model.addAttribute("cities", cityRepository.findAll());
         reviewRepository.save(newReview);
         model.addAttribute("reviews", reviewRepository.findAll());

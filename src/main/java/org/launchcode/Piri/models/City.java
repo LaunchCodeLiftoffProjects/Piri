@@ -27,7 +27,7 @@ public class City extends AbstractEntity{
 
     @OneToMany
     @JoinColumn
-    private final List<City> reviews = new ArrayList<>();
+    private final List<Review> reviews = new ArrayList<>();
 
     public City(){
 
@@ -123,7 +123,8 @@ public class City extends AbstractEntity{
         this.zipCodes = zipCodes;
     }
 
-    public List<City> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
+
 }

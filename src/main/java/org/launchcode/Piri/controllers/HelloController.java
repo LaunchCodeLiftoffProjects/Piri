@@ -27,11 +27,14 @@ public class HelloController {
     @GetMapping("view/{cityId}")
     public String displayView(Model model, @PathVariable int cityId){
         Optional<City> optCity = cityRepository.findById(cityId);
+        City city = optCity.get();
+
 
         if(optCity.isPresent()) {
-            model.addAttribute("city", optCity.get());
+            model.addAttribute("city", city);
             model.addAttribute("cityId", cityId);
             model.addAttribute("overallRating", 4.5);
+            //model.addAttribute("numReviews", );
             model.addAttribute("affordabilityRating", 2.5);
             model.addAttribute("safetyRating", 4);
 

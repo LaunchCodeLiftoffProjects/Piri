@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
 
@@ -15,26 +16,30 @@ import java.util.Optional;
 public class HelloController {
 
 
-        @Autowired
-        private CityRepository cityRepository;
+    @Autowired
+    private CityRepository cityRepository;
 
-        public String hello(){
+    public String hello(){
 
-            return "index";
+        return "index";
+    }
+
+    @GetMapping("view/{cityId}")
+    public String displayView(Model model, @PathVariable int cityId){
+        Optional<City> optCity = cityRepository.findById(cityId);
+
+        if(optCity.isPresent()) {
+            model.addAttribute("city", optCity.get());
+            model.addAttribute("cityId", cityId);
+            model.addAttribute("overallRating", 4.5);
+            model.addAttribute("affordabilityRating", 2.5);
+            model.addAttribute("safetyRating", 4);
+
         }
 
-        @GetMapping("view/{cityId}")
-        public String displayView(Model model, @PathVariable int cityId){
-            Optional<City> optCity = cityRepository.findById(cityId);
+        return "view";
+    }
 
-            if(optCity.isPresent()) {
-                model.addAttribute("city", optCity.get());
-                model.addAttribute("rating", 4.3);
-
-            }
-
-            return "view";
-        }
 
 }
 

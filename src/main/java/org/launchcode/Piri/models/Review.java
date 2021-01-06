@@ -2,6 +2,10 @@ package org.launchcode.Piri.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Review extends AbstractEntity {
@@ -13,14 +17,14 @@ public class Review extends AbstractEntity {
     //@ManyToOne
     //private User username;
 
-    @ManyToOne
-    private City city;
+   @ManyToOne
+   private City city;
 
-    public Review(String title, String comment, int overallRating, City city) {
+    public Review(String title, String comment, int overallRating, City aCity) {
         this.title = title;
         this.comment = comment;
         this.overallRating = overallRating;
-        ///\this.city = city;
+        this.city = aCity;
     }
 
     public Review(){
@@ -51,6 +55,14 @@ public class Review extends AbstractEntity {
         this.overallRating = overallRating;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
 
     //public User getUsername() {
     //    return username;
@@ -60,11 +72,4 @@ public class Review extends AbstractEntity {
     //    this.username = username;
     //}
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
 }

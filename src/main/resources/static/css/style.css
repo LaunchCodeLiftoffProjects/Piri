@@ -1,21 +1,22 @@
 /* CSS for navigation bar starts here */
 .navbar{
-background-color: #663a82;
+    background-color: #663a82;
 }
 
 .navbar-brand{
- font-family:'Pacifico', cursive;
- color: white;
+    font-family:'Pacifico', cursive;
+    color: white;
 }
 
 .nav-link{
-color: white;
+    color: white;
 }
 
 .nav-link:hover{
-color: white;
+    color: white;
 }
 /* CSS for navigation bar ends here*/
+
 
 .index{
 background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
@@ -247,6 +248,7 @@ color: #FFF0F5 !important;
   box-sizing: border-box;
 }
 
+
 /* CSS for login.html & register.html starts here */
 
 .login-register-container{
@@ -273,6 +275,7 @@ color: #FFF0F5 !important;
 }
 /* CSS for login.html & register.html  ends here */
 
+
 /* CSS for footer starts here */
 .footer-links{
       display: inline;
@@ -289,3 +292,11 @@ color: #FFF0F5 !important;
 }
 /* CSS for footer ends here */
 
+
+/* CSS for error message starts here */
+
+.error{
+    color: red;
+    font-style: italic;
+}
+/* CSS for error message ends here */

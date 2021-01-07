@@ -26,7 +26,7 @@ public class City extends AbstractEntity{
     private Double longitude;
 
     @OneToMany
-    @JoinColumn
+    //@JoinColumn (name="reviews_id")
     private final List<Review> reviews = new ArrayList<>();
 
     public City(){

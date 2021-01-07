@@ -27,6 +27,13 @@
                 </div>
             </div>
 
+            <select th:field="${city.reviews}" >
+                <option
+                        th:value="${city.id}"
+                        th:text="${city.cityName}"
+                ></option>
+            </select>
+
             <label th:for="title">Review Title</label>
             <input class="form-control" th:field="${review.title}" />
             <!--<span th:errors="${skill.name}" class="error"></span>-->

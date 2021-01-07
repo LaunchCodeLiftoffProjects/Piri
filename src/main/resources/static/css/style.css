@@ -127,21 +127,9 @@ background-size: cover;
     margin-top: -55%;
 }
 
-#search-btn{
-background-color: #FF8C00 !important;
-}
-
-.fa-search{
-color: #FFF0F5 !important;
-}
-
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
   margin-left: 280%;
-}
-
-#search-input-group {
-    margin-left: 13%;
 }
 
 #filter-btn-toolbar{
@@ -300,3 +288,34 @@ color: #FFF0F5 !important;
     font-style: italic;
 }
 /* CSS for error message ends here */
+
+
+/* CSS for Search button starts here */
+
+.search-btn-container{
+    border-bottom: 1px solid #d7d8d9;
+    padding: 15px 0;
+}
+
+.top-search-btn{
+    width: 600px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.input-group-lg > .form-control{
+    border-top-left-radius: 1.25rem !important;
+    border-bottom-left-radius: 1.25rem !important;
+}
+
+#search-btn{
+    background-color: #FF8C00 !important;
+    border-top-right-radius: 1.25rem !important;
+    border-bottom-right-radius: 1.25rem !important;
+}
+
+.fa-search{
+    color: #FFF0F5 !important;
+}
+
+/* CSS for Search Button ends here */

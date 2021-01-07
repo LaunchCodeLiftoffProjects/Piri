@@ -12,7 +12,7 @@ public class User extends AbstractEntity {
     private String pwHash;
     private String firstName;
     private String lastName;
-    private String homeCity;
+
 
     public User() {}
 
@@ -45,12 +45,6 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public String getHomeCity() {
-        return homeCity;
-    }
 
-    public void setHomeCity(String homeCity) {
-        this.homeCity = homeCity;
-    }
 }
 

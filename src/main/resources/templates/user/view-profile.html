@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<!--        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/css/profile-style.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+    <title th:text="'Piri' + ${title == null ? '' : ' :: ' + title}">Piri</title>
+
+</head>
+<body class="index">
+<!--<h1 th:text="${'Job: ' + job.name}">Default Title</h1>-->
+
+<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
+</div>
+<div class="profile-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 order-first">
+                <img src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
+            </div>
+            <div class="col-4">
+                <div class="card-user">
+                    <div class="title-name"><p th:text="${user.username}">Username</p></div>
+                    <div
+                            class="title-name"><p th:text="${user.firstName} + ' ' + ${user.lastName}">FIRSTNAME
+                        LASTNAME</div>
+                    <br>LOCATION
+                </div>
+            </div>
+            <div class="col-5 order-last">
+                <div class="card">
+                    <h3>USERS FAVORITE CITIES</h3>
+                    <ul>
+                        <li>CITY 1</li>
+                        <li>CITY 2</li>
+                        <li>CITY 3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h2>review 1</h2>
+                </div>
+                <div class="card">
+                    <h2>review 2</h2>
+                </div>
+                <div class="card">
+                    <h2>review 3</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -15,13 +15,6 @@ public class HelloController {
             return "index";
         }
 
-        @GetMapping("user/index")
-        public String viewProfile(Model model, User user) {
-            model.addAttribute("user", user);
-
-            return "user/index";
-        }
-
         @GetMapping("list-cities")
         public String listCities(Model model) { return "list-cities";}
 

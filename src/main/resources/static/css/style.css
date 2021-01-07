@@ -8,11 +8,11 @@
     color: white;
 }
 
-.nav-link{
+.navigation-link{
     color: white;
 }
 
-.nav-link:hover{
+.navigation-link:hover{
     color: white;
 }
 /* CSS for navigation bar ends here*/
@@ -272,6 +272,10 @@ background-size: cover;
       padding: 16px;
       text-decoration: none;
       font-size: 12px;
+}
+
+.footer-links:hover{
+    color: black;
 }
 
 .footer-container{

@@ -25,7 +25,7 @@ public class City extends AbstractEntity{
 
     private Double longitude;
 
-    @OneToMany
+    @OneToMany(mappedBy = "city")
     //@JoinColumn (name="reviews_id")
     private final List<Review> reviews = new ArrayList<>();
 
@@ -33,7 +33,8 @@ public class City extends AbstractEntity{
 
     }
 
-    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude, Double longitude){
+    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude,
+                Double longitude){
         super();
         this.cityName = cityName;
         this.stateName = stateName;

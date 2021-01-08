@@ -16,7 +16,7 @@ public class Review extends AbstractEntity {
     //private User username;
 
    @ManyToOne
-   @JoinColumn (name="city_id")
+   //@JoinColumn (name="city_id")
    private City city;
 
     public Review(){
@@ -27,9 +27,8 @@ public class Review extends AbstractEntity {
         this.title = title;
         this.comment = comment;
         this.overallRating = overallRating;
-        this.city = aCity;
+        //this.city = aCity;
     }
-
 
 
     public String getTitle() {

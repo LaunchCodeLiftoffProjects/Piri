@@ -42,10 +42,14 @@ public class HelloController {
             model.addAttribute("cityId", cityId);
             model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
             model.addAttribute("reviews", city.getReviews());
-            model.addAttribute("affordabilityRating", 2.5);
+            model.addAttribute("affordabilityRating", 4.5);
             model.addAttribute("safetyRating", 4);
+            model.addAttribute("transportationRating", 3);
+            model.addAttribute("jobRating", 4);
 
         }
+
+
 
         return "view";
     }

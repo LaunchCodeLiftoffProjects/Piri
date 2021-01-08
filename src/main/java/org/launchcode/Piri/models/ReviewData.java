@@ -11,7 +11,7 @@ import java.util.Optional;
 public class ReviewData {
 
     public static float calculateAverageOverallRating(int cityId, City city){
-        float rating= 0;
+        float rating = 0;
         float total = 0;
         List<Review> reviews = city.getReviews();
 
@@ -21,6 +21,10 @@ public class ReviewData {
         }
 
         rating = total/reviews.size();
+
+        if (reviews.size() == 0){
+            rating = 0;
+        }
 
         return rating;
     }

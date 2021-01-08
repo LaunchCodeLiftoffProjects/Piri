@@ -35,9 +35,8 @@
                 </div>
 
 
+                <p th:text="'Overall rating is ' + ${overallRating} + ' based on ' + ${reviews.size()} + ' total reviews.'" ></p>
                 <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
-                <p th:text="'based on ' + ${reviews.size()}" ></p>
-
         </div>
 </div>
 
@@ -54,12 +53,18 @@
                 <p>Safety:</p>
                 <div class="Stars"
                      th:style="|--rating: ${safetyRating}|" ></div>
+
                 <p>Transportation:</p>
+                <div class="Stars"
+                     th:style="|--rating: ${transportationRating}|" ></div>
+
                 <p>Job Growth:</p>
+                <div class="Stars"
+                     th:style="|--rating: ${jobRating}|" ></div>
 
                 <table class="review-listing">
                         <h1>Reviews:</h1>
-                <tr th:each="review : ${reviews}">
+                        <tr th:each="review : ${reviews}">
 
                                 <td>
                                         <p th:text = "${review.title}"></p>
@@ -67,7 +72,7 @@
                                 <td>
                                         <p th:text = "${review.comment}"></p>
                                 </td>
-                </tr>
+                        </tr>
                 </table>
 
         </div>

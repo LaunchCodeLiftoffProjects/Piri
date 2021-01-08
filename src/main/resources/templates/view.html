@@ -36,6 +36,7 @@
 
 
                 <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
+                <p th:text="'based on ' + ${reviews.size()}" ></p>
 
         </div>
 </div>

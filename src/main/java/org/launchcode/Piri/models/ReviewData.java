@@ -1,4 +1,7 @@
-/*package org.launchcode.Piri.models;
+package org.launchcode.Piri.models;
+
+import org.launchcode.Piri.models.data.CityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,22 +9,19 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReviewData {
-    public static ArrayList<Review> findByValue(int value, Iterable<Review> allReviews, City city){
 
-        //String lower_val = value.toLowerCase();
+    public static float calculateAverageOverallRating(int cityId, City city){
+        float rating= 0;
+        float total = 0;
+        List<Review> reviews = city.getReviews();
 
-        ArrayList<Review> results = new ArrayList<>();
-
-        for (Review review : allReviews) {
-
-            if(review.getCity().equals(city)) {
-                results.add(review);
-            }
-
-
+        for (int i =0; i<reviews.size(); i++){
+            int a = reviews.get(i).getOverallRating();
+            total = total + a;
         }
-    return results;
+
+        rating = total/reviews.size();
+
+        return rating;
     }
 }
-
-*/

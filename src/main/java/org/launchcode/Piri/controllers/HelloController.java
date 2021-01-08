@@ -3,6 +3,7 @@ package org.launchcode.Piri.controllers;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
 //import org.launchcode.Piri.models.ReviewData;
+import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,11 @@ public class HelloController {
         Optional<City> optCity = cityRepository.findById(cityId);
         City city = optCity.get();
 
-        //Iterable<Review> reviews;
-        //reviews = ReviewData.findByValue(cityId, reviewRepository.findAll(), city);
-
-        //reviews = city.getReviews();
 
         if(optCity.isPresent()) {
             model.addAttribute("city", city);
             model.addAttribute("cityId", cityId);
-            model.addAttribute("overallRating", 4.5);
+            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
             model.addAttribute("reviews", city.getReviews());
             model.addAttribute("affordabilityRating", 2.5);
             model.addAttribute("safetyRating", 4);

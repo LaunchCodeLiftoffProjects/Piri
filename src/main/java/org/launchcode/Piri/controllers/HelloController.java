@@ -46,11 +46,7 @@ public class HelloController {
             model.addAttribute("safetyRating", 4);
             model.addAttribute("transportationRating", 3);
             model.addAttribute("jobRating", 4);
-
         }
-
-
-
         return "view";
     }
 

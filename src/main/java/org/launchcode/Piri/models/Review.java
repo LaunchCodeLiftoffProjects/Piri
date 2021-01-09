@@ -19,13 +19,13 @@ public class Review extends AbstractEntity {
    //@JoinColumn (name="city_id")
    private City city;
 
-   @OneToMany
+   @ManyToOne
    private User user;
 
     public Review(){
     }
 
-    public Review(String title, String comment, int overallRating, City aCity) {
+    public Review(String title, String comment, int overallRating, City aCity, User aUser) {
 
         this.title = title;
         this.comment = comment;
@@ -66,6 +66,13 @@ public class Review extends AbstractEntity {
         this.city = city;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     //public User getUsername() {
     //    return username;

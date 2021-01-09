@@ -1,6 +1,7 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ public class Review extends AbstractEntity {
     private String title;
     private String comment;
     private int overallRating;
+    private LocalDate reviewDate = LocalDate.now();
 
     //@ManyToOne
     //private User username;
@@ -31,8 +33,12 @@ public class Review extends AbstractEntity {
         this.comment = comment;
         this.overallRating = overallRating;
         //this.city = aCity;
+        this.reviewDate = reviewDate;
     }
 
+    public LocalDate getReviewDate() {
+        return reviewDate;
+    }
 
     public String getTitle() {
         return title;

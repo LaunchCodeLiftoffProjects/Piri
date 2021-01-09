@@ -358,4 +358,39 @@ color: #FFF0F5 !important;
 
 /* CSS for Search Button ends here */
 
+.save-compare-btn{
+    margin-right: 10px;
+}
+
+.city-view-card{
+    width: 900px;
+    max-width: 90%;
+    margin: 35px auto;
+}
+
+.city-rating-card{
+    width: 600px;
+    max-width: 90%;
+    margin: 25px auto;
+}
+
+.rating-category{
+    font-size: 1.5rem;
+}
+
+.review-display{
+    padding: 25px !important;
+}
+
+.review-header{
+    text-align: center;
+    font-family: 'Merriweather', serif;
+}
+
+.review-date{
+    font-size: 12px;
+    font-style: italic;
+    text-align: right;
+}
+
 

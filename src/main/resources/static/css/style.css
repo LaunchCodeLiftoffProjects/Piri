@@ -1,20 +1,20 @@
 .navbar{
-background-color: #663a82;
+    background-color: #663a82;
 }
 
 .navbar-brand{
- font-family:'Pacifico', cursive;
+    font-family:'Pacifico', cursive;
 }
 
 .navbar a{
-color: white;
+    color: white;
 }
 
 .index{
-background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-height: 100vh;
-background-repeat: no-repeat; /* Do not repeat the image */
-background-size: cover;
+    background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+    height: 100vh;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
 }
 
 .search{
@@ -183,7 +183,6 @@ color: #FFF0F5 !important;
 }
 
 /*css for view page starts here*/
-/*css for view page starts here*/
 .city-view-header{
     font-family: 'Merriweather', serif;
     border: 5px solid #606060;
@@ -231,15 +230,12 @@ color: #FFF0F5 !important;
     background-color: #f6f8fa
 }
 
+/*css for view page ends here*/
 
-/* display star ratings*/
-
-.checked{
-    color: orange;
-}
+/* css display star ratings starts*/
 
 :root {
-  --star-size: 50px;
+  --star-size: 40px;
   --star-color: #fff;
   --star-background: #fc0;
 }
@@ -258,6 +254,7 @@ color: #FFF0F5 !important;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* css display star ratings ends */
 
 /* ratings page*/
 
@@ -323,5 +320,42 @@ color: #FFF0F5 !important;
     padding: 15px 0;
 }
 /* CSS for footer ends here */
+
+/* CSS for error message starts here */
+
+.error{
+    color: red;
+    font-style: italic;
+}
+/* CSS for error message ends here */
+
+/* CSS for Search button starts here */
+.search-btn-container{
+    border-bottom: 1px solid #d7d8d9;
+    padding: 15px 0;
+}
+
+.top-search-btn{
+    width: 600px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.input-group-lg > .form-control{
+    border-top-left-radius: 1.25rem !important;
+    border-bottom-left-radius: 1.25rem !important;
+}
+
+#search-btn{
+    background-color: #FF8C00 !important;
+    border-top-right-radius: 1.25rem !important;
+    border-bottom-right-radius: 1.25rem !important;
+}
+
+.fa-search{
+    color: #FFF0F5 !important;
+}
+
+/* CSS for Search Button ends here */
 
 

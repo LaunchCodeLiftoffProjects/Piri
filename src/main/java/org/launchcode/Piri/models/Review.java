@@ -19,6 +19,9 @@ public class Review extends AbstractEntity {
    //@JoinColumn (name="city_id")
    private City city;
 
+   @OneToMany
+   private User user;
+
     public Review(){
     }
 

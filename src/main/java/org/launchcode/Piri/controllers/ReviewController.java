@@ -3,6 +3,7 @@ package org.launchcode.Piri.controllers;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
 import org.launchcode.Piri.models.data.ReviewRepository;
+import org.launchcode.Piri.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,10 @@ public class ReviewController {
     private CityRepository cityRepository;
 
     @Autowired
-    ReviewRepository reviewRepository;
+    private ReviewRepository reviewRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("review/{cityId}")
     public String writeReview(Model model, @PathVariable int cityId){

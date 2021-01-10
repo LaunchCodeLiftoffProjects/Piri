@@ -44,3 +44,7 @@ label {
 .centered {
     text-align: center;
 }
+
+$('.dropdown-toggle').dropdown()
+
+

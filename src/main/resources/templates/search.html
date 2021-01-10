@@ -1,26 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-
-    <title th:text="'Piri' + ${title == null ? '' : ' :: ' + title}">Piri</title>
+<head th:replace="fragments :: head">
 
 </head>
-<body class="index">
+<body id="search-background" >
 
-<div th:replace="fragments :: page-header-index" class="navbar navbar-inverse navbar-fixed-top">
-</div>
+    <div th:replace="fragments :: page-header-search"></div>
 
-<div class="centered">
 
-    <hr />
-    <hr />
+    <div class="btn-toolbar justify-content-center" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
-<table th:replace="list-cities :: listCities"></table>
+        <div class="dropdown">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Star Rating</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">5 Star</a>
+                <a class="dropdown-item" href="#">3 Star</a>
+                <a class="dropdown-item" href="#">2 Star</a>
+                <a class="dropdown-item" href="#">1 Star</a>
+                <a class="dropdown-item" href="#">Unrated</a>
+            </div>
+        </div>
+        </div>
+        <div class="dropdown">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Affordability</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown" id="safety-dropdown">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Safety & Security</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <div class="dropdown" id="sort-by-dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by:
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+        </div>
+
+
+
+    <div th:replace="list-cities :: listCities"></div>
+
+
 </body>
 </html>

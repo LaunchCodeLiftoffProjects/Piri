@@ -1,16 +1,26 @@
+/* CSS for navigation bar starts here */
 .navbar{
 background-color: #663a82;
 }
 
 .navbar-brand{
  font-family:'Pacifico', cursive;
-
+ color: white;
 }
+
+.nav-link{
+color: white;
+}
+
+.nav-link:hover{
+color: white;
+}
+/* CSS for navigation bar ends here*/
 
 .index{
 background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-height: 500px;
- background-repeat: no-repeat; /* Do not repeat the image */
+height: 100vh;
+background-repeat: no-repeat; /* Do not repeat the image */
 background-size: cover;
 }
 
@@ -78,39 +88,209 @@ background-size: cover;
   transform: translate(-50%, -50%);
 }
 
-.login-box{
+.card {
+    margin-left: 18%;
+    margin-right: 18%;
+    width: auto;
+}
+
+.wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.wrapper:hover a {
+    opacity: 1;
+    top: 0;
+    z-index: 500;
+}
+
+.wrapper:hover a span {
+    top: 50%;
     position: absolute;
-    width: 400px;
-    height: 600px;
-    background-color: #ffffff;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
 
-    font-size: 20px;
+.wrapper a {
+    display: block;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin-left: 80%;
+    margin-top: -55%;
+}
 
+#search-btn{
+background-color: #FF8C00 !important;
+}
+
+.fa-search{
+color: #FFF0F5 !important;
+}
+
+#sort-by-dropdown-btn{
+  background-color: #2E8B57 !important;
+  margin-left: 280%;
+}
+
+#search-input-group {
+    margin-left: 13%;
+}
+
+#filter-btn-toolbar{
+  padding: 20px 0px;
+  margin-left: 8%;
+}
+
+#no-results{
+    font-family: 'Merriweather', serif;
+    font-size: 42px;
+    text-align:center;
+}
+
+/*css for view page starts here*/
+.city-view-header{
+    font-family: 'Merriweather', serif;
+    border: 5px solid #606060;
+    border-radius: 5px;
+    padding: 25px;
+    position: relative;
+    margin:20px 20px 20px 20px;
+    text-align:left;
+    overflow:auto;
+
+}
+
+.city-image{
+    float: left;
+    width:250px;
+    height:250px;
+    }
+
+.city-ratings{
+    font-family: 'Merriweather', serif;
+    border: 1px solid #606060;
+
+    position: relative;
+    padding: 25px;
+
+}
+
+.checked{
+    color: orange;
+}
+
+.button2{
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+
+.wrapper b:hover a span {
+    top: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+#search-background{
+    background-color: #f6f8fa
+}
+
+/*.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}*/
+
+
+@charset "UTF-8";
+:root {
+  --star-size: 50px;
+  --star-color: #fff;
+  --star-background: #fc0;
+}
+
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.Stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
 }
 
 /* CSS for login.html & register.html starts here */
-.login-form{
+
+.login-register-container{
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.login-register-form{
     border: 1px solid #f6f8fa;
     border-radius: 5px;
     padding: 25px;
-    background-color: #eaecef;
+    margin-bottom: 5px;
+    background-color: #f2f2f7;
 }
 
-.login-input{
+.login-register-input{
     display: inline-block;
 }
 
-.login-btn{
-    padding: 6px 120px;
-}
-
-.login-header{
+.login-register-header{
     font-family: 'Merriweather', serif;
 }
+/* CSS for login.html & register.html  ends here */
+
+/* CSS for footer starts here */
+.footer-links{
+      display: inline;
+      color: black;
+      text-align: center;
+      padding: 16px;
+      text-decoration: none;
+      font-size: 12px;
+}
+
+.footer-container{
+    border-top: 1px solid #f7f8fa;
+    padding: 15px 0;
+}
+/* CSS for footer ends here */
 
 .register-btn{
     padding: 6px 50px;
     margin: 0 50px;
 }
-
 

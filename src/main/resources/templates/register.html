@@ -2,16 +2,19 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 <body>
-<div class="centered">
+
+<div th:replace="fragments :: header-login-register" class="navbar navbar-inverse navbar-fixed-top"></div>
+
+<div class="login-register-container">
     <div class="text-center">
-        <h2 class="login-header">Create Your Account</h2>
+        <h2 class="login-register-header">Create Your Account</h2>
     </div>
 
-    <form method="post" class="login-form">
+    <form method="post" class="login-register-form">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Username</label>
             <div class="col-sm-9">
-                <input class="form-control login-input" th:field="${registerFormDTO.username}" />
+                <input class="form-control login-register-input" th:field="${registerFormDTO.username}" />
             </div>
             <p class="error" th:errors="${registerFormDTO.username}"></p>
         </div>
@@ -33,25 +36,28 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Password</label>
             <div class="col-sm-9">
-                <input class="form-control login-input" th:field="${registerFormDTO.password}" type="password" />
+                <input class="form-control login-register-input" th:field="${registerFormDTO.password}" type="password" />
             </div>
             <p class="error" th:errors="${registerFormDTO.password}"></p>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Verify Password</label>
             <div class="col-sm-9">
-                <input class="form-control login-input" th:field="${registerFormDTO.verifyPassword}" type="password" />
+                <input class="form-control login-register-input" th:field="${registerFormDTO.verifyPassword}" type="password" />
             </div>
         </div>
         <div class="text-center">
-            <input type="submit" class="btn register-btn btn-primary" value="Register" />
+            <input type="submit" class="btn btn-primary" value="Register" />
         </div>
     </form>
 
-    <div class="text-center login-form">
+    <div class="text-center login-register-form">
         <p>Have an existing account? <a href="/login">Sign In.</a></p>
     </div>
 </div>
 
 </body>
+
+<div th:replace="fragments :: footer"></div>
+
 </html>

@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public class ReviewData {
 
-    public static float calculateAverageOverallRating(int cityId, City city){
-        float rating = 0;
-        float total = 0;
+    public static double calculateAverageOverallRating(int cityId, City city){
+        double rating = 0;
+        double total = 0;
         List<Review> reviews = city.getReviews();
 
         for (int i =0; i<reviews.size(); i++){
@@ -21,6 +21,8 @@ public class ReviewData {
         }
 
         rating = total/reviews.size();
+
+        rating = Math.round(rating*10) / 10.0;
 
         if (reviews.size() == 0){
             rating = 0;

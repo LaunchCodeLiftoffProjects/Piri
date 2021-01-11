@@ -2,9 +2,6 @@
 <html lang="en" xmlns:th="http.www.thymeleaf.org/">
 
 <head th:fragment="head">
-
-    <!-- Bootstrap stylesheets and script -->
-<!--    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
@@ -12,10 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
-
-
-<!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />-->
-
     <script src="https://kit.fontawesome.com/f98ae42250.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -44,73 +37,90 @@
     </div>
 </div>
 
-<div th:fragment="page-header-index" class="navbar navbar-inverse navbar-fixed-top">
-    <nav class="navbar">
-        <a th:href="@{/}" class="navbar-brand">Piri</a>
-    </nav>
-    <ul class="nav justify-content-end">
-        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>
-    </ul>
-</div>
+<!--<div th:fragment="page-header-search" class="navbar navbar-inverse navbar-fixed-top">-->
+<!--    <nav class="navbar">-->
+<!--        <a th:href="@{/}" class="navbar-brand">Piri</a>-->
+<!--    </nav>-->
 
-<div th:fragment="page-header-search" class="navbar navbar-inverse navbar-fixed-top">
-    <nav class="navbar">
-        <a th:href="@{/}" class="navbar-brand">Piri</a>
-    </nav>
+<!--    <ul class="nav justify-content-center">-->
 
-    <ul class="nav justify-content-center">
+<!--        <form class="form-inline "  th:action="@{'/page/' + 1}" method="get">-->
+<!--            <div class="input-group" id="search-input-group">-->
+<!--                <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">-->
+<!--                <div class="input-group-append">-->
+<!--                    <button class="btn" type="submit" id="search-btn">-->
+<!--                        <i class="fa fa-search "></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
 
-        <form class="form-inline "  th:action="@{'/page/' + 1}" method="get">
-            <div class="input-group" id="search-input-group">
+<!--        </form>-->
+
+<!--    </ul>-->
+
+
+<!--    <ul class="nav justify-content-end">-->
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+
+// Search form codes start here
+
+<div th:fragment="search-form">
+    <div class="search-btn-container">
+        <form class="top-search-btn" th:action="@{'/page/' + 1}" method="get">
+            <div class="input-group input-group-lg">
                 <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">
                 <div class="input-group-append">
                     <button class="btn" type="submit" id="search-btn">
-                        <i class="fa fa-search "></i>
+                        <i class="fa fa-search"></i>
                     </button>
                 </div>
             </div>
-
         </form>
-
-    </ul>
-
-
-    <ul class="nav justify-content-end">
-        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>
-    </ul>
+    </div>
 </div>
-<!--<div th:fragment="page-header-index" class="navbar navbar-inverse navbar-fixed-top" >-->
-<!--    <div class="container">-->
-<!--        <div class="navbar-header">-->
-<!--            <a th:href="@{/}" class="navbar-brand">Piri</a>-->
-<!--        </div>-->
-<!--        <div class="navbar-collapse collapse">-->
-<!--            <ul class="nav navbar-nav navbar-right">-->
-<!--                <li><a th:href="@{/login}">Login</a></li>-->
-<!--                <li><a th:href="@{/help}">Help</a></li>-->
-<!--            </ul>-->
+//Search form  codes end here
 
-<!--    </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<div th:fragment="page-header-loggedIn" class="navbar navbar-inverse navbar-fixed-top">
+//Navigation header codes start here
+<div th:fragment="header-anonymous" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar">
         <a th:href="@{/}" class="navbar-brand">Piri</a>
     </nav>
     <ul class="nav justify-content-end">
-        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Log Out</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Sign In</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/register}">Sign Up</a></li>
     </ul>
 </div>
 
-<div th:fragment="page-header-login" class="navbar navbar-inverse navbar-fixed-top">
+<div th:fragment="header-authenticated" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+    <ul class="nav justify-content-end">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" href="#">Saved Searches</a>
+                <a class="dropdown-item" href="#">Something else</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:href="@{/logout}">Log Out</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div th:fragment="header-login-register" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar">
         <a th:href="@{/}" class="navbar-brand">Piri</a>
     </nav>
 </div>
+//Navigation header codes end here
 
+//Footer codes start here
 <div  class="footer-container" th:fragment="footer">
     <ul class="list-inline text-center">
         <li class="list-inline-item">
@@ -124,6 +134,7 @@
         </li>
     </ul>
 </div>
+//Footer codes end here
 
 </body>
 </html>

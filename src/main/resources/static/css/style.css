@@ -227,7 +227,7 @@
 .starrating > label:before {
   content: "\f005"; /* Star */
   margin: 15px;
-  font-size: 5vw;
+  font-size: 4.5vw;
   font-family: FontAwesome;
   display: inline-block;
 }
@@ -358,7 +358,7 @@
 .review-header{
     text-align: center;
     font-family: 'Merriweather', serif;
-    margin: 25px 0;
+    margin: 35px 0;
 }
 
 .review-date{

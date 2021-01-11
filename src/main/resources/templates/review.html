@@ -8,7 +8,7 @@
 
 <div class="container">
     <h1 class="review-header">Write a Review</h1>
-    <div class="jumbotron">
+    <div class="jumbotron city-view-card">
         <h1 class="text-center" th:text ="${city.cityName}"></h1>
         <form method="post">
 
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label th:for="comment">Review Body</label>
-                <textarea class="form-control" rows="3" th:field="${review.comment}"></textarea>
+                <textarea class="form-control" rows="5" th:field="${review.comment}"></textarea>
                     <!--<span th:errors="${skill.description}" class="error"></span>-->
             </div>
                 <input class="btn btn-success" type="submit" value="Add Review" />
@@ -40,4 +40,5 @@
     </div>
 </div>
 </body>
+<div th:replace="fragments :: footer"></div>
 </html>

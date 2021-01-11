@@ -57,6 +57,10 @@
 
 <div class="city-view-card">
         <h2 class="review-header">User Reviews</h2>
+        <div class="jumbotron review-display" th:if="${reviews.size()==0}">
+                <h5>No reviews submitted yet.</h5>
+                <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
+        </div>
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">

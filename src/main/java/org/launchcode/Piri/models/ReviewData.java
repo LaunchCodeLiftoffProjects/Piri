@@ -20,7 +20,7 @@ public class ReviewData {
             total = total + a;
         }
 
-        rating = total/reviews.size();
+        rating = (float)Math.round(total/reviews.size()*10)/10;
 
         if (reviews.size() == 0){
             rating = 0;

@@ -262,7 +262,7 @@ color: #FFF0F5 !important;
 
 .starrating > label:before {
   content: "\f005"; /* Star */
-  margin: 25px;
+  margin: 15px;
   font-size: 5vw;
   font-family: FontAwesome;
   display: inline-block;
@@ -358,6 +358,9 @@ color: #FFF0F5 !important;
 
 /* CSS for Search Button ends here */
 
+
+/* CSS for city-view page starts here */
+
 .save-compare-btn{
     margin-right: 10px;
 }
@@ -394,4 +397,5 @@ color: #FFF0F5 !important;
     text-align: right;
 }
 
+/* CSS for city-view page ends here */
 

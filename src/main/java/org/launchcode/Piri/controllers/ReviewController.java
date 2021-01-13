@@ -14,7 +14,6 @@ import org.launchcode.Piri.models.data.CityRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -43,7 +42,6 @@ public class ReviewController {
             model.addAttribute("city", optCity.get());
             model.addAttribute("cityId", cityId);
             model.addAttribute(new Review());
-
         }
         model.addAttribute("user", user);
         return "review";
@@ -54,34 +52,30 @@ public class ReviewController {
                                      Errors errors, Model model, @PathVariable int cityId,
                                      HttpServletRequest request){
 
+
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
+
+        Optional<City> optCity = cityRepository.findById(cityId);
+        City city = optCity.get();
+        model.addAttribute("city", city);
+
         if (errors.hasErrors()){
             return "review";
         }
 
-        HttpSession session = request.getSession();
-        User user = authenticationController.getUserFromSession(session);
-        Optional<City> optCity = cityRepository.findById(cityId);
-
-        if (optCity.isPresent()) {
-            City city = optCity.get();
-            newReview.setCity(city);
-            newReview.setUser(user);
-            model.addAttribute("city", city);
-            model.addAttribute("cityId", cityId);
-            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
-            model.addAttribute("reviews", city.getReviews());
-            model.addAttribute("affordabilityRating", 4.5);
-            model.addAttribute("safetyRating", 4);
-            model.addAttribute("transportationRating", 3);
-            model.addAttribute("jobRating", 4);
-        }
-
-
-        model.addAttribute("cities", cityRepository.findAll());
-
+        newReview.setCity(city);
+        newReview.setUser(user);
         reviewRepository.save(newReview);
-        model.addAttribute("reviews", reviewRepository.findAll());
-        model.addAttribute("user", user);
+
+        model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
+        model.addAttribute("affordabilityRating", 4.5);
+        model.addAttribute("safetyRating", 4);
+        model.addAttribute("transportationRating", 3);
+        model.addAttribute("jobRating", 4);
+        model.addAttribute("reviews", city.getReviews());
+
         return "view";
     }
 

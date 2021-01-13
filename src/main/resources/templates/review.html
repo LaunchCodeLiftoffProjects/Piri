@@ -22,18 +22,19 @@
                             <input type="radio" id="star2" name="rating" value="2" th:field="${review.overallRating}"/><label for="star2" title="2 star"></label>
                             <input type="radio" id="star1" name="rating" value="1" th:field="${review.overallRating}"/><label for="star1" title="1 star"></label>
                         </div>
+                        <p class="error" th:errors="${review.overallRating}"></p>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label th:for="title">Review Title</label>
                 <input class="form-control" th:field="${review.title}" />
-                <!--<span th:errors="${skill.name}" class="error"></span>-->
+                <p class="error" th:errors="${review.title}"></p>
             </div>
             <div class="form-group">
                 <label th:for="comment">Review Body</label>
                 <textarea class="form-control" rows="5" th:field="${review.comment}"></textarea>
-                    <!--<span th:errors="${skill.description}" class="error"></span>-->
+                <p class="error" th:errors="${review.comment}"></p>
             </div>
                 <input class="btn btn-success" type="submit" value="Add Review" />
         </form>

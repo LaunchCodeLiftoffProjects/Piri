@@ -1,6 +1,10 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +13,21 @@ import java.util.Optional;
 @Entity
 public class Review extends AbstractEntity {
 
+    @NotBlank(message = "Title is required")
+    @Size(min = 3, max=20, message = "Title must be between 3 and 20 characters long")
     private String title;
+
+    @NotBlank(message = "Comment is required")
+    @Size(min = 10, message = "Comment must be at least 10 characters long")
     private String comment;
+
+    //@NotNull(message = "Rating is required")
+    @Min(1)
     private int overallRating;
     private LocalDate reviewDate = LocalDate.now();
 
-    //@ManyToOne
-    //private User username;
+    @ManyToOne
+    private User username;
 
    @ManyToOne
    //@JoinColumn (name="city_id")

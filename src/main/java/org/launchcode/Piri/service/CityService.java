@@ -3,10 +3,7 @@ package org.launchcode.Piri.service;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.data.PagingAndSortingCityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,7 +23,7 @@ public class CityService {
         return cities;
     }
 
-    public Page<City> findPaginatedByValue(int pageNo, int cityCount, String value){
+    public Page<City> findPaginatedByValue(int pageNo, int cityCount, String value, String sortField, String sortDirection){
 
         String lower_val = null;
 
@@ -36,7 +33,9 @@ public class CityService {
             lower_val = value.toLowerCase();
         }
 
-        Iterable<City> cities = this.pagingAndSortingCityRepository.findAll();
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+        Iterable<City> cities = this.pagingAndSortingCityRepository.findAll(sort);
         ArrayList<City> results = new ArrayList<>();
 
 

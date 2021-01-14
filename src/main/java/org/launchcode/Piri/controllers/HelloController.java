@@ -36,12 +36,15 @@ public class HelloController {
         Optional<City> optCity = cityRepository.findById(cityId);
         City city = optCity.get();
 
+        Iterable<Review> reviews;
+        reviews = city.getReviews();
+
 
         if(optCity.isPresent()) {
             model.addAttribute("city", city);
             model.addAttribute("cityId", cityId);
             model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
-            model.addAttribute("reviews", city.getReviews());
+            model.addAttribute("reviews", reviews);
             model.addAttribute("affordabilityRating", 4.5);
             model.addAttribute("safetyRating", 4);
             model.addAttribute("transportationRating", 3);

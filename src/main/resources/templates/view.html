@@ -138,7 +138,7 @@
                                 <p th:text = "${reviews[i].comment}"></p>
                                 </p>
                                 <hr class="my-4">
-                                <p class="review-date" th:text = "'User submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>
                         </div>
                 </th:block>
         </div>

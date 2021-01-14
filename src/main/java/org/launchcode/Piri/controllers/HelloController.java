@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class HelloController {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @RequestMapping("home")
     public String hello(){
 
         return "index";

@@ -24,6 +24,12 @@ public class Review extends AbstractEntity {
     //@NotNull(message = "Rating is required")
     @Min(1)
     private int overallRating;
+
+    private int affordabilityRating;
+    private int safetyRating;
+    private int transportationRating;
+    private int jobGrowthRating;
+    private int schoolRating;
     private LocalDate reviewDate = LocalDate.now();
 
     @ManyToOne
@@ -39,11 +45,19 @@ public class Review extends AbstractEntity {
     public Review(){
     }
 
-    public Review(String title, String comment, int overallRating, City aCity, User aUser) {
+    public Review(String title, String comment, int overallRating,
+                  int affordabilityRating, /*int safetyRating, int transportationRating,
+                  int jobGrowthRating, int schoolRating,*/ City aCity, User aUser) {
 
         this.title = title;
         this.comment = comment;
         this.overallRating = overallRating;
+        this.affordabilityRating = affordabilityRating;
+        /*this.safetyRating = safetyRating;
+        this.transportationRating = transportationRating;
+        this.jobGrowthRating = jobGrowthRating;
+        this.schoolRating = schoolRating;*/
+
         //this.city = aCity;
         this.reviewDate = reviewDate;
     }
@@ -74,6 +88,46 @@ public class Review extends AbstractEntity {
 
     public void setOverallRating(int overallRating) {
         this.overallRating = overallRating;
+    }
+
+    public int getAffordabilityRating() {
+        return affordabilityRating;
+    }
+
+    public void setAffordabilityRating(int affordabilityRating) {
+        this.affordabilityRating = affordabilityRating;
+    }
+/*
+    public int getSafetyRating() {
+        return safetyRating;
+    }
+
+    public void setSafetyRating(int safetyRating) {
+        this.safetyRating = safetyRating;
+    }
+
+    public int getTransportationRating() {
+        return transportationRating;
+    }
+
+    public void setTransportationRating(int transportationRating) {
+        this.transportationRating = transportationRating;
+    }
+
+    public int getJobGrowthRating() {
+        return jobGrowthRating;
+    }
+
+    public void setJobGrowthRating(int jobGrowthRating) {
+        this.jobGrowthRating = jobGrowthRating;
+    }
+*/
+    public int getSchoolRating() {
+        return schoolRating;
+    }
+
+    public void setSchoolRating(int schoolRating) {
+        this.schoolRating = schoolRating;
     }
 
     public City getCity() {

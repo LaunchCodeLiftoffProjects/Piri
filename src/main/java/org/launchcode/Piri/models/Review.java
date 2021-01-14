@@ -30,11 +30,9 @@ public class Review extends AbstractEntity {
     private int transportationRating;
     private int jobGrowthRating;
     private int schoolRating;
+
     private LocalDate reviewDate = LocalDate.now();
-
-    @ManyToOne
-    private User username;
-
+                     
    @ManyToOne
    //@JoinColumn (name="city_id")
    private City city;
@@ -53,10 +51,10 @@ public class Review extends AbstractEntity {
         this.comment = comment;
         this.overallRating = overallRating;
         this.affordabilityRating = affordabilityRating;
-        /*this.safetyRating = safetyRating;
+        this.safetyRating = safetyRating;
         this.transportationRating = transportationRating;
         this.jobGrowthRating = jobGrowthRating;
-        this.schoolRating = schoolRating;*/
+        this.schoolRating = schoolRating;
 
         //this.city = aCity;
         this.reviewDate = reviewDate;
@@ -97,7 +95,7 @@ public class Review extends AbstractEntity {
     public void setAffordabilityRating(int affordabilityRating) {
         this.affordabilityRating = affordabilityRating;
     }
-/*
+
     public int getSafetyRating() {
         return safetyRating;
     }
@@ -121,7 +119,7 @@ public class Review extends AbstractEntity {
     public void setJobGrowthRating(int jobGrowthRating) {
         this.jobGrowthRating = jobGrowthRating;
     }
-*/
+
     public int getSchoolRating() {
         return schoolRating;
     }
@@ -145,13 +143,5 @@ public class Review extends AbstractEntity {
     public void setUser(User user) {
         this.user = user;
     }
-
-    //public User getUsername() {
-    //    return username;
-    //}
-
-    //public void setUsername(User username) {
-    //    this.username = username;
-    //}
 
 }

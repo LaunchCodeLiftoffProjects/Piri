@@ -73,7 +73,7 @@ public class ReviewController {
         model.addAttribute("affordabilityRating", 4.5);
         model.addAttribute("safetyRating", 4);
         model.addAttribute("transportationRating", 3);
-        model.addAttribute("jobRating", 4);
+        model.addAttribute("jobGrowthRating", 4);
         model.addAttribute("reviews", city.getReviews());
 
         return "view";

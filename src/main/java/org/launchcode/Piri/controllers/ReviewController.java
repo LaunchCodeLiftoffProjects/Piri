@@ -69,11 +69,12 @@ public class ReviewController {
         newReview.setUser(user);
         reviewRepository.save(newReview);
 
-        model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
-        model.addAttribute("affordabilityRating", 4.5);
-        model.addAttribute("safetyRating", 4);
-        model.addAttribute("transportationRating", 3);
-        model.addAttribute("jobGrowthRating", 4);
+        model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
+        model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
+        model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
+        model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
+        model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
+        model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
         model.addAttribute("reviews", city.getReviews());
 
         return "view";

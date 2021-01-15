@@ -14,7 +14,7 @@ import java.util.Optional;
 public class Review extends AbstractEntity {
 
     @NotBlank(message = "Title is required")
-    @Size(min = 3, max=20, message = "Title must be between 3 and 20 characters long")
+    @Size(min = 3, max=40, message = "Title must be between 3 and 20 characters long")
     private String title;
 
     @NotBlank(message = "Comment is required")
@@ -32,7 +32,7 @@ public class Review extends AbstractEntity {
     private int schoolRating;
 
     private LocalDate reviewDate = LocalDate.now();
-                     
+
    @ManyToOne
    //@JoinColumn (name="city_id")
    private City city;

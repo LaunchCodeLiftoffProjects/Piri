@@ -45,12 +45,13 @@ public class HelloController {
         if(optCity.isPresent()) {
             model.addAttribute("city", city);
             model.addAttribute("cityId", cityId);
-            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
+            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
             model.addAttribute("reviews", reviews);
-            model.addAttribute("affordabilityRating", 4.5);
-            model.addAttribute("safetyRating", 4);
-            model.addAttribute("transportationRating", 3);
-            model.addAttribute("jobRating", 4);
+            model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
+            model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
+            model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
+            model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
+            model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
         }
         return "view";
     }

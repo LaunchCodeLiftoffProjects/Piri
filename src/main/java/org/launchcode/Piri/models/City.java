@@ -1,8 +1,8 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +29,14 @@ public class City extends AbstractEntity{
     //@JoinColumn (name="reviews_id")
     private final List<Review> reviews = new ArrayList<>();
 
+    private @Min(1) double overallRating;
+
     public City(){
 
     }
 
-    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude,
-                Double longitude){
+    public City(String cityName, String stateName, String stateID, String zipCodes, String county, Double latitude,
+                Double longitude, @Min(1) int overallRating){
         super();
         this.cityName = cityName;
         this.stateName = stateName;
@@ -43,6 +45,7 @@ public class City extends AbstractEntity{
         this.county = county;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.overallRating = overallRating;
     }
 
     @Override
@@ -128,4 +131,11 @@ public class City extends AbstractEntity{
         return reviews;
     }
 
+    public @Min(1) double getOverallRating() {
+        return overallRating;
+    }
+
+    public void setOverallRating(@Min(1) double overallRating) {
+        this.overallRating = overallRating;
+    }
 }

@@ -52,16 +52,16 @@
                         <ul class="pagination justify-content-center flex-wrap">
 
                             <li class="page-item">
-                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">First</a>
+                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">First</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Previous</a>
+                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Previous</a>
                                 <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
                             </li>
 
                             <th:block th:if="${totalPages <= 10}">
                                 <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
                                     <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                 </li>
@@ -70,14 +70,14 @@
                             <th:block th:if="${totalPages > 10}">
                                 <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
                                     <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
-                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
                                         <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                     </li>
                                     <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
 
                                     <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
-                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}" >[[${i}]]</a>
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" >[[${i}]]</a>
                                         <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                     </li>
@@ -85,27 +85,27 @@
 
                                 <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
 
-                                    <a th:href="@{'/page/' + ${currentPage - 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}" class="page-link">...</a>
+                                    <a th:href="@{'/page/' + ${currentPage - 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
 
                                     <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
-                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
                                         <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
 
                                     </li>
 
-                                    <a th:href="@{'/page/' + ${currentPage + 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}" class="page-link">...</a>
+                                    <a th:href="@{'/page/' + ${currentPage + 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
 
                                 </th:block>
 
                             </th:block>
 
                             <li class="page-item">
-                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Next</a>
                                 <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Next</a></span>-->
                             </li>
 
                             <li class="page-item">
-                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Last</a>
                                 <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Last</a></span>-->
                             </li>
                         </ul>

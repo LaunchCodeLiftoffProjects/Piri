@@ -22,9 +22,10 @@ public class SearchController {
     private CityService cityService;
 
     @GetMapping(value = "/page/{pageNo}", params = "searchTerm")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model,@RequestParam String searchTerm,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model,@RequestParam String searchTerm,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRating){
 
         int cityCount = 6;
+
 
         if(sortField == null) {
         sortField = "cityName";
@@ -33,7 +34,7 @@ public class SearchController {
         sortDirection = "asc";
         }
 
-        Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, sortField, sortDirection);
+        Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, sortField, sortDirection, starRating);
         List<City> cities = page.getContent();
 
         model.addAttribute("searchTerm", searchTerm);
@@ -44,7 +45,7 @@ public class SearchController {
         model.addAttribute("cities", cities);
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDirection", sortDirection);
-
+        model.addAttribute("starRating", starRating);
         return "search";
     }
 

@@ -66,8 +66,14 @@ public class ReviewController {
         }
 
         newReview.setCity(city);
+        if(city.getOverallRating() == 0){
+            city.setOverallRating(newReview.getOverallRating());
+        }else{
+            city.setOverallRating(ReviewData.calculateAverageOverallRating(cityId,city));
+        }
         newReview.setUser(user);
         reviewRepository.save(newReview);
+
 
         model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
         model.addAttribute("affordabilityRating", 4.5);

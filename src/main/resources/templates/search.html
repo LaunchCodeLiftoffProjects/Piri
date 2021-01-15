@@ -14,11 +14,10 @@
         <div class="btn-group mr-2" role="group" aria-label="First group">
             <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Star Rating</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">5 Star</a>
-                <a class="dropdown-item" href="#">3 Star</a>
-                <a class="dropdown-item" href="#">2 Star</a>
-                <a class="dropdown-item" href="#">1 Star</a>
-                <a class="dropdown-item" href="#">Unrated</a>
+                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 4}">4 & up</a>
+                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 3}">3 & up</a>
+                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 2}">2 & up</a>
+                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 1}">1 & up</a>
             </div>
         </div>
         </div>

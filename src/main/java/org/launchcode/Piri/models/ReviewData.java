@@ -27,7 +27,6 @@ public class ReviewData {
         if (reviews.size() == 0){
             rating = 0;
         }
-
         return rating;
     }
 }

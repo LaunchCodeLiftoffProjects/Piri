@@ -1,27 +1,28 @@
 /* CSS for navigation bar starts here */
 .navbar{
-background-color: #663a82;
+    background-color: #663a82;
 }
 
 .navbar-brand{
- font-family:'Pacifico', cursive;
- color: white;
+    font-family:'Pacifico', cursive;
+    color: white;
 }
 
-.nav-link{
-color: white;
+.navigation-link{
+    color: white;
 }
 
-.nav-link:hover{
-color: white;
+.navigation-link:hover{
+    color: white;
 }
 /* CSS for navigation bar ends here*/
 
+
 .index{
-background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-height: 100vh;
-background-repeat: no-repeat; /* Do not repeat the image */
-background-size: cover;
+    background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+    height: 100vh;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
 }
 
 .search{
@@ -126,21 +127,9 @@ background-size: cover;
     margin-top: -55%;
 }
 
-#search-btn{
-background-color: #FF8C00 !important;
-}
-
-.fa-search{
-color: #FFF0F5 !important;
-}
-
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
   margin-left: 280%;
-}
-
-#search-input-group {
-    margin-left: 13%;
 }
 
 #filter-btn-toolbar{
@@ -204,25 +193,13 @@ color: #FFF0F5 !important;
     background-color: #f6f8fa
 }
 
-/*.rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-}
-.rating > span {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-}*/
+/*css for view page ends here*/
 
+/* css display star ratings starts*/
 
 @charset "UTF-8";
 :root {
-  --star-size: 50px;
+  --star-size: 40px;
   --star-color: #fff;
   --star-background: #fc0;
 }
@@ -241,13 +218,32 @@ color: #FFF0F5 !important;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* css display star ratings ends */
 
-* {
-  position: relative;
-  box-sizing: border-box;
+/* ratings page*/
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before {
+  content: "\f005"; /* Star */
+  margin: 15px;
+  font-size: 4.5vw;
+  font-family: FontAwesome;
+  display: inline-block;
 }
 
-/* CSS for login.html & register.html starts here */
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
+/* CSS for login.html & register.html  starts here */
 
 .login-register-container{
     width: 400px;
@@ -271,7 +267,9 @@ color: #FFF0F5 !important;
 .login-register-header{
     font-family: 'Merriweather', serif;
 }
+
 /* CSS for login.html & register.html  ends here */
+
 
 /* CSS for footer starts here */
 .footer-links{
@@ -283,9 +281,90 @@ color: #FFF0F5 !important;
       font-size: 12px;
 }
 
+.footer-links:hover{
+    color: black;
+}
+
 .footer-container{
     border-top: 1px solid #f7f8fa;
     padding: 15px 0;
 }
 /* CSS for footer ends here */
 
+/* CSS for error message starts here */
+
+.error{
+    color: red;
+    font-style: italic;
+}
+/* CSS for error message ends here */
+
+/* CSS for Search button starts here */
+.search-btn-container{
+    border-bottom: 1px solid #d7d8d9;
+    padding: 15px 0;
+}
+
+.top-search-btn{
+    width: 600px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.input-group-lg > .form-control{
+    border-top-left-radius: 1.25rem !important;
+    border-bottom-left-radius: 1.25rem !important;
+}
+
+#search-btn{
+    background-color: #FF8C00 !important;
+    border-top-right-radius: 1.25rem !important;
+    border-bottom-right-radius: 1.25rem !important;
+}
+
+.fa-search{
+    color: #FFF0F5 !important;
+}
+
+/* CSS for Search Button ends here */
+
+
+/* CSS for city-view page starts here */
+
+.save-compare-btn{
+    margin-right: 10px;
+}
+
+.city-view-card{
+    width: 900px;
+    max-width: 90%;
+    margin: 35px auto;
+}
+
+.city-rating-card{
+    width: 600px;
+    max-width: 90%;
+    margin: 25px auto;
+}
+
+.rating-category{
+    font-size: 1.5rem;
+}
+
+.review-display{
+    padding: 25px !important;
+}
+
+.review-header{
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    margin: 35px 0;
+}
+
+.review-date{
+    font-size: 12px;
+    font-style: italic;
+    text-align: right;
+}
+
+/* CSS for city-view page ends here */

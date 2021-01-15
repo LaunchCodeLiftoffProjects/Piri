@@ -3,9 +3,15 @@
 <head th:replace="fragments :: head">
 
 </head>
+<div th:if="${session.user}">
+    <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
 <body id="search-background" >
 
-    <div th:replace="fragments :: page-header-search"></div>
+    <div th:replace="fragments :: search-form"></div>
 
 
     <div class="btn-toolbar justify-content-center" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

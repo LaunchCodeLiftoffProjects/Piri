@@ -1,7 +1,10 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.Entity;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -22,14 +25,17 @@ public class City extends AbstractEntity{
 
     private Double longitude;
 
-
+    @OneToMany(mappedBy = "city")
+    //@JoinColumn (name="reviews_id")
+    private final List<Review> reviews = new ArrayList<>();
 
     public City(){
 
     }
 
-    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude, Double longitude){
-
+    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude,
+                Double longitude){
+        super();
         this.cityName = cityName;
         this.stateName = stateName;
         this.stateID = stateID;
@@ -117,4 +123,9 @@ public class City extends AbstractEntity{
     public void setZipCodes(String zipCodes) {
         this.zipCodes = zipCodes;
     }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
 }

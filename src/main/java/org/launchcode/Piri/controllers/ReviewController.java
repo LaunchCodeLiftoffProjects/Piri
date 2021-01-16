@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("review")
 public class ReviewController {
 
     @Autowired
@@ -31,7 +32,7 @@ public class ReviewController {
     @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping("review/{cityId}")
+    @GetMapping("{cityId}")
     public String writeReview(Model model, @PathVariable int cityId, HttpServletRequest request){
 
         Optional<City> optCity = cityRepository.findById(cityId);
@@ -47,7 +48,7 @@ public class ReviewController {
         return "review";
     }
 
-    @PostMapping("review/{cityId}")
+    @PostMapping("{cityId}")
     public String processWriteReview(@ModelAttribute @Valid Review newReview,
                                      Errors errors, Model model, @PathVariable int cityId,
                                      HttpServletRequest request){
@@ -69,16 +70,50 @@ public class ReviewController {
         newReview.setUser(user);
         reviewRepository.save(newReview);
 
-        model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
-        model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
-        model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
-        model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
-        model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
-        model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
-        model.addAttribute("reviews", city.getReviews());
-
-        return "view";
+        return "redirect:../view/{cityId}";
     }
 
+    @GetMapping("edit/{reviewId}")
+        public String displayEditForm(Model model, @PathVariable int reviewId) {
+
+
+            Optional<Review> optReview = reviewRepository.findById(reviewId);
+
+            Review review = optReview.get();
+            City city = review.getCity();
+            User user = review.getUser();
+
+            model.addAttribute("review", review);
+            model.addAttribute("city", city);
+            model.addAttribute("user", user);
+            //model.addAttribute("title", "Edit Event " + event.getName() + " (ID=" + event.getId() + ")");
+            return "edit";
+    }
+
+    @PostMapping("edit/{reviewId}")
+        public String processEditForm(Model model,  String title,
+                                      String comment,
+                                      Errors errors, @PathVariable int reviewId) {
+
+        Optional<Review> optReview = reviewRepository.findById(reviewId);
+        Review review = optReview.get();
+
+        City city = review.getCity();
+        int cityId = city.getId();
+
+        if (errors.hasErrors()){
+            return "review";
+        }
+
+        review.setTitle(title);
+        review.setComment(comment);
+        //review.setCity(city);
+        //review.setUser(user);
+        //reviewRepository.save(oldReview);
+        model.addAttribute("cityId", cityId);
+
+        return "redirect:../view/{cityId}";
+
+    }
 
 }

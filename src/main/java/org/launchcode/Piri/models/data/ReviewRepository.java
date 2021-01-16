@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
-    
+    Optional<Review> findById(Integer integer);
 }

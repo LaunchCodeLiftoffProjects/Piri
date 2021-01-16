@@ -1,14 +1,22 @@
+/* CSS for navigation bar starts here */
 .navbar{
     background-color: #663a82;
 }
 
 .navbar-brand{
     font-family:'Pacifico', cursive;
-}
-
-.navbar a{
     color: white;
 }
+
+.navigation-link{
+    color: white;
+}
+
+.navigation-link:hover{
+    color: white;
+}
+/* CSS for navigation bar ends here*/
+
 
 .index{
     background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
@@ -81,41 +89,6 @@
   transform: translate(-50%, -50%);
 }
 
-.login-box{
-    position: absolute;
-    width: 400px;
-    height: 600px;
-    background-color: #ffffff;
-
-    font-size: 20px;
-
-}
-
-/* CSS for login.html & register.html starts here */
-.login-form{
-    border: 1px solid #f6f8fa;
-    border-radius: 5px;
-    padding: 25px;
-    background-color: #eaecef;
-}
-
-.login-input{
-    display: inline-block;
-}
-
-.login-btn{
-    padding: 6px 120px;
-}
-
-.login-header{
-    font-family: 'Merriweather', serif;
-}
-
-.register-btn{
-    padding: 6px 50px;
-    margin: 0 50px;
-}
-
 .card {
     margin-left: 18%;
     margin-right: 18%;
@@ -154,21 +127,9 @@
     margin-top: -55%;
 }
 
-#search-btn{
-background-color: #FF8C00 !important;
-}
-
-.fa-search{
-color: #FFF0F5 !important;
-}
-
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
   margin-left: 280%;
-}
-
-#search-input-group {
-    margin-left: 13%;
 }
 
 #filter-btn-toolbar{
@@ -212,6 +173,8 @@ color: #FFF0F5 !important;
 
 
 
+
+
 .button2{
     position: absolute;
     right: 50px;
@@ -233,6 +196,7 @@ color: #FFF0F5 !important;
 /*css for view page ends here*/
 
 /* css display star ratings starts*/
+
 
 :root {
   --star-size: 40px;
@@ -262,8 +226,8 @@ color: #FFF0F5 !important;
 
 .starrating > label:before {
   content: "\f005"; /* Star */
-  margin: 25px;
-  font-size: 4em;
+  margin: 15px;
+  font-size: 4.5vw;
   font-family: FontAwesome;
   display: inline-block;
 }
@@ -278,8 +242,9 @@ color: #FFF0F5 !important;
 
 .starrating > input:hover ~ label
 { color: #ffca08 ;  } /* Set yellow color when star hover */
+/*ratings ends*/
+/* CSS for login.html & register.html  starts here */
 
-/*login bar?*/
 .login-register-container{
     width: 400px;
     height: auto;
@@ -305,6 +270,7 @@ color: #FFF0F5 !important;
 
 /* CSS for login.html & register.html  ends here */
 
+
 /* CSS for footer starts here */
 .footer-links{
       display: inline;
@@ -313,6 +279,10 @@ color: #FFF0F5 !important;
       padding: 16px;
       text-decoration: none;
       font-size: 12px;
+}
+
+.footer-links:hover{
+    color:black;
 }
 
 .footer-container{
@@ -358,6 +328,9 @@ color: #FFF0F5 !important;
 
 /* CSS for Search Button ends here */
 
+
+/* CSS for city-view page starts here */
+
 .save-compare-btn{
     margin-right: 10px;
 }
@@ -385,6 +358,7 @@ color: #FFF0F5 !important;
 .review-header{
     text-align: center;
     font-family: 'Merriweather', serif;
+    margin:35px 0;
 }
 
 .review-date{
@@ -393,4 +367,4 @@ color: #FFF0F5 !important;
     text-align: right;
 }
 
-
+/* CSS for city-view page ends here */

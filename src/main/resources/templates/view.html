@@ -4,83 +4,12 @@
 </head>
 <body id="search-background">
 
-<div th:replace="fragments :: page-header-search"></div>
+<div th:if="${session.user}">
+        <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
-
-<!--
-
-<div class="city-view-header">
-        <div class ="city-image">
-                <div class="wrapper b">
-                        <img
-                                src="/images/nycskyline.png"
-                                alt="..."
-                                class="img-fluid">
-                        <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>
-                </div>
-        </div>
-
-        <div class="overall-rating">
-                <h1 th:text="${city.cityName} +', ' +${city.stateName}" ></h1>
-
-
-                <div class = "button2">
-                        <a class="btn btn-primary" href="/compare" role="button">Compare</a>
-                </div>
-
-
-                <div class="Stars"
-                     th:style="|--rating: ${overallRating}|" >
-
-                </div>
-
-
-                <p th:text="'Overall rating is ' + ${overallRating} + ' based on ' + ${reviews.size()} + ' total reviews.'" ></p>
-                <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
-        </div>
+<div th:unless="${session.user}">
+        <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
-
-<p></p>
-
-<div class="container">
-        <div class = "city-ratings">
-
-
-                <p>Affordability:</p>
-                <div class="Stars"
-                     th:style="|--rating: ${affordabilityRating}|" ></div>
-
-                <p>Safety:</p>
-                <div class="Stars"
-                     th:style="|--rating: ${safetyRating}|" ></div>
-
-                <p>Transportation:</p>
-                <div class="Stars"
-                     th:style="|--rating: ${transportationRating}|" ></div>
-
-                <p>Job Growth:</p>
-                <div class="Stars"
-                     th:style="|--rating: ${jobRating}|" ></div>
-
-                <table class="review-listing">
-                        <h1>Reviews:</h1>
-                        <tr th:each="review : ${reviews}">
-
-                                <td>
-                                        <p th:text = "${review.title}"></p>
-                                </td>
-                                <td>
-                                        <p th:text = "${review.comment}"></p>
-                                </td>
-                        </tr>
-                </table>
-
-        </div>
-
-</div>
-</body>
-</html>-->
-
 
 <div class="jumbotron">
         <div class="row">
@@ -130,6 +59,10 @@
 
 <div class="city-view-card">
         <h2 class="review-header">User Reviews</h2>
+        <div class="jumbotron review-display" th:if="${reviews.size()==0}">
+                <h5>No reviews submitted yet.</h5>
+                <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
+        </div>
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">

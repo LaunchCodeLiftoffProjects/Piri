@@ -3,12 +3,15 @@ package org.launchcode.Piri.models;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ReviewData {
+
+    private static final Map<Integer, Review> reviews = new HashMap<>();
+
+    public static Review getById(int id) {
+        return reviews.get(id);
+    }
 
     public static double calculateAverageOverallRating(City city){
         double rating = 0;

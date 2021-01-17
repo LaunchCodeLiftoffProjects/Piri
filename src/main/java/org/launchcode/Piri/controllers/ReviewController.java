@@ -4,12 +4,14 @@ import org.launchcode.Piri.models.*;
 import org.launchcode.Piri.models.data.ReviewRepository;
 import org.launchcode.Piri.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.data.CityRepository;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -90,30 +92,19 @@ public class ReviewController {
             return "edit";
     }
 
+
     @PostMapping("edit/{reviewId}")
-        public String processEditForm(Model model,  String title,
-                                      String comment,
-                                      Errors errors, @PathVariable int reviewId) {
+        public String processEditForm(Model model, Review review, @PathVariable int reviewId) {
 
-        Optional<Review> optReview = reviewRepository.findById(reviewId);
-        Review review = optReview.get();
+        //Optional<Review> optReview = reviewRepository.findById(reviewId);
+        //Review review = optReview.get();
 
-        City city = review.getCity();
-        int cityId = city.getId();
 
-        if (errors.hasErrors()){
-            return "review";
-        }
-
-        review.setTitle(title);
-        review.setComment(comment);
-        //review.setCity(city);
-        //review.setUser(user);
-        //reviewRepository.save(oldReview);
-        model.addAttribute("cityId", cityId);
-
-        return "redirect:../view/{cityId}";
-
+        //review.setTitle("title");
+        //review.setComment();
+        reviewRepository.save(review);
+        return "index";
     }
+
 
 }

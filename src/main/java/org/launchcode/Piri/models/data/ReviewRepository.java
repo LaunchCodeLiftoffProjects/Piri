@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+//@Transactional
 @Repository
-@Transactional
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
     Optional<Review> findById(Integer integer);
 }

@@ -74,6 +74,7 @@
                                 </p>
                                 <hr class="my-4">
                                 <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit</a>
                         </div>
                 </th:block>
         </div>

@@ -9,9 +9,7 @@ import org.launchcode.Piri.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -36,16 +34,19 @@ public class HelloController {
         Optional<City> optCity = cityRepository.findById(cityId);
         City city = optCity.get();
 
+        Iterable<Review> reviews;
+        reviews = city.getReviews();
 
         if(optCity.isPresent()) {
             model.addAttribute("city", city);
             model.addAttribute("cityId", cityId);
-            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
-            model.addAttribute("reviews", city.getReviews());
-            model.addAttribute("affordabilityRating", 4.5);
-            model.addAttribute("safetyRating", 4);
-            model.addAttribute("transportationRating", 3);
-            model.addAttribute("jobRating", 4);
+            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
+            model.addAttribute("reviews", reviews);
+            model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
+            model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
+            model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
+            model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
+            model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
         }
         return "view";
     }

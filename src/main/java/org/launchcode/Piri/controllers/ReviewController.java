@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.data.CityRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,7 +51,7 @@ public class ReviewController {
     @PostMapping("review/{cityId}")
     public String processWriteReview(@ModelAttribute @Valid Review newReview,
                                      Errors errors, Model model, @PathVariable int cityId,
-                                     HttpServletRequest request){
+                                     HttpServletRequest request,@RequestParam("files") MultipartFile[] files){
 
 
         HttpSession session = request.getSession();
@@ -59,29 +60,36 @@ public class ReviewController {
 
         Optional<City> optCity = cityRepository.findById(cityId);
         City city = optCity.get();
+        ReviewData.uploadImagesToDB(files, optCity, newReview);
         model.addAttribute("city", city);
+
 
         if (errors.hasErrors()){
             return "review";
         }
 
-        newReview.setCity(city);
-        if(city.getOverallRating() == 0){
-            city.setOverallRating(newReview.getOverallRating());
-        }else{
-            city.setOverallRating(ReviewData.calculateAverageOverallRating(cityId,city));
-        }
+//        newReview.setCity(city);
         newReview.setUser(user);
         reviewRepository.save(newReview);
 
+        if(newReview.getOverallRating() != 0){
+            ReviewData.calculateAverageOverallRating(city);
+            ReviewData.calculateAverageAffordabilityRating(city);
+            ReviewData.calculateAverageSafetyRating(city);
+            ReviewData.calculateAverageJobGrowthRating(city);
+            ReviewData.calculateAverageTransportationRating(city);
+            ReviewData.calculateAverageSchoolRating(city);
+        }
 
-        model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
-        model.addAttribute("affordabilityRating", 4.5);
-        model.addAttribute("safetyRating", 4);
-        model.addAttribute("transportationRating", 3);
-        model.addAttribute("jobRating", 4);
+
+        model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
         model.addAttribute("reviews", city.getReviews());
-
+        model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
+        model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
+        model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
+        model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
+        model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
+        model.addAttribute("cities", cityRepository.findAll());
         return "view";
     }
 

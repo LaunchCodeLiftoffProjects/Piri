@@ -26,6 +26,16 @@ public class Review extends AbstractEntity {
     private int overallRating;
     private LocalDate reviewDate = LocalDate.now();
 
+    private int affordabilityRating;
+
+    private int safetyRating;
+
+    private int transportationRating;
+
+    private int jobGrowthRating;
+
+    private int schoolRating;
+
     @ManyToOne
     private User username;
 
@@ -36,16 +46,26 @@ public class Review extends AbstractEntity {
    @ManyToOne
    private User user;
 
+    @Lob
+    @Column(name = "city_image")
+    private ArrayList<String> cityImage;
+
     public Review(){
     }
 
-    public Review(String title, String comment, int overallRating, City aCity, User aUser) {
+    public Review(String title, String comment, int overallRating, int affordabilityRating, int safetyRating, int transportationRating, int jobGrowthRating, int schoolRating, City aCity, User aUser, ArrayList<String> cityImage) {
 
         this.title = title;
         this.comment = comment;
         this.overallRating = overallRating;
+        this.affordabilityRating = affordabilityRating;
+        this.safetyRating = safetyRating;
+        this.transportationRating = transportationRating;
+        this.jobGrowthRating = jobGrowthRating;
+        this.schoolRating = schoolRating;
         //this.city = aCity;
         this.reviewDate = reviewDate;
+        this.cityImage = cityImage;
     }
 
     public LocalDate getReviewDate() {
@@ -76,6 +96,46 @@ public class Review extends AbstractEntity {
         this.overallRating = overallRating;
     }
 
+    public int getAffordabilityRating() {
+        return affordabilityRating;
+    }
+
+    public void setAffordabilityRating(int affordabilityRating) {
+        this.affordabilityRating = affordabilityRating;
+    }
+
+    public int getSafetyRating() {
+        return safetyRating;
+    }
+
+    public void setSafetyRating(int safetyRating) {
+        this.safetyRating = safetyRating;
+    }
+
+    public int getTransportationRating() {
+        return transportationRating;
+    }
+
+    public void setTransportationRating(int transportationRating) {
+        this.transportationRating = transportationRating;
+    }
+
+    public int getJobGrowthRating() {
+        return jobGrowthRating;
+    }
+
+    public void setJobGrowthRating(int jobGrowthRating) {
+        this.jobGrowthRating = jobGrowthRating;
+    }
+
+    public int getSchoolRating() {
+        return schoolRating;
+    }
+
+    public void setSchoolRating(int schoolRating) {
+        this.schoolRating = schoolRating;
+    }
+
     public City getCity() {
         return city;
     }
@@ -100,4 +160,12 @@ public class Review extends AbstractEntity {
     //    this.username = username;
     //}
 
+
+    public ArrayList<String> getCityImage() {
+        return cityImage;
+    }
+
+    public void setCityImage(ArrayList<String> cityImage) {
+        this.cityImage = cityImage;
+    }
 }

@@ -116,6 +116,8 @@
     margin: 0 50px;
 }
 
+/*css for city Card starts here*/
+
 .card {
     margin-left: 18%;
     margin-right: 18%;
@@ -146,13 +148,46 @@
     display: block;
     position: absolute;
     top: 0;
-    opacity: 0;
+    opacity: 1;
     left: 0;
     bottom: 0;
     right: 0;
     margin-left: 80%;
-    margin-top: -55%;
+    margin-top: -65%;
 }
+
+#cityCard{
+    background-color: #F8F8FF;
+    transition:.3s;
+
+}
+
+.cityCardImage{
+    width:360px;
+    height:190px;
+}
+
+.carouselCity{
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+#cityCard:hover{
+    box-shadow: 5px 5px 5px #FF6347;
+    transform: scale(1.1);
+}
+
+
+#cityCardStar{
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+
+
+/*css for city Card ends here*/
+
+/*css for search view starts here*/
 
 #search-btn{
 background-color: #FF8C00 !important;
@@ -181,6 +216,8 @@ color: #FFF0F5 !important;
     font-size: 42px;
     text-align:center;
 }
+
+/*css for search view ends here*/
 
 /*css for view page starts here*/
 .city-view-header{

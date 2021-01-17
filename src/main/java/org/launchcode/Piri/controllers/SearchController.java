@@ -26,7 +26,9 @@ public class SearchController {
 
         int cityCount = 6;
 
-
+        if(starRating == null){
+           starRating = 0;
+        }
         if(sortField == null) {
         sortField = "cityName";
         }

@@ -69,19 +69,19 @@ public class CityService {
         }
 
 
-        if(starRating == null){
+        if(starRating == 0){
             sortedResultsOfCities.addAll(results);
         }else if(starRating != null) {
 
             for(int i = 0; i < results.size(); i++){
                 City city = results.get(i);
-                if(starRating == 4 && city.getOverallRating() >= 4){
+                if(starRating == 4 && city.getOverallCityRating() >= 4){
                     sortedResultsOfCities.add(city);
-                }else if(starRating == 3 && city.getOverallRating() >= 3){
+                }else if(starRating == 3 && city.getOverallCityRating() >= 3){
                     sortedResultsOfCities.add(city);
-                }else if(starRating == 2 && city.getOverallRating() >= 2){
+                }else if(starRating == 2 && city.getOverallCityRating() >= 2){
                     sortedResultsOfCities.add(city);
-                }else if(starRating == 1 && city.getOverallRating() >= 1){
+                }else if(starRating == 1 && city.getOverallCityRating() >= 1){
                     sortedResultsOfCities.add(city);
                 }
             }

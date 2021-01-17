@@ -94,14 +94,29 @@ public class ReviewController {
 
 
     @PostMapping("edit/{reviewId}")
-        public String processEditForm(Model model, Review review, @PathVariable int reviewId) {
+        public String processEditForm(@ModelAttribute @Valid Review review, Errors errors,
+                                      Model model, String title,
+                                      String comment, int overallRating,
+                                      @PathVariable int reviewId) {
 
-        //Optional<Review> optReview = reviewRepository.findById(reviewId);
-        //Review review = optReview.get();
+        Optional<Review> optReview = reviewRepository.findById(reviewId);
+        review = optReview.get();
+        model.addAttribute("review", review);
+        City city = review.getCity();
+        model.addAttribute("city", city);
+        User user = review.getUser();
+        model.addAttribute("user", user);
+
+        if (errors.hasErrors()){
+            return "edit";
+        }
+
+        review.setOverallRating(overallRating);
+        review.setTitle(title);
+        review.setComment(comment);
 
 
-        //review.setTitle("title");
-        //review.setComment();
+
         reviewRepository.save(review);
         return "index";
     }

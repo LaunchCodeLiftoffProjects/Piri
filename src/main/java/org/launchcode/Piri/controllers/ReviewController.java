@@ -84,8 +84,6 @@ public class ReviewController {
 
 
 
-
-
         if (errors.hasErrors()){
             return "review";
         }
@@ -98,7 +96,7 @@ public class ReviewController {
 
         reviewRepository.save(newReview);
 
-        return "redirect:../view/{cityId}";
+        return "redirect:../view/{cityId}/1";
     }
 
 //

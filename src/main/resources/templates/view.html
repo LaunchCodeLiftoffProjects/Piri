@@ -130,20 +130,93 @@
 <!--        <h2 class="review-header">User Reviews</h2>-->
         <h2 class="review-header"><a id="targetUserReviews">User Reviews</a></h2>
 
-        <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
-                <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
+        <div th:each="i : ${#numbers.sequence(reviewsPerPage.size() -1, 0, -1)}">
+                <th:block th:unless="${reviewsPerPage[i].title=='' and reviewsPerPage[i].comment==''}">
                         <div class="jumbotron review-display">
                                 <h3>
-                                        <p th:text = "${reviews[i].title}"></p>
+                                        <p th:text = "${reviewsPerPage[i].title}"></p>
                                 </h3>
                                 <p class="lead">
-                                <p th:text = "${reviews[i].comment}"></p>
+                                <p th:text = "${reviewsPerPage[i].comment}"></p>
                                 </p>
                                 <hr class="my-4">
-                                <p class="review-date" th:text = "'User submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <p class="review-date" th:text = "'User submitted the review on ' + ${reviewsPerPage[i].reviewDate}"></p>
                         </div>
                 </th:block>
         </div>
+
+        <div th:if = "${totalPages > 1}">
+                <div class="row">
+                        <div class="col-lg-6 offset-lg-3 py-5 border">
+                                <nav>
+                                        <ul class="pagination justify-content-center flex-wrap">
+
+                                                <li class="page-item">
+                                                        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/view/' + ${city.id} + '/1' + '#targetUserReviews'}">First</a>
+                                                </li>
+                                                <li class="page-item">
+                                                        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage - 1}+ '#targetUserReviews'}">Previous</a>
+                                                        <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
+                                                </li>
+
+                                                <th:block th:if="${totalPages <= 10}">
+                                                        <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                                                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '#targetUserReviews'}">[[${i}]]</a>
+                                                                <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                                        </li>
+                                                </th:block>
+
+                                                <th:block th:if="${totalPages > 10}">
+                                                        <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
+                                                                <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
+                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '#targetUserReviews'}">[[${i}]]</a>
+                                                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                                                </li>
+                                                                <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
+
+                                                                <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
+                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '#targetUserReviews'}" >[[${i}]]</a>
+                                                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                                                </li>
+                                                        </th:block>
+
+                                                        <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
+
+                                                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage - 5}}" class="page-link">...</a>
+
+                                                                <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
+                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '#targetUserReviews'}">[[${i}]]</a>
+                                                                        <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
+
+                                                                </li>
+
+                                                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage + 5} + '#targetUserReviews'}" class="page-link">...</a>
+
+                                                        </th:block>
+
+                                                </th:block>
+
+                                                <li class="page-item">
+                                                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage + 1} + '#targetUserReviews'}">Next</a>
+                                                        <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Next</a></span>-->
+                                                </li>
+
+                                                <li class="page-item">
+                                                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/view/' + ${city.id} + '/' + ${totalPages} + '#targetUserReviews'}">Last</a>
+                                                        <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Last</a></span>-->
+                                                </li>
+                                        </ul>
+                                </nav>
+                        </div>
+                </div>
+        </div>
+
+
+
+
 </div>
 </body>
 <div th:replace="fragments :: footer"></div>

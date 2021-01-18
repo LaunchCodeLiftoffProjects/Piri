@@ -127,7 +127,9 @@
 
 
 <div class="city-view-card">
-        <h2 class="review-header">User Reviews</h2>
+<!--        <h2 class="review-header">User Reviews</h2>-->
+        <h2 class="review-header"><a id="targetUserReviews">User Reviews</a></h2>
+
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">

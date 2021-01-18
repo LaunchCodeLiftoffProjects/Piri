@@ -183,6 +183,32 @@
     margin-left: 20px;
 }
 
+.checkSquareCityCard{
+    color: #00e600;
+}
+
+.crossCircleCityCard{
+    color: #cc0000;
+}
+
+.questionCircleIconCityCard{
+    color:   #ff80bf;
+}
+
+.safe{
+    margin-top: -40px;
+    margin-left: 140px;
+}
+
+.transportation{
+    margin-top: -40px;
+    margin-left: 220px;
+}
+
+.school{
+    margin-top: -40px;
+    margin-left: 140px;
+}
 
 
 /*css for city Card ends here*/
@@ -199,7 +225,7 @@ color: #FFF0F5 !important;
 
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
-  margin-left: 280%;
+  margin-left: 100%;
 }
 
 #search-input-group {

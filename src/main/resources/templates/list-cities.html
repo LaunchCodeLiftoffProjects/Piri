@@ -26,8 +26,7 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
-                                        <!--                                    <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>-->
-                                        <a href="#" class="text-white "><span class="far fa-heart fa-2x"></span></a>
+                                        <a href="#" class="text-white " data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +41,14 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
-                                        <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>
+                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                     </div>
                                 </div>
 
                                 <div class="carousel-item" th:each="image : ${city.images}">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="">
-                                        <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>
+                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +72,7 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
-                                        <a href="#" class="text-white"><span class="far fa-heart fa-2x"></span></a>
+                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                     </div>
                                 </div>
 
@@ -91,13 +90,29 @@
                         <div class="row">
                             <a th:href="@{'/view/' + ${city.id}}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>
                             <div class="Stars" id="cityCardStar" th:style="|--rating: ${city.overallCityRating}|" ></div>
+                            <a th:href="@{'/view/' + ${city.id} + '#targetUserReviews'}" th:text="${city.reviews.size() + ' ratings'}"></a>
                         </div>
-                            <p class="card-text" >
 
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted" th:text="${city.overallAffordabilityRating}"></small>
-                        </p>
+                        <br>
+
+                        <div class="wrapper">
+                        <p class="card-text affordable" ><em>
+                            Affordable <i th:if="${city.overallAffordabilityRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallAffordabilityRating < 3.5 && city.overallAffordabilityRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallAffordabilityRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                        </em></p>
+                        <p class="card-text safe"><em>
+                            Safe <i th:if="${city.overallSafetyRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSafetyRating < 3.5 && city.overallSafetyRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSafetyRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                        </em></p>
+                        <p class="card-text transportation" ><em>
+                            Transportation <i th:if="${city.overallTransportationRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallTransportationRating < 3.5 && city.overallTransportationRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallTransportationRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                        </em></p>
+                        <p class="card-text jobGrowth" ><em>
+                            Job Growth <i th:if="${city.overallJobGrowthRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallJobGrowthRating < 3.5 && city.overallJobGrowthRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallJobGrowthRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                        </em></p>
+                        <p class="card-text school" ><em>
+                            School <i th:if="${city.overallSchoolRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSchoolRating < 3.5 && city.overallSchoolRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSchoolRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                        </em></p>
+                        </div>
+
                     </div>
                 </div>
             </div>

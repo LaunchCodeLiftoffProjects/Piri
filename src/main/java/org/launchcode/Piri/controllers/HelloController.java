@@ -29,6 +29,27 @@ public class HelloController {
         return "index";
     }
 
+//    @GetMapping("view/{cityId}")
+//    public String displayView(Model model, @PathVariable int cityId){
+//        Optional<City> optCity = cityRepository.findById(cityId);
+//        City city = optCity.get();
+//
+//        Iterable<Review> reviews;
+//        reviews = city.getReviews();
+//
+//        if(optCity.isPresent()) {
+//            model.addAttribute("city", city);
+//            model.addAttribute("cityId", cityId);
+//            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
+//            model.addAttribute("reviews", reviews);
+//            model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
+//            model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
+//            model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
+//            model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
+//            model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
+//        }
+//        return "view";
+//    }
     @GetMapping("view/{cityId}")
     public String displayView(Model model, @PathVariable int cityId){
         Optional<City> optCity = cityRepository.findById(cityId);
@@ -50,7 +71,6 @@ public class HelloController {
         }
         return "view";
     }
-
 
 }
 

@@ -26,9 +26,7 @@ public class ReviewData {
         if (reviews.size() == 0){
             rating = 0;
         }
-        if(city != null){
-            city.setOverallCityRating(rating);
-        }
+        city.setOverallCityRating(1);
         return rating;
     }
 
@@ -140,7 +138,6 @@ public class ReviewData {
     public static void uploadImagesToDB(MultipartFile[] files, Optional<City> optionalCity, Review review){
         ArrayList<String> fileNames = new ArrayList<>();
         ArrayList<String> byteToStringArray = new ArrayList<>();
-
         try {
             for(MultipartFile file : files) {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -165,7 +162,7 @@ public class ReviewData {
                     city.setImages(byteToStringArray);
                 }
 
-                double averageOverallRate = ReviewData.calculateAverageOverallRating(city);
+//                double averageOverallRate = ReviewData.calculateAverageOverallRating(city);
 
                 double averageOverallSafetyRate = ReviewData.calculateAverageSafetyRating(city);
 
@@ -177,6 +174,13 @@ public class ReviewData {
 
                 double averageOverallAffordabilityRate = ReviewData.calculateAverageAffordabilityRating(city);
 
+//                city.setOverallCityRating(averageOverallRate);
+//                if(city.getOverallCityRating() != 0){
+//                    city.setOverallCityRating(averageOverallRate);
+//                }
+//                if(city.getOverallCityRating() == 0){
+//                    city.setOverallCityRating(review.getOverallRating());
+//                }
 //                if(city.getOverallCityRating() != 0){
 //                    city.setOverallCityRating(averageOverallRate);
 //                }
@@ -184,47 +188,50 @@ public class ReviewData {
 //                    city.setOverallCityRating(review.getOverallRating());
 //                }
 
-                if(city.getOverallAffordabilityRating() != 0){
-                    city.setOverallAffordabilityRating(averageOverallAffordabilityRate);
-                }
-                if(city.getOverallAffordabilityRating() == 0){
-                    city.setOverallAffordabilityRating(review.getAffordabilityRating());
-                }
-
-                if(city.getOverallSafetyRating() != 0){
-                    city.setOverallSafetyRating(averageOverallSafetyRate);
-                }
-                if(city.getOverallSafetyRating() == 0){
-                    city.setOverallSafetyRating(review.getSafetyRating());
-                }
-
-                if(city.getOverallTransportationRating() != 0){
-                    city.setOverallTransportationRating(averageOverallTransportationRate);
-                }
-                if(city.getOverallTransportationRating() == 0){
-                    city.setOverallTransportationRating(review.getTransportationRating());
-                }
-
-                if(city.getOverallJobGrowthRating() != 0){
-                    city.setOverallJobGrowthRating(averageOverallJobGrowthRate);
-                }
-                if(city.getOverallJobGrowthRating() == 0){
-                    city.setOverallJobGrowthRating(review.getJobGrowthRating());
-                }
-
-                if(city.getOverallSchoolRating() != 0){
-                    city.setOverallSchoolRating(averageOverallSchoolRate);
-                }
-                if(city.getOverallSchoolRating() == 0){
-                    city.setOverallSchoolRating(review.getSchoolRating());
-                }
+//                if(city.getOverallAffordabilityRating() != 0){
+//                    city.setOverallAffordabilityRating(averageOverallAffordabilityRate);
+//                }
+//                if(city.getOverallAffordabilityRating() == 0){
+//                    city.setOverallAffordabilityRating(review.getAffordabilityRating());
+//                }
+//
+//                if(city.getOverallSafetyRating() != 0){
+//                    city.setOverallSafetyRating(averageOverallSafetyRate);
+//                }
+//                if(city.getOverallSafetyRating() == 0){
+//                    city.setOverallSafetyRating(review.getSafetyRating());
+//                }
+//
+//                if(city.getOverallTransportationRating() != 0){
+//                    city.setOverallTransportationRating(averageOverallTransportationRate);
+//                }
+//                if(city.getOverallTransportationRating() == 0){
+//                    city.setOverallTransportationRating(review.getTransportationRating());
+//                }
+//
+//                if(city.getOverallJobGrowthRating() != 0){
+//                    city.setOverallJobGrowthRating(averageOverallJobGrowthRate);
+//                }
+//                if(city.getOverallJobGrowthRating() == 0){
+//                    city.setOverallJobGrowthRating(review.getJobGrowthRating());
+//                }
+//
+//                if(city.getOverallSchoolRating() != 0){
+//                    city.setOverallSchoolRating(averageOverallSchoolRate);
+//                }
+//                if(city.getOverallSchoolRating() == 0){
+//                    city.setOverallSchoolRating(review.getSchoolRating());
+//                }
 
 
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
+
+
 
 
 }

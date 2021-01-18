@@ -3,10 +3,7 @@ package org.launchcode.Piri.models;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.PagingAndSortingReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -244,9 +241,14 @@ public class ReviewData {
     }
 
 
-    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount, City city){
-        Iterable<Review> reviews = this.pagingAndSortingReviewRepository.findAll();
+    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount, City city, String sortField, String sortDirection){
+
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Iterable<Review> reviews = this.pagingAndSortingReviewRepository.findAll(sort);
         ArrayList<Review> results = new ArrayList<>();
+
 
         for(Review review : reviews){
             if(city.getId() == review.getCity().getId()){
@@ -260,6 +262,7 @@ public class ReviewData {
         int end = Math.min((start + pageable.getPageSize()), total);
 
         List<Review> output = new ArrayList<>();
+
 
         if (start <= end) {
             output = results.subList(start, end);

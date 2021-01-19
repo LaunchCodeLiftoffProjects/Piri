@@ -27,7 +27,7 @@ public class City extends AbstractEntity{
 
     @OneToMany(mappedBy = "city")
     //@JoinColumn (name="reviews_id")
-    private final List<Review> reviews = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     private @Min(1) double overallCityRating;
 
@@ -147,6 +147,10 @@ public class City extends AbstractEntity{
 
     public List<Review> getReviews() {
         return reviews;
+    }
+
+    public void setReviews(List<Review> reviews){
+        this.reviews = reviews;
     }
 
     public @Min(1) double getOverallCityRating() {

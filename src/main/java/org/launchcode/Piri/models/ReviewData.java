@@ -171,17 +171,6 @@ public class ReviewData {
                     city.setImages(byteToStringArray);
                 }
 
-//                double averageOverallRate = ReviewData.calculateAverageOverallRating(city);
-
-                double averageOverallSafetyRate = ReviewData.calculateAverageSafetyRating(city);
-
-                double averageOverallTransportationRate = ReviewData.calculateAverageTransportationRating(city);
-
-                double averageOverallJobGrowthRate = ReviewData.calculateAverageJobGrowthRating(city);
-
-                double averageOverallSchoolRate = ReviewData.calculateAverageSchoolRating(city);
-
-                double averageOverallAffordabilityRate = ReviewData.calculateAverageAffordabilityRating(city);
 
 //                city.setOverallCityRating(averageOverallRate);
 //                if(city.getOverallCityRating() != 0){

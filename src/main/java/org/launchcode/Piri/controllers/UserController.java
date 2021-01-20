@@ -23,21 +23,22 @@ public class UserController {
     @Autowired
     AuthenticationController authenticationController;
 
-    @GetMapping("view-profile")
+    @GetMapping("view-profile/{userId}")
     public String displayViewUserProfile(Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         Optional<User> optUser = userRepository.findById(user.getId());
-
         if (optUser.isPresent()) {
             model.addAttribute("user", user);
-            model.addAttribute("title", "${user.username}");
-            return "user/view-profile";
+            model.addAttribute("title", user.getUsername());
+            return "view-profile";
         } else {
-            model.addAttribute("title", "'Cannot find user with ID: ' + ${user.getId()} ");
-            model.addAttribute("error", "'Cannot find user with ID: ' + ${user.getId()}");
-            return "user/view-profile";
+            model.addAttribute("title", "user does not exist");
+            return "redirect: ";
         }
     }
 }
+
+
+

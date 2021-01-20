@@ -144,4 +144,7 @@ public class Review extends AbstractEntity {
         this.user = user;
     }
 
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
+    }
 }

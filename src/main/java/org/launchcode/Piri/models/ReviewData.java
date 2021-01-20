@@ -9,9 +9,7 @@ public class ReviewData {
 
     private static final Map<Integer, Review> reviews = new HashMap<>();
 
-    public static Review getById(int id) {
-        return reviews.get(id);
-    }
+
 
     public static double calculateAverageOverallRating(City city){
         double rating = 0;

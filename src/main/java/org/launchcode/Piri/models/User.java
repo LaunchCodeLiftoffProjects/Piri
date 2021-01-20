@@ -3,6 +3,10 @@ package org.launchcode.Piri.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
@@ -14,7 +18,12 @@ public class User extends AbstractEntity {
     private String lastName;
 
 
-    public User() {}
+    @OneToMany (mappedBy = "user")
+    //@JoinColumn (name="city_id")
+    private final List<Review> reviews = new ArrayList<>();
+
+    public User() {
+    }
 
     public User(String username, String password) {
         this.username = username;

@@ -37,33 +37,69 @@
     </div>
 </div>
 
+
 <div th:fragment="page-header-search" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar">
         <a th:href="@{/}" class="navbar-brand">Piri</a>
     </nav>
+<!--<div th:fragment="page-header-search" class="navbar navbar-inverse navbar-fixed-top">-->
+<!--    <nav class="navbar">-->
+<!--        <a th:href="@{/}" class="navbar-brand">Piri</a>-->
+<!--    </nav>-->
 
-    <ul class="nav justify-content-center">
+<!--    <ul class="nav justify-content-center">-->
 
-        <form class="form-inline "  th:action="@{'/page/' + 1}" method="get">
-            <div class="input-group" id="search-input-group">
+<!--        <form class="form-inline "  th:action="@{'/page/' + 1}" method="get">-->
+<!--            <div class="input-group" id="search-input-group">-->
+<!--                <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">-->
+<!--                <div class="input-group-append">-->
+<!--                    <button class="btn" type="submit" id="search-btn">-->
+<!--                        <i class="fa fa-search "></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </form>-->
+
+<!--    </ul>-->
+
+
+<!--    <ul class="nav justify-content-end">-->
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+
+// Search form codes start here
+
+<div th:fragment="search-form">
+    <div class="search-btn-container">
+        <form class="top-search-btn" th:action="@{'/page/' + 1}" method="get">
+            <div class="input-group input-group-lg">
                 <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">
                 <div class="input-group-append">
                     <button class="btn" type="submit" id="search-btn">
-                        <i class="fa fa-search "></i>
+                        <i class="fa fa-search"></i>
                     </button>
                 </div>
             </div>
-
         </form>
+    </div>
+</div>
+//Search form  codes end here
 
-    </ul>
-
-
+//Navigation header codes start here
+<div th:fragment="header-anonymous" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
     <ul class="nav justify-content-end">
-        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>
+        <li class="nav-item"><a class="nav-link navigation-link" th:href="@{/login}">Sign In</a></li>
+        <li class="nav-item"><a class="nav-link navigation-link" th:href="@{/register}">Sign Up</a></li>
     </ul>
 </div>
+
 
 //Navigation header codes start here
 <div th:fragment="header-anonymous" class="navbar navbar-inverse navbar-fixed-top">
@@ -75,16 +111,15 @@
         <li class="nav-item"><a class="nav-link" th:href="@{/register}">Sign Up</a></li>
     </ul>
 </div>
-
 <div th:fragment="header-authenticated" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar">
         <a th:href="@{/}" class="navbar-brand">Piri</a>
     </nav>
     <ul class="nav justify-content-end">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
+            <a class="nav-link navigation-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" th:href="@{/user/view-profile/{userId}}">My Profile</a>
+                <a class="dropdown-item" href="#">My Profile</a>
                 <a class="dropdown-item" href="#">Saved Searches</a>
                 <a class="dropdown-item" href="#">Something else</a>
                 <div class="dropdown-divider"></div>

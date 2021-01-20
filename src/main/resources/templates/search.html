@@ -3,14 +3,20 @@
 <head th:replace="fragments :: head">
 
 </head>
+<div th:if="${session.user}">
+    <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
 <body id="search-background" >
 
-    <div th:replace="fragments :: page-header-search"></div>
+<div th:replace="fragments :: search-form"></div>
 
 
-    <div class="btn-toolbar justify-content-center" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<div class="btn-toolbar justify-content-center" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
-        <div class="dropdown">
+    <div class="dropdown">
         <div class="btn-group mr-2" role="group" aria-label="First group">
             <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Star Rating</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -21,43 +27,43 @@
                 <a class="dropdown-item" href="#">Unrated</a>
             </div>
         </div>
-        </div>
-        <div class="dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Affordability</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="safety-dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Safety & Security</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="dropdown" id="sort-by-dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort by:
-            </button>
+    </div>
+    <div class="dropdown">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Affordability</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </div>
+    </div>
+    <div class="dropdown" id="safety-dropdown">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Safety & Security</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
+    </div>
+
+    <div class="dropdown" id="sort-by-dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort by:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
+</div>
 
 
 
-    <div th:replace="list-cities :: listCities"></div>
+<div th:replace="list-cities :: listCities"></div>
 
 
 </body>

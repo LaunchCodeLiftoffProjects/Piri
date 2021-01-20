@@ -5,35 +5,35 @@
 
 <div th:replace="fragments :: header-login-register" class="navbar navbar-inverse navbar-fixed-top"></div>
 
-    <div class="login-register-container">
-        <div class="text-center">
-            <h2 class="login-register-header">Sign in to Piri</h2>
-        </div>
+<div class="login-register-container">
+    <div class="text-center">
+        <h2 class="login-register-header">Sign in to Piri</h2>
+    </div>
 
-        <form method="post" class="login-register-form">
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label" th:for="username">Username</label>
-                <div class="col-sm-9">
-                    <input class="form-control login-register-input" th:field="${loginFormDTO.username}">
-                </div>
+    <form method="post" class="login-register-form">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label" th:for="username">Username</label>
+            <div class="col-sm-9">
+                <input class="form-control login-register-input" th:field="${loginFormDTO.username}">
                 <p class="error" th:errors="${loginFormDTO.username}"></p>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Password</label>
-                <div class="col-sm-9">
-                    <input class="form-control login-register-input" th:field="${loginFormDTO.password}" type="password">
-                </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+                <input class="form-control login-register-input" th:field="${loginFormDTO.password}" type="password">
                 <p class="error" th:errors="${loginFormDTO.password}"></p>
             </div>
-            <div class="text-center">
-                <input type="submit" class="btn btn-success" value="Sign In" />
-            </div>
-        </form>
-
-        <div class="text-center login-register-form">
-            <p>Don't have an account? <a href="/register">Register for one.</a></p>
         </div>
+        <div class="text-center">
+            <input type="submit" class="btn btn-success" value="Sign In" />
+        </div>
+    </form>
+
+    <div class="text-center login-register-form">
+        <p>Don't have an account? <a href="/register">Register for one.</a></p>
     </div>
+</div>
 </body>
 
 <div th:replace="fragments :: footer"></div>

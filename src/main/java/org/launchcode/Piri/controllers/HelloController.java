@@ -1,5 +1,6 @@
 package org.launchcode.Piri.controllers;
 
+import org.attoparser.IDocumentHandler;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
 //import org.launchcode.Piri.models.ReviewData;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.DefaultHighlighter;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
 
 
 @Controller
@@ -36,8 +40,11 @@ public class HelloController {
 
 
     @GetMapping("view/{cityId}/{pageNo}")
-    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
 
+        if(searchTermForReviews == null){
+            searchTermForReviews = "";
+        }
         int reviewCount = 6;
 
         if(sortField == null) {
@@ -54,7 +61,7 @@ public class HelloController {
 
         int sizeOfReviews = city.getReviews().size();
 
-        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount, city, sortField, sortDirection);
+        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField, sortDirection);
         List<Review> reviews= page.getContent();
 
         Comparator<Review> byDate = new Comparator<Review>() {
@@ -67,13 +74,13 @@ public class HelloController {
 
         if(sortField != null && sortField.equals("reviewDate") && sortDirection != null && sortDirection.equals("desc")){
             Collections.sort(modifiableList, byDate);
-            model.addAttribute("reviews", modifiableList);
+            reviews = modifiableList;
         }else if(sortField != null && sortField.equals("reviewDate") && sortDirection != null && sortDirection.equals("asc")){
             Collections.sort(modifiableList, byDate.reversed());
-            model.addAttribute("reviews", modifiableList);
+            reviews = modifiableList;
         }else{
-            model.addAttribute("reviews", reviews);
         }
+        model.addAttribute("reviews", reviews);
 
 
         model.addAttribute("currentPage", pageNo);
@@ -89,10 +96,17 @@ public class HelloController {
             model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));
             model.addAttribute("jobGrowthRating", ReviewData.calculateAverageJobGrowthRating(city));
             model.addAttribute("schoolRating", ReviewData.calculateAverageSchoolRating(city));
-
             model.addAttribute("sizeOfReviews", sizeOfReviews);
-
         }
+
+        ArrayList<String> wordListToHighlight = ReviewData.findWordToHighlight(reviews,searchTermForReviews);
+        model.addAttribute("wordListToHighlight", wordListToHighlight);
+        model.addAttribute("highlightWordStyle", "<span STYLE='background-color:  #0066ff;color: #ffffff'>");
+        model.addAttribute("searchTermForReviews", searchTermForReviews);
+
+        String[] wordsForFilterReviews ={"safe", "education", "quiet", "walkable", "affordable", "friendly", "job", "school", "historic", "cultural", "transportation", "urban", "suburban", "sport",};
+        model.addAttribute("wordsForFilterReviews", wordsForFilterReviews);
+
         return "view";
     }
 

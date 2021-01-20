@@ -171,57 +171,6 @@ public class ReviewData {
                     city.setImages(byteToStringArray);
                 }
 
-
-//                city.setOverallCityRating(averageOverallRate);
-//                if(city.getOverallCityRating() != 0){
-//                    city.setOverallCityRating(averageOverallRate);
-//                }
-//                if(city.getOverallCityRating() == 0){
-//                    city.setOverallCityRating(review.getOverallRating());
-//                }
-//                if(city.getOverallCityRating() != 0){
-//                    city.setOverallCityRating(averageOverallRate);
-//                }
-//                if(city.getOverallCityRating() == 0){
-//                    city.setOverallCityRating(review.getOverallRating());
-//                }
-
-//                if(city.getOverallAffordabilityRating() != 0){
-//                    city.setOverallAffordabilityRating(averageOverallAffordabilityRate);
-//                }
-//                if(city.getOverallAffordabilityRating() == 0){
-//                    city.setOverallAffordabilityRating(review.getAffordabilityRating());
-//                }
-//
-//                if(city.getOverallSafetyRating() != 0){
-//                    city.setOverallSafetyRating(averageOverallSafetyRate);
-//                }
-//                if(city.getOverallSafetyRating() == 0){
-//                    city.setOverallSafetyRating(review.getSafetyRating());
-//                }
-//
-//                if(city.getOverallTransportationRating() != 0){
-//                    city.setOverallTransportationRating(averageOverallTransportationRate);
-//                }
-//                if(city.getOverallTransportationRating() == 0){
-//                    city.setOverallTransportationRating(review.getTransportationRating());
-//                }
-//
-//                if(city.getOverallJobGrowthRating() != 0){
-//                    city.setOverallJobGrowthRating(averageOverallJobGrowthRate);
-//                }
-//                if(city.getOverallJobGrowthRating() == 0){
-//                    city.setOverallJobGrowthRating(review.getJobGrowthRating());
-//                }
-//
-//                if(city.getOverallSchoolRating() != 0){
-//                    city.setOverallSchoolRating(averageOverallSchoolRate);
-//                }
-//                if(city.getOverallSchoolRating() == 0){
-//                    city.setOverallSchoolRating(review.getSchoolRating());
-//                }
-
-
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -230,23 +179,77 @@ public class ReviewData {
     }
 
 
-    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount, City city, String sortField, String sortDirection){
+//    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount, City city, String sortField, String sortDirection){
+//
+//        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+//                Sort.by(sortField).descending();
+//
+//        Iterable<Review> reviews = this.pagingAndSortingReviewRepository.findAll(sort);
+//        ArrayList<Review> results = new ArrayList<>();
+//
+//
+//        for(Review review : reviews){
+//            if(city.getId() == review.getCity().getId()){
+//                results.add(review);
+//            }
+//        }
+//        Pageable pageable = PageRequest.of(pageNo - 1, reviewCount);
+//
+//        int total = results.size();
+//        int start = toIntExact(pageable.getOffset());
+//        int end = Math.min((start + pageable.getPageSize()), total);
+//
+//        List<Review> output = new ArrayList<>();
+//
+//
+//        if (start <= end) {
+//            output = results.subList(start, end);
+//        }
+//
+//        return new PageImpl<>(
+//                output,
+//                pageable,
+//                total);
+//       }
+
+    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount,String searchTermForReviews, City city, String sortField, String sortDirection){
+
+        String lower_val = null;
+
+        if(searchTermForReviews == null){
+            searchTermForReviews = "";
+            lower_val = "";
+        }else{
+            lower_val = searchTermForReviews.toLowerCase();
+        }
+
 
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();
 
         Iterable<Review> reviews = this.pagingAndSortingReviewRepository.findAll(sort);
+
         ArrayList<Review> results = new ArrayList<>();
+        ArrayList<Review> sortedResults = new ArrayList<>();
 
 
-        for(Review review : reviews){
-            if(city.getId() == review.getCity().getId()){
+        for(Review review: reviews){
+            if(lower_val == ""){
                 results.add(review);
+            }
+            if(review.getComment().toLowerCase().contains(lower_val)){
+                results.add(review);
+            }
+        }
+
+        for(Review review : results){
+            if(city.getId() == review.getCity().getId() && !sortedResults.contains(review)){
+                sortedResults.add(review);
             }
         }
         Pageable pageable = PageRequest.of(pageNo - 1, reviewCount);
 
-        int total = results.size();
+        int total = sortedResults.size();
         int start = toIntExact(pageable.getOffset());
         int end = Math.min((start + pageable.getPageSize()), total);
 
@@ -254,14 +257,36 @@ public class ReviewData {
 
 
         if (start <= end) {
-            output = results.subList(start, end);
+            output = sortedResults.subList(start, end);
         }
 
         return new PageImpl<>(
                 output,
                 pageable,
                 total);
-       }
+    }
+
+    public static ArrayList<String> findWordToHighlight(List<Review> reviews, String searchTerm){
+        String wordFromIndex = null;
+        Integer startIndex = 0;
+        ArrayList<String> results = new ArrayList<>();
+
+        for(int i = 0; i<reviews.size(); i++){
+            if(reviews.get(i).getComment().toLowerCase().contains(searchTerm)){
+                startIndex =reviews.get(i).getComment().toLowerCase().indexOf(searchTerm);
+                wordFromIndex = reviews.get(i).getComment().substring(startIndex);
+                String[] strArray = wordFromIndex.split(" ");
+                if(!results.contains(strArray[0])){
+                    results.add(strArray[0]);
+                }
+            }else{
+                results.add("No result");
+            }
+        }
+
+        return results;
+
+    }
 
 
 

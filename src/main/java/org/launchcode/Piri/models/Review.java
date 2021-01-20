@@ -1,10 +1,12 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.*;
+import javax.swing.text.DefaultHighlighter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,8 @@ public class Review extends AbstractEntity {
     private int jobGrowthRating;
 
     private int schoolRating;
+
+
 
     @ManyToOne
     private User username;

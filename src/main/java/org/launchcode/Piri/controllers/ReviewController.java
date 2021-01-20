@@ -66,12 +66,11 @@ public class ReviewController {
         model.addAttribute("city", city);
 
         ReviewData.uploadImagesToDB(files, optCity, newReview);
-
         if (errors.hasErrors()){
             return "review";
         }
 
-//        newReview.setCity(city);
+    //        newReview.setCity(city);
         newReview.setUser(user);
 
         List<Review> reviewList = city.getReviews();

@@ -29,6 +29,7 @@ public class HelloController {
 
         @GetMapping("list-cities")
         public String listCities(Model model) { return "list-cities";}
+
         @GetMapping("view/{cityId}")
         public String displayView(Model model, @PathVariable int cityId){
             Optional<City> optCity = cityRepository.findById(cityId);

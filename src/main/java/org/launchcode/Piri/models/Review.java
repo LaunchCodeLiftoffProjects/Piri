@@ -34,7 +34,6 @@ public class Review extends AbstractEntity {
     private LocalDate reviewDate = LocalDate.now();
 
    @ManyToOne
-   //@JoinColumn (name="city_id")
    private City city;
 
    @ManyToOne
@@ -44,8 +43,8 @@ public class Review extends AbstractEntity {
     }
 
     public Review(String title, String comment, int overallRating,
-                  int affordabilityRating, /*int safetyRating, int transportationRating,
-                  int jobGrowthRating, int schoolRating,*/ City aCity, User aUser) {
+                  int affordabilityRating, int safetyRating, int transportationRating,
+                  int jobGrowthRating, int schoolRating, City aCity, User aUser) {
 
         this.title = title;
         this.comment = comment;
@@ -57,7 +56,7 @@ public class Review extends AbstractEntity {
         this.schoolRating = schoolRating;
 
         //this.city = aCity;
-        this.reviewDate = reviewDate;
+        //this.reviewDate = reviewDate;
     }
 
     public LocalDate getReviewDate() {

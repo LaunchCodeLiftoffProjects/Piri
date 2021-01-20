@@ -4,10 +4,12 @@ import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
 import org.launchcode.Piri.models.User;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class ReviewFormDTO {
-/*
+
     @NotNull
     private User user;
 
@@ -17,12 +19,17 @@ public class ReviewFormDTO {
     @NotNull
     private City city;
 
+    @NotBlank
+    @Size(min = 3, max = 20, message = "Invalid username. Must be between 3 and 30 characters.")
+    private String title;
+
     public ReviewFormDTO(){}
 
     public ReviewFormDTO(Review review, User user, City city){
         this.review = review;
         this.user = user;
         this.city = city;
+        
     }
 
     public User getUser() {
@@ -49,5 +56,5 @@ public class ReviewFormDTO {
         this.city = city;
     }
 
- */
+
 }

@@ -226,8 +226,8 @@
 
 .starrating > label:before {
   content: "\f005"; /* Star */
-  margin: 15px;
-  font-size: 4.5vw;
+  margin: 10px;
+  font-size: 3.5vw;
   font-family: FontAwesome;
   display: inline-block;
 }
@@ -243,6 +243,32 @@
 .starrating > input:hover ~ label
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 /*ratings ends*/
+
+
+
+.starratingO > input {display: none;}  /* Remove radio buttons */
+
+.starratingO > label:before {
+  content: "\f005"; /* Star */
+  margin: 15px;
+  font-size: 5vw;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.starratingO > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starratingO > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starratingO > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+/*ratings ends*/
+
+
 /* CSS for login.html & register.html  starts here */
 
 .login-register-container{

@@ -1,14 +1,22 @@
+/* CSS for navigation bar starts here */
 .navbar{
     background-color: #663a82;
 }
 
 .navbar-brand{
     font-family:'Pacifico', cursive;
-}
-
-.navbar a{
     color: white;
 }
+
+.navigation-link{
+    color: white;
+}
+
+.navigation-link:hover{
+    color: white;
+}
+/* CSS for navigation bar ends here*/
+
 
 .index{
     background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
@@ -81,6 +89,7 @@
   transform: translate(-50%, -50%);
 }
 
+
 .login-box{
     position: absolute;
     width: 400px;
@@ -117,6 +126,7 @@
 }
 
 /*css for city Card starts here*/
+
 
 .card {
     margin-left: 18%;
@@ -187,6 +197,7 @@
     color: #00e600;
 }
 
+
 .crossCircleCityCard{
     color: #cc0000;
 }
@@ -226,10 +237,6 @@ color: #FFF0F5 !important;
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
   margin-left: 100%;
-}
-
-#search-input-group {
-    margin-left: 13%;
 }
 
 #filter-btn-toolbar{
@@ -273,7 +280,9 @@ color: #FFF0F5 !important;
 
 }
 
-
+.checked{
+    color: orange;
+}
 
 .button2{
     position: absolute;
@@ -299,6 +308,7 @@ color: #FFF0F5 !important;
 
 /* css display star ratings starts*/
 
+@charset "UTF-8";
 :root {
   --star-size: 40px;
   --star-color: #fff;
@@ -327,8 +337,8 @@ color: #FFF0F5 !important;
 
 .starrating > label:before {
   content: "\f005"; /* Star */
-  margin: 25px;
-  font-size: 4em;
+  margin: 15px;
+  font-size: 4.5vw;
   font-family: FontAwesome;
   display: inline-block;
 }
@@ -344,7 +354,8 @@ color: #FFF0F5 !important;
 .starrating > input:hover ~ label
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 
-/*login bar?*/
+/* CSS for login.html & register.html  starts here */
+
 .login-register-container{
     width: 400px;
     height: auto;
@@ -370,6 +381,7 @@ color: #FFF0F5 !important;
 
 /* CSS for login.html & register.html  ends here */
 
+
 /* CSS for footer starts here */
 .footer-links{
       display: inline;
@@ -378,6 +390,10 @@ color: #FFF0F5 !important;
       padding: 16px;
       text-decoration: none;
       font-size: 12px;
+}
+
+.footer-links:hover{
+    color: black;
 }
 
 .footer-container{
@@ -423,6 +439,9 @@ color: #FFF0F5 !important;
 
 /* CSS for Search Button ends here */
 
+
+/* CSS for city-view page starts here */
+
 .save-compare-btn{
     margin-right: 10px;
 }
@@ -450,6 +469,7 @@ color: #FFF0F5 !important;
 .review-header{
     text-align: center;
     font-family: 'Merriweather', serif;
+    margin: 35px 0;
 }
 
 .review-date{
@@ -458,4 +478,49 @@ color: #FFF0F5 !important;
     text-align: right;
 }
 
+/* CSS for city-view page ends here */
 
+/* CSS for image-uploading function starts here */
+
+.imagePreview {
+    width: 100%;
+    height: 180px;
+    background-color:#fff;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: inline-block;
+    box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
+}
+
+.imgUp{
+    margin-bottom:15px;
+}
+
+.del{
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:22px;
+    height:22px;
+    border-radius: 50%;
+    text-align:center;
+    line-height:30px;
+    color: white;
+    background-color:red;
+    cursor:pointer;
+}
+
+.imgAdd{
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background-color:green;
+    color:#fff;
+    box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
+    text-align:center;
+    line-height:30px;
+    margin-top:0px;
+    cursor:pointer;
+    font-size:15px;
+}
+/* CSS for image-uploading function ends here */

@@ -25,6 +25,8 @@ public class City extends AbstractEntity{
 
     private Double longitude;
 
+    private ArrayList<String> images;
+
     @OneToMany(mappedBy = "city")
     //@JoinColumn (name="reviews_id")
     private List<Review> reviews = new ArrayList<>();
@@ -47,8 +49,10 @@ public class City extends AbstractEntity{
 
     }
 
+
     public City(String cityName, String stateName, String stateID, String zipCodes, String county, Double latitude,
                 Double longitude, @Min(1) int overallCityRating,int overallAffordabilityRating, int overallSafetyRating, int overallTransportationRating, int overallJobGrowthRating, int overallSchoolRating, ArrayList<String> images){
+
         super();
         this.cityName = cityName;
         this.stateName = stateName;
@@ -149,6 +153,7 @@ public class City extends AbstractEntity{
         return reviews;
     }
 
+
     public void setReviews(List<Review> reviews){
         this.reviews = reviews;
     }
@@ -206,6 +211,7 @@ public class City extends AbstractEntity{
     }
 
     public void setImages(ArrayList<String> images) {
+
         ArrayList<String> imagesArr = new ArrayList<>();
         if(!images.isEmpty()) {
             imagesArr.addAll(images);
@@ -214,5 +220,6 @@ public class City extends AbstractEntity{
             imagesArr.addAll(getImages());
         }
         this.images = imagesArr;
+
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -54,8 +54,7 @@ public class ReviewController {
     @PostMapping("{cityId}")
     public String processWriteReview(@ModelAttribute @Valid Review newReview,
                                      Errors errors, Model model, @PathVariable int cityId,
-                                     HttpServletRequest request,@RequestParam("files") MultipartFile[] files){
-
+                                    HttpServletRequest request, @RequestParam("files") MultipartFile[] files){
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -65,7 +64,9 @@ public class ReviewController {
         City city = optCity.get();
         model.addAttribute("city", city);
 
+
         ReviewData.uploadImagesToDB(files, optCity, newReview);
+ 
         if (errors.hasErrors()){
             return "review";
         }
@@ -92,6 +93,7 @@ public class ReviewController {
         reviewRepository.save(newReview);
 
         return "redirect:../view/{cityId}/1";
+
     }
 
 

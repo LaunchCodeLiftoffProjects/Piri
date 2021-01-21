@@ -3,8 +3,10 @@ package org.launchcode.Piri.models;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.PagingAndSortingReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +30,7 @@ public class ReviewData {
             total = total + a;
         }
 
-        rating = total/reviews.size();
+        rating = (float)Math.round(total/reviews.size()*10)/10;
 
         rating = Math.round(rating*10) / 10.0;
 
@@ -144,17 +146,21 @@ public class ReviewData {
         return rating;
     }
 
+
     public static void uploadImagesToDB(MultipartFile[] files, Optional<City> optionalCity, Review review){
         ArrayList<String> fileNames = new ArrayList<>();
         ArrayList<String> byteToStringArray = new ArrayList<>();
         try {
             for(MultipartFile file : files) {
+
+
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 fileNames.add(fileName);
                 if (fileName.contains("..")) {
                     System.out.println("not a a valid file");
                 }
                 String byteTostring = Base64.getEncoder().encodeToString(file.getBytes());
+
                 if(byteTostring.length() > 61) {
                     byteToStringArray.add(byteTostring);
                 }
@@ -287,6 +293,8 @@ public class ReviewData {
         return results;
 
     }
+
+
 
 
 

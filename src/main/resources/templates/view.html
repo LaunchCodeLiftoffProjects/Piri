@@ -144,15 +144,22 @@
                 </div>
         </div>
 
-        <form th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
+        <div class="row justify-content-center">
+        <form class="col-xs-3" th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
                 <input type="text" class="search" id="searchTermForReviews1" name="searchTermForReviews" placeholder="Enter a search Term"/>
-                <button type="submit" class="btn btn-primary btn-lg" value="Search"  ><span>Search</span></button>
+                <button type="submit" class="btn btn-primary" value="Search"  ><span>Search</span></button>
         </form>
-        <div   th:each="x :${#numbers.sequence(0,wordsForFilterReviews.length-1)}"  >
+        </div>
+
+        <div class="container w-50 p-3">
+        <div class="row justify-content-center">
+        <div  class="btn-group" th:each="x :${#numbers.sequence(0,wordsForFilterReviews.length-1)}"  >
                 <form th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
                         <input type="hidden" class="search" th:value="${wordsForFilterReviews[x]}" id="searchTermForReviews" name="searchTermForReviews" placeholder="Enter a search Term"/>
-                        <button type="submit" class="btn btn-primary btn-lg" value="Search"  ><span th:text="${wordsForFilterReviews[x]}"></span></button>
+                        <button type="submit" class="btn btn-outline-primary mr-1" value="Search" ><span th:text="${wordsForFilterReviews[x]}"></span></button>
                 </form>
+        </div>
+        </div>
         </div>
 
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">

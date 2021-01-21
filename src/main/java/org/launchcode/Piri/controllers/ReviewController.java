@@ -10,10 +10,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.data.CityRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -50,7 +52,7 @@ public class ReviewController {
     @PostMapping("review/{cityId}")
     public String processWriteReview(@ModelAttribute @Valid Review newReview,
                                      Errors errors, Model model, @PathVariable int cityId,
-                                     HttpServletRequest request){
+                                     HttpServletRequest request, @RequestParam("files") MultipartFile[] files){
 
 
         HttpSession session = request.getSession();
@@ -67,6 +69,11 @@ public class ReviewController {
 
         newReview.setCity(city);
         newReview.setUser(user);
+
+        ReviewData.uploadImagesToDB(files, optCity, newReview);
+
+        ArrayList<String> imagesArray = new ArrayList<String>();
+
         reviewRepository.save(newReview);
 
         model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));

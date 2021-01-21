@@ -10,7 +10,8 @@
     <h1 class="review-header">Write a Review</h1>
     <div class="jumbotron city-view-card">
         <h1 class="text-center" th:text ="${city.cityName}"></h1>
-        <form method="post">
+
+        <form method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <div class="text-center">
@@ -36,10 +37,27 @@
                 <textarea class="form-control" rows="5" th:field="${review.comment}"></textarea>
                 <p class="error" th:errors="${review.comment}"></p>
             </div>
-                <input class="btn btn-success" type="submit" value="Add Review" />
+            <div class="form-group">
+                <label>Add Images</label>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-sm-3 imgUp">
+                            <div class="imagePreview"></div>
+                            <label class="btn btn-primary" for="customFile">
+                                Upload<input type="file" class="custom-file-input uploadFile img" id="customFile" name="files" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                            </label>
+                        </div>
+                        <i class="fa fa-plus imgAdd"></i>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success" value="Add Review">Add Review</button>
         </form>
     </div>
 </div>
 </body>
 <div th:replace="fragments :: footer"></div>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" integrity="sha512-CwHUCK55pONjDxvPZQeuwKpxos8mPyEv9gGuWC8Vr0357J2uXg1PycGDPND9EgdokSFTG6kgSApoDj9OM22ksw==" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </html>

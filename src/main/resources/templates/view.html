@@ -115,10 +115,17 @@
         </div>
         </div>
 
-        <div class="jumbotron review-display" th:if="${reviews.size()==0}">
+        <div class="jumbotron review-display" th:if="${reviews.size()==0 && searchTermForReviews != ''}">
+                <h5 th:text="${'No reviews with `' + searchTermForReviews  + '`'}"></h5>
+                <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
+        </div>
+
+
+        <div class="jumbotron review-display" th:if="${reviews.size()==0 && searchTermForReviews == ''}">
                 <h5>No reviews submitted yet.</h5>
                 <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
         </div>
+
 
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
@@ -141,12 +148,10 @@
                                         </div>
                                 </span>
 
-
                                 <hr class="my-4">
                                 <p class="review-date" th:text = "'User submitted the review on ' + ${reviews[i].reviewDate}"></p>
                         </div>
                 </th:block>
-
         </div>
 
 

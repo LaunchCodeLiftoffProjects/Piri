@@ -11,78 +11,79 @@
 </div>
 <body id="search-background" >
 
-    <div th:replace="fragments :: search-form"></div>
+<div class="container">
+    <div class="d-flex justify-content-end search-sort-bar">
+    <div class="" th:replace="fragments :: search-form"></div>
+        <div class="btn-toolbar" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
+            <div class="dropdown">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Star Rating</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 4}">4 & up</a>
+                        <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 3}">3 & up</a>
+                        <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 2}">2 & up</a>
+                        <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 1}">1 & up</a>
+                    </div>
+                </div>
+            </div>
+    <div class="dropleft" id="sort-by-dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort by:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Affordability</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Affordability</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Safety&Security </a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Safety&Security</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Transportation </a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Transportation </a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Job Growth</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Job Growth</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on School</a>
+            <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on School</a>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
 
-    <div class="btn-toolbar justify-content-center" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<!--    <div class="btn-toolbar justify-content-center" id="filter-btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">-->
 
-        <div class="dropdown">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Star Rating</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 4}">4 & up</a>
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 3}">3 & up</a>
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 2}">2 & up</a>
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 1}">1 & up</a>
-            </div>
-        </div>
-        </div>
-        <div class="dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Affordability</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="safety-dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Safety & Security</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="transportation-dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transportation</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="jobGrowth-dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Job Growth</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="school-dropdown">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">School</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
-                </div>
-            </div>
-        </div>
+<!--        <div class="dropdown">-->
+<!--        <div class="btn-group mr-2" role="group" aria-label="First group">-->
+<!--            <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Star Rating</button>-->
+<!--            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 4}">4 & up</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 3}">3 & up</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 2}">2 & up</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRating=' + 1}">1 & up</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
 
-        <div class="dropdown" id="sort-by-dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort by:
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
-            </div>
-        </div>
-        </div>
+<!--        <div class="dropdown" id="sort-by-dropdown">-->
+<!--            <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                Sort by:-->
+<!--            </button>-->
+<!--            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Affordability</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Affordability</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Safety&Security </a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Safety&Security</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Transportation </a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Transportation </a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on Job Growth</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on Job Growth</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated on School</a>-->
+<!--                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated on School</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
 
 
 

@@ -294,7 +294,14 @@ public class ReviewData {
 
     }
 
+    public ArrayList<String> findComments(List<Review> reviews){
+        ArrayList<String> results = new ArrayList<>();
 
+        for(Review review : reviews){
+            results.add(review.getComment());
+        }
+        return results;
+    }
 
 
 

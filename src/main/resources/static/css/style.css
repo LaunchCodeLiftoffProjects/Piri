@@ -236,12 +236,14 @@ color: #FFF0F5 !important;
 
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
-  margin-left: 100%;
 }
 
 #filter-btn-toolbar{
   padding: 20px 0px;
-  margin-left: 8%;
+}
+
+.search-sort-bar{
+    margin-left: 23%;
 }
 
 #no-results{

@@ -81,7 +81,9 @@ public class HelloController {
         }else{
         }
         model.addAttribute("reviews", reviews);
-
+        ArrayList<String> allComments = new ArrayList<>();
+        allComments.addAll(reviewData.findComments(reviews));
+        model.addAttribute("allComments", allComments);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());

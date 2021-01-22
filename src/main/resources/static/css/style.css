@@ -89,6 +89,45 @@
   transform: translate(-50%, -50%);
 }
 
+
+.login-box{
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+
+    font-size: 20px;
+
+}
+
+/* CSS for login.html & register.html starts here */
+.login-form{
+    border: 1px solid #f6f8fa;
+    border-radius: 5px;
+    padding: 25px;
+    background-color: #eaecef;
+}
+
+.login-input{
+    display: inline-block;
+}
+
+.login-btn{
+    padding: 6px 120px;
+}
+
+.login-header{
+    font-family: 'Merriweather', serif;
+}
+
+.register-btn{
+    padding: 6px 50px;
+    margin: 0 50px;
+}
+
+/*css for city Card starts here*/
+
+
 .card {
     margin-left: 18%;
     margin-right: 18%;
@@ -119,17 +158,85 @@
     display: block;
     position: absolute;
     top: 0;
-    opacity: 0;
+    opacity: 1;
     left: 0;
     bottom: 0;
     right: 0;
     margin-left: 80%;
-    margin-top: -55%;
+    margin-top: -65%;
+}
+
+#cityCard{
+    background-color: #F8F8FF;
+    transition:.3s;
+
+}
+
+.cityCardImage{
+    width:360px;
+    height:190px;
+}
+
+.carouselCity{
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+#cityCard:hover{
+    box-shadow: 5px 5px 5px #FF6347;
+    transform: scale(1.1);
+}
+
+
+#cityCardStar{
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+.checkSquareCityCard{
+    color: #00e600;
+}
+
+
+.crossCircleCityCard{
+    color: #cc0000;
+}
+
+.questionCircleIconCityCard{
+    color:   #ff80bf;
+}
+
+.safe{
+    margin-top: -40px;
+    margin-left: 140px;
+}
+
+.transportation{
+    margin-top: -40px;
+    margin-left: 220px;
+}
+
+.school{
+    margin-top: -40px;
+    margin-left: 140px;
+}
+
+
+/*css for city Card ends here*/
+
+/*css for search view starts here*/
+
+#search-btn{
+background-color: #FF8C00 !important;
+}
+
+.fa-search{
+color: #FFF0F5 !important;
 }
 
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
-  margin-left: 280%;
+  margin-left: 100%;
 }
 
 #filter-btn-toolbar{
@@ -142,6 +249,8 @@
     font-size: 42px;
     text-align:center;
 }
+
+/*css for search view ends here*/
 
 /*css for view page starts here*/
 .city-view-header{
@@ -192,6 +301,8 @@
 #search-background{
     background-color: #f6f8fa
 }
+
+
 
 /*css for view page ends here*/
 
@@ -368,3 +479,48 @@
 }
 
 /* CSS for city-view page ends here */
+
+/* CSS for image-uploading function starts here */
+
+.imagePreview {
+    width: 100%;
+    height: 180px;
+    background-color:#fff;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: inline-block;
+    box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
+}
+
+.imgUp{
+    margin-bottom:15px;
+}
+
+.del{
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:22px;
+    height:22px;
+    border-radius: 50%;
+    text-align:center;
+    line-height:30px;
+    color: white;
+    background-color:red;
+    cursor:pointer;
+}
+
+.imgAdd{
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background-color:green;
+    color:#fff;
+    box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
+    text-align:center;
+    line-height:30px;
+    margin-top:0px;
+    cursor:pointer;
+    font-size:15px;
+}
+/* CSS for image-uploading function ends here */

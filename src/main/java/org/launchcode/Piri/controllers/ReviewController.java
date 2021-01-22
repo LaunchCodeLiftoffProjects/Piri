@@ -10,14 +10,16 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.data.CityRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("review")
 public class ReviewController {
 
     @Autowired
@@ -32,7 +34,8 @@ public class ReviewController {
     @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping("review/{cityId}")
+
+    @GetMapping("{cityId}")
     public String writeReview(Model model, @PathVariable int cityId, HttpServletRequest request){
 
         Optional<City> optCity = cityRepository.findById(cityId);
@@ -43,47 +46,57 @@ public class ReviewController {
             model.addAttribute("city", optCity.get());
             model.addAttribute("cityId", cityId);
             model.addAttribute(new Review());
-
         }
         model.addAttribute("user", user);
         return "review";
     }
 
-    @PostMapping("review/{cityId}")
+    @PostMapping("{cityId}")
     public String processWriteReview(@ModelAttribute @Valid Review newReview,
                                      Errors errors, Model model, @PathVariable int cityId,
-                                     HttpServletRequest request){
+                                    HttpServletRequest request, @RequestParam("files") MultipartFile[] files){
 
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
+
+        Optional<City> optCity = cityRepository.findById(cityId);
+        City city = optCity.get();
+        model.addAttribute("city", city);
+
+
+        ReviewData.uploadImagesToDB(files, optCity, newReview);
+ 
         if (errors.hasErrors()){
             return "review";
         }
 
-        HttpSession session = request.getSession();
-        User user = authenticationController.getUserFromSession(session);
-        Optional<City> optCity = cityRepository.findById(cityId);
+    //        newReview.setCity(city);
+        newReview.setUser(user);
 
-        if (optCity.isPresent()) {
-            City city = optCity.get();
-            newReview.setCity(city);
-            newReview.setUser(user);
-            model.addAttribute("city", city);
-            model.addAttribute("cityId", cityId);
-            model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(cityId, city));
-            model.addAttribute("reviews", city.getReviews());
-            model.addAttribute("affordabilityRating", 4.5);
-            model.addAttribute("safetyRating", 4);
-            model.addAttribute("transportationRating", 3);
-            model.addAttribute("jobRating", 4);
-        }
-
-
-        model.addAttribute("cities", cityRepository.findAll());
+        List<Review> reviewList = city.getReviews();
+        reviewList.add(newReview);
+        city.setReviews(reviewList);
+        double averageOverallRate = ReviewData.calculateAverageOverallRating(city);
+        city.setOverallCityRating(averageOverallRate);
+        double averageOverallSafetyRate = ReviewData.calculateAverageSafetyRating(city);
+        city.setOverallSafetyRating(averageOverallSafetyRate);
+        double averageOverallTransportationRate = ReviewData.calculateAverageTransportationRating(city);
+        city.setOverallTransportationRating(averageOverallTransportationRate);
+        double averageOverallJobGrowthRate = ReviewData.calculateAverageJobGrowthRating(city);
+        city.setOverallJobGrowthRating(averageOverallJobGrowthRate);
+        double averageOverallSchoolRate = ReviewData.calculateAverageSchoolRating(city);
+        city.setOverallSchoolRating(averageOverallSchoolRate);
+        double averageOverallAffordabilityRate = ReviewData.calculateAverageAffordabilityRating(city);
+        city.setOverallAffordabilityRating(averageOverallAffordabilityRate);
 
         reviewRepository.save(newReview);
-        model.addAttribute("reviews", reviewRepository.findAll());
-        model.addAttribute("user", user);
-        return "view";
+
+        return "redirect:../view/{cityId}/1";
+
     }
+
+
 
 
 }

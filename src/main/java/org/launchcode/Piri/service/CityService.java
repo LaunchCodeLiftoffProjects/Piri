@@ -1,12 +1,11 @@
 package org.launchcode.Piri.service;
 
 import org.launchcode.Piri.models.City;
+import org.launchcode.Piri.models.Review;
+import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.data.PagingAndSortingCityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,23 +25,26 @@ public class CityService {
         return cities;
     }
 
-    public Page<City> findPaginatedByValue(int pageNo, int cityCount, String value){
+    public Page<City> findPaginatedByValue(int pageNo, int cityCount, String searchTerm, String sortField, String sortDirection, Integer starRating){
 
         String lower_val = null;
 
-        if(value == null){
-            value = "";
+        if(searchTerm == null){
+            searchTerm = "";
         }else{
-            lower_val = value.toLowerCase();
+            lower_val = searchTerm.toLowerCase();
         }
 
-        Iterable<City> cities = this.pagingAndSortingCityRepository.findAll();
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+        Iterable<City> cities = this.pagingAndSortingCityRepository.findAll(sort);
         ArrayList<City> results = new ArrayList<>();
+        ArrayList<City> sortedResultsOfCities = new ArrayList<>();
 
 
         for (City city : cities) {
 
-            if(value == "" ){
+            if(searchTerm == "" ){
                 results.add(city);
             }
             if (city.getCityName().toLowerCase().equals(lower_val)) {
@@ -59,24 +61,43 @@ public class CityService {
                 List<String> al;
                 al = Arrays.asList(str);
                 for(String s: al){
-                    if(s.equals(value)){
+                    if(s.equals(searchTerm)){
                         results.add(city);
                     }
                 }
             }
-
-
         }
+
+
+        if(starRating == 0){
+            sortedResultsOfCities.addAll(results);
+        }else if(starRating != null) {
+
+            for(int i = 0; i < results.size(); i++){
+                City city = results.get(i);
+                if(starRating == 4 && city.getOverallCityRating() >= 4){
+                    sortedResultsOfCities.add(city);
+                }else if(starRating == 3 && city.getOverallCityRating() >= 3){
+                    sortedResultsOfCities.add(city);
+                }else if(starRating == 2 && city.getOverallCityRating() >= 2){
+                    sortedResultsOfCities.add(city);
+                }else if(starRating == 1 && city.getOverallCityRating() >= 1){
+                    sortedResultsOfCities.add(city);
+                }
+            }
+        }
+
+
         Pageable pageable = PageRequest.of(pageNo - 1, cityCount);
 
-        int total = results.size();
+        int total = sortedResultsOfCities.size();
         int start = toIntExact(pageable.getOffset());
         int end = Math.min((start + pageable.getPageSize()), total);
 
         List<City> output = new ArrayList<>();
 
         if (start <= end) {
-            output = results.subList(start, end);
+            output = sortedResultsOfCities.subList(start, end);
         }
 
         return new PageImpl<>(

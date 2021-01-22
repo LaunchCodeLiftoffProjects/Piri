@@ -40,5 +40,8 @@ public class User extends AbstractEntity {
         return username;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
 }
 

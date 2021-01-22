@@ -31,8 +31,8 @@
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Affordability</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=desc'}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=asc'}">Lowest Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallAffordabilityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
                 </div>
             </div>
         </div>
@@ -40,8 +40,8 @@
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Safety & Security</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=desc'}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=asc'}">Lowest Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSafetyRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
                 </div>
             </div>
         </div>
@@ -49,8 +49,8 @@
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transportation</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=desc'}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=asc'}">Lowest Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallTransportationRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
                 </div>
             </div>
         </div>
@@ -58,8 +58,8 @@
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Job Growth</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=desc'}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=asc'}">Lowest Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallJobGrowthRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-secondary dropdown-toggle bg-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">School</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=desc'}">Top Rated</a>
-                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=asc'}">Lowest Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+                    <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallSchoolRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
                 </div>
             </div>
         </div>
@@ -78,8 +78,8 @@
                 Sort by:
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=desc'}">Top Rated</a>
-                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=asc'}">Lowest Rated</a>
+                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=desc' + '&starRating=' + ${starRating}}">Top Rated</a>
+                <a class="dropdown-item" th:href="@{'/page/' + ${currentPage} + '?searchTerm=' + ${searchTerm} + '&sortField=overallCityRating&sortDirection=asc' + '&starRating=' + ${starRating}}">Lowest Rated</a>
             </div>
         </div>
         </div>

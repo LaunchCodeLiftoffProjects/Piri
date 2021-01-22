@@ -90,10 +90,10 @@
                         Sort by:
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=reviewDate&sortDirection=desc' + '#targetUserReviews'}">Most Recent</a>
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=reviewDate&sortDirection=asc' + '#targetUserReviews'}">Oldest</a>
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=overallRating&sortDirection=asc' + '#targetUserReviews'}">Highest Overall Rating</a>
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=overallRating&sortDirection=desc' + '#targetUserReviews'}">Lowest Overall Rating</a>
+                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=desc' + '#targetUserReviews'}">Most Recent</a>
+                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=asc' + '#targetUserReviews'}">Oldest</a>
+                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=overallRating&sortDirection=asc' + '#targetUserReviews'}">Highest Overall Rating</a>
+                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=overallRating&sortDirection=desc' + '#targetUserReviews'}">Lowest Overall Rating</a>
                 </div>
         </div>
 

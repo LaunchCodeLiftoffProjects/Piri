@@ -252,6 +252,7 @@ color: #FFF0F5 !important;
     text-align:center;
 }
 
+
 /*css for search view ends here*/
 
 /*css for view page starts here*/
@@ -304,7 +305,14 @@ color: #FFF0F5 !important;
     background-color: #f6f8fa
 }
 
+.sort-btn-view{
+    margin-top: 35px;
+    margin-left: 10px;
+}
 
+.view-filtering-container{
+    background-color: #e6e6e6;
+}
 
 /*css for view page ends here*/
 

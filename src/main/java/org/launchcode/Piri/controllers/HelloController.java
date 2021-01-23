@@ -40,8 +40,11 @@ public class HelloController {
 
 
     @GetMapping("view/{cityId}/{pageNo}")
-    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRatingForReviews){
 
+        if(starRatingForReviews == null){
+            starRatingForReviews = 0;
+        }
         if(searchTermForReviews == null){
             searchTermForReviews = "";
         }
@@ -61,7 +64,7 @@ public class HelloController {
 
         int sizeOfReviews = city.getReviews().size();
 
-        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField, sortDirection);
+        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField, sortDirection,starRatingForReviews);
         List<Review> reviews= page.getContent();
 
         Comparator<Review> byDate = new Comparator<Review>() {
@@ -81,9 +84,6 @@ public class HelloController {
         }else{
         }
         model.addAttribute("reviews", reviews);
-        ArrayList<String> allComments = new ArrayList<>();
-        allComments.addAll(reviewData.findComments(reviews));
-        model.addAttribute("allComments", allComments);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -103,8 +103,9 @@ public class HelloController {
 
         ArrayList<String> wordListToHighlight = ReviewData.findWordToHighlight(reviews,searchTermForReviews);
         model.addAttribute("wordListToHighlight", wordListToHighlight);
-        model.addAttribute("highlightWordStyle", "<span STYLE='background-color:  #0066ff;color: #ffffff'>");
+        model.addAttribute("highlightWordStyle", "<span STYLE='background-color:  #00cc44;color: #ffffff'>");
         model.addAttribute("searchTermForReviews", searchTermForReviews);
+        model.addAttribute("starRatingForReviews", starRatingForReviews);
 
         String[] wordsForFilterReviews ={"safe", "education", "quiet", "walkable", "affordable", "friendly", "job", "school", "historic", "cultural", "transportation", "urban", "suburban", "sport",};
         model.addAttribute("wordsForFilterReviews", wordsForFilterReviews);

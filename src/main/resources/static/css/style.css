@@ -23,16 +23,17 @@
 }
 
 .index{
-    background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-    /*height: 100vh; */
+    background-image: url("https://i0.wp.com/ahotcupofjoe.net/wp-content/uploads/2017/02/piri-reis-.jpg?resize=678%2C381&ssl=1");
+    /*background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+    height: 100vh; */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
 }
 
-.index-wrapper{
-    background-color: #fff;
-    opacity: 0.9;
+.index-intro-jumbo{
+    margin-top: 35px;
 }
+
 .index-search-input{
     border: 1px solid grey;
     border-radius: 12px;
@@ -87,6 +88,20 @@
   right: 0;
 }
 
+.index-best-rated-jumbo{
+
+}
+
+.index-top-rated-box{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 0 5px 10px 0;
+    padding: 10px;
+}
+
+.index-footer{
+    background-color: #fff;
+}
 
 .centered {
   position: fixed;

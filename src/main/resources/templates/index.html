@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body>
+<body class="index">
 
 <div th:if="${session.user}">
     <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
@@ -11,53 +11,66 @@
     <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
 
-<!--<div class="centered">-->
-
-<!--    <form th:action="@{'/page/' + 1}" method="get">-->
-
-<!--        <input type="text" class="search" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>-->
-<!--        <button type="submit" class="button1" value="Search"  ><span>Find Your Place</span></button>-->
-
-<!--    </form>-->
-
-<!--</div>-->
-<div class="index">
-    <div class="index-wrapper">
-        <div class="container">
-            <div class="jumbotron">
-                <h1 class="display-4">Piri - Find your new place</h1>
-                <p class="lead">Piri is an application for people looking to relocate. Piri supports community-driven approach to provide
-                    accurate information about the cities by encouraging local residents to comment and write reviews on the app.
-                </p>
-        <!--        <div th:replace="fragments :: search-form"></div>-->
-            </div>
-            <div class="jumbotron index-search-box text-center">
-                <form th:action="@{'/page/' + 1}" method="get">
-                    <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
-                    <button type="submit" class="index-search-btn" value="Search"  ><span>Find Your Place</span></button>
-                </form>
-            </div>
-            <div class="jumbotron">
-                <h1 class="display-4 text-center">Piri's Best Rated Cities</h1>
-                <hr class="my-4">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h3 class="lead text-center">Overall Rating</h3>
+<div>
+    <div class="container">
+        <div class="jumbotron index-intro-jumbo">
+            <h1 class="display-4">Piri - Find your new place</h1>
+            <p class="lead">Piri is an application for people looking to relocate. Piri supports community-driven approach to provide
+                accurate information about the cities by encouraging local residents to comment and write reviews on the app.
+            </p>
+            <hr class="my-4">
+            <p class="lead">If you are looking to relocate ? OR <br> Wants to shout out your City</p>
+            <a class="btn btn-success font-weight-bold" th:href="@{/register}">Join Piri</a>
+        </div>
+        <div class="jumbotron index-search-box text-center">
+            <form th:action="@{'/page/' + 1}" method="get">
+                <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
+                <button type="submit" class="index-search-btn" value="Search"  ><span>Find Your Place</span></button>
+            </form>
+        </div>
+        <div class="jumbotron index-best-rated-jumbo">
+            <h1 class="display-4 text-center">Piri's Best Rated Cities</h1>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="index-top-rated-box">
+                    <h3 class="lead text-center">Overall Rating</h3>
                     </div>
-                    <div class="col-md-3">
+                </div>
+                <div class="col-md-4">
+                    <div class="index-top-rated-box">
                         <h3 class="lead text-center">Most Affordable</h3>
                     </div>
-                    <div class="col-md-3">
+                </div>
+                <div class="col-md-4">
+                    <div class="index-top-rated-box">
                         <h3 class="lead text-center">Safest Rated</h3>
                     </div>
-                    <div class="col-md-3">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="index-top-rated-box">
                         <h3 class="lead text-center">Best Job Growth</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="index-top-rated-box">
+                        <h3 class="lead text-center">Best Schools</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="index-top-rated-box">
+                        <h3 class="lead text-center">Best Transportation</h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div th:replace="fragments :: footer"></div>
+
 </body>
+<div class="index-footer">
+    <div th:replace="fragments :: footer"></div>
+</div>
 </html>

@@ -3,6 +3,7 @@ package org.launchcode.Piri.controllers;
 import org.launchcode.Piri.models.*;
 import org.launchcode.Piri.models.data.ReviewRepository;
 import org.launchcode.Piri.models.data.UserRepository;
+import org.launchcode.Piri.models.dto.ReviewFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,6 +96,69 @@ public class ReviewController {
 
         return "redirect:../view/{cityId}/1";
 
+    }
+
+    @GetMapping("edit/{reviewId}")
+    public String displayEditForm(Model model, @PathVariable int reviewId) {
+
+
+        Optional<Review> optReview = reviewRepository.findById(reviewId);
+
+        Review review = optReview.get();
+        City city = review.getCity();
+        int cityId = city.getId();
+        model.addAttribute("cityId", cityId);
+        User user = review.getUser();
+
+        if(review != null) {
+            ReviewFormDTO reviewFormDTO = new ReviewFormDTO(review, user, city);
+            model.addAttribute("reviewFormDTO", reviewFormDTO);
+
+            model.addAttribute("review", review);
+            model.addAttribute("city", city);
+            model.addAttribute("user", user);
+        }
+        //model.addAttribute("title", "Edit Event " + event.getName() + " (ID=" + event.getId() + ")");
+        return "edit";
+    }
+
+
+    @PostMapping("edit/{reviewId}")
+    public String processEditForm(@ModelAttribute @Valid Review review, Errors errors,
+                                  Model model, String title, String comment,
+                                  int overallRating, int affordabilityRating, int safetyRating,
+                                  int transportationRating, int jobGrowthRating, int schoolRating,
+                                  @PathVariable int reviewId) {
+
+
+        Optional<Review> optReview = reviewRepository.findById(reviewId);
+        review = optReview.get();
+        model.addAttribute("review", review);
+        City city = review.getCity();
+        model.addAttribute("city", city);
+        //int cityId = city.getId();
+        //model.addAttribute("cityId", cityId);
+        User user = review.getUser();
+        model.addAttribute("user", user);
+
+        if (errors.hasErrors()){
+            model.addAttribute("errorMsg", "Bad data!");
+            return "edit";
+        }
+
+        review.setOverallRating(overallRating);
+        review.setAffordabilityRating(affordabilityRating);
+        review.setSafetyRating(safetyRating);
+        review.setTransportationRating(transportationRating);
+        review.setJobGrowthRating(jobGrowthRating);
+        review.setSchoolRating(schoolRating);
+        review.setTitle(title);
+        review.setComment(comment);
+
+
+
+        reviewRepository.save(review);
+        return "redirect:../../";
     }
 
 

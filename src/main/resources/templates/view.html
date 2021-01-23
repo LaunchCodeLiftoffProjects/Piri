@@ -75,7 +75,7 @@
                         <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
                         <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
                         <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${jobRating}|" ></div>
+                        <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
                 </div>
         </div>
 </div>
@@ -143,7 +143,10 @@
 
 
                                 <hr class="my-4">
-                                <p class="review-date" th:text = "'User submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
+                                        <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
+                                </p>
                         </div>
                 </th:block>
 

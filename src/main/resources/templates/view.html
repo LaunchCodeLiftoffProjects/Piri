@@ -63,7 +63,7 @@
         </div>
 </div>
 
-<div class="card city-rating-card">
+<!--<div class="card city-rating-card">
         <div class="card-body row">
                 <div class="col-sm-6">
                         <p class="rating-category">Affordability</p>
@@ -79,7 +79,42 @@
                 </div>
         </div>
 </div>
+-->
 
+<div class="card city-rating-card">
+        <div class="card-body row">
+                <div class="col-sm-6">
+                        <table>
+                              <tr>
+                                      <td class="rating-category" >Affordability</td>
+                                      <td >
+                                              <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
+                                      </td>
+                              </tr>
+                              <tr>
+                                      <td class="rating-category">Safety</td>
+                                      <td >
+                                              <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
+                                        </td>
+                              </tr>
+                              <tr>
+                                      <td class="rating-category">Transportation</td>
+
+                                      <td>
+                                              <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
+                                      </td>
+                              </tr>
+                              <tr>
+                                      <td class="rating-category">Affordability</td>
+                                      <td>
+                                              <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
+                                      </td>
+                              </tr>
+
+                        </table>
+                </div>
+        </div>
+</div>
 
 <div class="city-view-card">
 

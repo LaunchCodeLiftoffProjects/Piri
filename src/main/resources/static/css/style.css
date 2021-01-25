@@ -25,21 +25,33 @@
     background-size: cover;
 }
 
-.index-wrapper{
+.index-intro-wrapper{
     background-color: #FF8242;
+}
+
+.index-wrapper{
+    background-color: #663a82;
     opacity: 0.9;
 }
 
 .index-intro-jumbo{
     background-color: #FF8242 !important;
-    opacity: 1;
+    background: none;
     color: #fff;
+}
+
+.index-search-container{
+    padding: 50px;
+}
+
+.index-search-header{
+    color: #663a82;
 }
 
 .index-search-box{
     width: 75%;
     margin: 0 auto;
-    padding: 35px 0;
+    padding: 45px 0;
 }
 .index-search-input{
     border: 1px solid grey;
@@ -96,13 +108,16 @@
 }
 
 .index-best-rated-container{
-    background-color: #e1e4e8;
     padding: 35px 0;
 }
 
 .index-top-rated-box{
     margin: 0 auto 15px auto;
     width: 75%;
+}
+
+.top-rated-header{
+    color: #fff;
 }
 
 .top-rated-list{
@@ -116,7 +131,7 @@
 .top-rated-title{
     border: none;
     border-radius: 10px 10px 0 0;
-    background-color: #663a82;
+    background-color: #FF8242;
     color: white;
     padding: 10px 0;
 }

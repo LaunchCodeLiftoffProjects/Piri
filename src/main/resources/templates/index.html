@@ -35,16 +35,25 @@
                 <div class="col-md-4">
                     <div class="index-top-rated-box">
                     <h3 class="lead text-center">Overall Rating</h3>
+                        <ol>
+                            <li th:each="city: ${topOverallRated}" th:text="${city.cityName}"></li>
+                        </ol>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="index-top-rated-box">
                         <h3 class="lead text-center">Most Affordable</h3>
+                        <ol>
+                            <li th:each="city: ${topAffordableRated}" th:text="${city.cityName}"></li>
+                        </ol>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="index-top-rated-box">
                         <h3 class="lead text-center">Safest Rated</h3>
+                        <ol>
+                            <li th:each="city: ${topSafestRated}" th:text="${city.cityName}"></li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -52,16 +61,25 @@
                 <div class="col-md-4">
                     <div class="index-top-rated-box">
                         <h3 class="lead text-center">Best Job Growth</h3>
+                        <ol>
+                            <li th:each="city: ${topBestJobGrowth}" th:text="${city.cityName}"></li>
+                        </ol>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="index-top-rated-box">
                         <h3 class="lead text-center">Best Schools</h3>
+                        <ol>
+                            <li th:each="city: ${topBestSchools}" th:text="${city.cityName}"></li>
+                        </ol>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="index-top-rated-box">
                         <h3 class="lead text-center">Best Transportation</h3>
+                        <ol>
+                            <li th:each="city: ${topBestTransportation}" th:text="${city.cityName}"></li>
+                        </ol>
                     </div>
                 </div>
             </div>

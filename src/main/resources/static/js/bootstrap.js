@@ -47,4 +47,7 @@ label {
 
 $('.dropdown-toggle').dropdown()
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
 

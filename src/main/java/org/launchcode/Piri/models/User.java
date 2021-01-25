@@ -54,6 +54,8 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-
+    public List<Review> getReviews() {
+        return reviews;
+    }
 }
 

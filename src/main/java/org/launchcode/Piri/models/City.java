@@ -1,8 +1,8 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,16 +25,32 @@ public class City extends AbstractEntity{
 
     private Double longitude;
 
+    private ArrayList<String> images;
+
     @OneToMany(mappedBy = "city")
     //@JoinColumn (name="reviews_id")
-    private final List<Review> reviews = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
+
+    private @Min(1) double overallCityRating;
+
+    private double overallAffordabilityRating;
+
+    private double overallSafetyRating;
+
+    private double overallTransportationRating;
+
+    private double overallJobGrowthRating;
+
+    private double overallSchoolRating;
 
     public City(){
 
     }
 
-    public City(String cityName,String stateName,String stateID, String zipCodes, String county, Double latitude,
-                Double longitude){
+
+    public City(String cityName, String stateName, String stateID, String zipCodes, String county, Double latitude,
+                Double longitude, @Min(1) int overallCityRating,int overallAffordabilityRating, int overallSafetyRating, int overallTransportationRating, int overallJobGrowthRating, int overallSchoolRating, ArrayList<String> images){
+
         super();
         this.cityName = cityName;
         this.stateName = stateName;
@@ -43,6 +59,13 @@ public class City extends AbstractEntity{
         this.county = county;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.overallCityRating = overallCityRating;
+        this.overallAffordabilityRating = overallAffordabilityRating;
+        this.overallTransportationRating = overallTransportationRating;
+        this.overallSafetyRating = overallSafetyRating;
+        this.overallJobGrowthRating = overallJobGrowthRating;
+        this.overallSchoolRating = overallSchoolRating;
+        this.images = images;
     }
 
     @Override
@@ -128,4 +151,73 @@ public class City extends AbstractEntity{
         return reviews;
     }
 
+
+    public void setReviews(List<Review> reviews){
+        this.reviews = reviews;
+    }
+
+    public @Min(1) double getOverallCityRating() {
+        return overallCityRating;
+    }
+
+    public void setOverallCityRating(@Min(1) double overallCityRating) {
+        this.overallCityRating = overallCityRating;
+    }
+
+    public double getOverallAffordabilityRating() {
+        return overallAffordabilityRating;
+    }
+
+    public void setOverallAffordabilityRating(double overallAffordabilityRating) {
+        this.overallAffordabilityRating = overallAffordabilityRating;
+    }
+
+    public double getOverallSafetyRating() {
+        return overallSafetyRating;
+    }
+
+    public void setOverallSafetyRating(double overallSafetyRating) {
+        this.overallSafetyRating = overallSafetyRating;
+    }
+
+    public double getOverallTransportationRating() {
+        return overallTransportationRating;
+    }
+
+    public void setOverallTransportationRating(double overallTransportationRating) {
+        this.overallTransportationRating = overallTransportationRating;
+    }
+
+    public double getOverallJobGrowthRating() {
+        return overallJobGrowthRating;
+    }
+
+    public void setOverallJobGrowthRating(double overallJobGrowthRating) {
+        this.overallJobGrowthRating = overallJobGrowthRating;
+    }
+
+    public double getOverallSchoolRating() {
+        return overallSchoolRating;
+    }
+
+    public void setOverallSchoolRating(double overallSchoolRating) {
+        this.overallSchoolRating = overallSchoolRating;
+    }
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+
+        ArrayList<String> imagesArr = new ArrayList<>();
+        if(!images.isEmpty()) {
+            imagesArr.addAll(images);
+        }
+        if(getImages() != null) {
+            imagesArr.addAll(getImages());
+        }
+        this.images = imagesArr;
+
+    }
 }

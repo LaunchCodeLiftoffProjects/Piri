@@ -1,17 +1,18 @@
 package org.launchcode.Piri.models;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.awt.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Entity
-public class Review extends AbstractEntity {
+public class Review extends AbstractEntity implements Serializable {
 
     @NotBlank(message = "Title is required")
     @Size(min = 3, max=40, message = "Title must be between 3 and 20 characters long")
@@ -22,6 +23,7 @@ public class Review extends AbstractEntity {
     private String comment;
 
     //@NotNull(message = "Rating is required")
+
     @Min(1)
     private int overallRating;
 
@@ -33,19 +35,22 @@ public class Review extends AbstractEntity {
 
     private LocalDate reviewDate = LocalDate.now();
 
-   @ManyToOne
-   //@JoinColumn (name="city_id")
-   private City city;
 
-   @ManyToOne
-   private User user;
+    @ManyToOne
+    private User user;
+
+    @Lob
+    @Column(name = "city_image")
+    private ArrayList<String> cityImage;
+
+    @ManyToOne
+    private City city;
 
     public Review(){
     }
 
-    public Review(String title, String comment, int overallRating,
-                  int affordabilityRating, /*int safetyRating, int transportationRating,
-                  int jobGrowthRating, int schoolRating,*/ City aCity, User aUser) {
+
+    public Review(String title, String comment, int overallRating, int affordabilityRating, int safetyRating, int transportationRating, int jobGrowthRating, int schoolRating, City aCity, User aUser, ArrayList<String> cityImage) {
 
         this.title = title;
         this.comment = comment;
@@ -55,9 +60,9 @@ public class Review extends AbstractEntity {
         this.transportationRating = transportationRating;
         this.jobGrowthRating = jobGrowthRating;
         this.schoolRating = schoolRating;
-
         //this.city = aCity;
         this.reviewDate = reviewDate;
+        this.cityImage = cityImage;
     }
 
     public LocalDate getReviewDate() {
@@ -128,6 +133,15 @@ public class Review extends AbstractEntity {
         this.schoolRating = schoolRating;
     }
 
+    public ArrayList<String> getCityImage() {
+        return cityImage;
+    }
+
+    public void setCityImage(ArrayList<String> cityImage) {
+        this.cityImage = cityImage;
+
+    }
+
     public City getCity() {
         return city;
     }
@@ -147,4 +161,13 @@ public class Review extends AbstractEntity {
     public void setReviewDate(LocalDate reviewDate) {
         this.reviewDate = reviewDate;
     }
+    //public User getUsername() {
+    //    return username;
+    //}
+
+    //public void setUsername(User username) {
+    //    this.username = username;
+    //}
+
+
 }

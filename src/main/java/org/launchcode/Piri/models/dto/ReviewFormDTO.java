@@ -48,4 +48,8 @@ public class ReviewFormDTO {
     public void setCity(City city) {
         this.city = city;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/merge-conflicts

@@ -339,7 +339,7 @@ color: #FFF0F5 !important;
 
 .starrating > label:before {
   content: "\f005"; /* Star */
-
+  margin: 10px;
   font-size: 3.5vw;
   font-family: FontAwesome;
   display: inline-block;
@@ -355,6 +355,8 @@ color: #FFF0F5 !important;
 
 .starrating > input:hover ~ label
 { color: #ffca08 ;  } /* Set yellow color when star hover */
+/*ratings ends*/
+
 
 
 .starratingO > input {display: none;}  /* Remove radio buttons */

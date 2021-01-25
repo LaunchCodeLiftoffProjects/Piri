@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("user")
 public class UserController {
 
     @Autowired
@@ -23,7 +22,7 @@ public class UserController {
     @Autowired
     AuthenticationController authenticationController;
 
-    @GetMapping("view-profile/{userId}")
+    @GetMapping("view-profile")
     public String displayViewUserProfile(Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
@@ -31,7 +30,6 @@ public class UserController {
         Optional<User> optUser = userRepository.findById(user.getId());
         if (optUser.isPresent()) {
             model.addAttribute("user", user);
-            model.addAttribute("title", user.getUsername());
             return "view-profile";
         } else {
             model.addAttribute("title", "user does not exist");

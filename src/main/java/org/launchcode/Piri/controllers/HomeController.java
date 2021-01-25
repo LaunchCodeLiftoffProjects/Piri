@@ -22,7 +22,7 @@ import java.util.Optional;
 
 
 @Controller
-public class HelloController {
+public class HomeController {
 
 
     @Autowired

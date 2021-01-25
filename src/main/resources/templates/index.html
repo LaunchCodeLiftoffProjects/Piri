@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body class="index">
-
+<!--<body class="index">-->
+<body>
 <div th:if="${session.user}">
     <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
@@ -11,84 +11,216 @@
     <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
 
-<div>
+<!--<div>-->
+<!--    <div class="container">-->
+<!--        <div class="jumbotron index-intro-jumbo">-->
+<!--            <h1 class="display-4">Piri - Find your new place</h1>-->
+<!--            <p class="lead">Piri is an application for people looking to relocate. Piri supports community-driven approach to provide-->
+<!--                accurate information about the cities by encouraging local residents to comment and write reviews on the app.-->
+<!--            </p>-->
+<!--            <hr class="my-4">-->
+<!--            <p class="lead">If you are looking to relocate ? OR <br> Wants to shout out your City</p>-->
+<!--            <a class="btn btn-success font-weight-bold" th:href="@{/register}">Join Piri</a>-->
+<!--        </div>-->
+<!--        <div class="jumbotron index-search-box text-center">-->
+<!--            <form th:action="@{'/page/' + 1}" method="get">-->
+<!--                <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>-->
+<!--                <button type="submit" class="index-search-btn" value="Search"  ><span>Find Your Place</span></button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <div class="jumbotron index-best-rated-jumbo">-->
+<!--            <h1 class="display-4 text-center">Piri's Best Rated Cities</h1>-->
+<!--            <hr class="my-4">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="index-top-rated-box">-->
+<!--                    <h3 class="lead text-center">Overall Rating</h3>-->
+<!--                        <hr class="my-4">-->
+<!--                        <ul class="list-unstyled">-->
+
+<!--                                <th:block th:each="city: ${topOverallRated}">-->
+<!--                                    <a th:href="@{/view/${city.cityId}/1}"> <li th:text="${city.cityName}"></li></a>-->
+<!--                                </th:block>-->
+
+<!--&lt;!&ndash;                                </th:each>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a th:href="@{/view/${city.cityId}/1}"><li th:each="city: ${topOverallRated}" th:text="${city.cityName}"></li></a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                            <a th:href="@{/view/${city.cityId}/1}"><li th:each="city: ${topOverallRated}" th:text="${city.cityName}"></li></a>&ndash;&gt;-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="index-top-rated-box">-->
+<!--                        <h3 class="lead text-center">Most Affordable</h3>-->
+<!--                        <hr class="my-4">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li th:each="city: ${topAffordableRated}" th:text="${city.cityName}"></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="index-top-rated-box">-->
+<!--                        <h3 class="lead text-center">Safest Rated</h3>-->
+<!--                        <hr class="my-4">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li th:each="city: ${topSafestRated}" th:text="${city.cityName}"></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="index-top-rated-box">-->
+<!--                        <h3 class="lead text-center">Best Job Growth</h3>-->
+<!--                        <hr class="my-4">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li th:each="city: ${topBestJobGrowth}" th:text="${city.cityName}"></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="index-top-rated-box">-->
+<!--                        <h3 class="lead text-center">Best Schools</h3>-->
+<!--                        <hr class="my-4">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li th:each="city: ${topBestSchools}" th:text="${city.cityName}"></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="index-top-rated-box">-->
+<!--                        <h3 class="lead text-center">Best Transportation</h3>-->
+<!--                        <hr class="my-4">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li th:each="city: ${topBestTransportation}" th:text="${city.cityName}"></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="index">
+    <div class="index-wrapper">
+        <div class="container">
+            <div class="jumbotron index-intro-jumbo">
+                <h1 class="display-4 font-weight-bold">Piri - Find your new place</h1>
+                <p class="lead">Piri is an application for people looking to relocate. Piri supports community-driven approach to provide
+                    accurate information about the cities by encouraging local residents to comment and write reviews on the app.
+                </p>
+                <hr class="my-4">
+                <p class="lead">If you are looking to relocate ? OR <br> Wants to shout out your City</p>
+                <a class="btn btn-success font-weight-bold" th:href="@{/register}">Join Piri</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="index-search-box text-center">
+        <form th:action="@{'/page/' + 1}" method="get">
+            <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
+            <button type="submit" class="index-search-btn" value="Search"  ><span>Find Your Place</span></button>
+        </form>
+    </div>
+</div>
+<div class="index-best-rated-container">
     <div class="container">
-        <div class="jumbotron index-intro-jumbo">
-            <h1 class="display-4">Piri - Find your new place</h1>
-            <p class="lead">Piri is an application for people looking to relocate. Piri supports community-driven approach to provide
-                accurate information about the cities by encouraging local residents to comment and write reviews on the app.
-            </p>
-            <hr class="my-4">
-            <p class="lead">If you are looking to relocate ? OR <br> Wants to shout out your City</p>
-            <a class="btn btn-success font-weight-bold" th:href="@{/register}">Join Piri</a>
-        </div>
-        <div class="jumbotron index-search-box text-center">
-            <form th:action="@{'/page/' + 1}" method="get">
-                <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
-                <button type="submit" class="index-search-btn" value="Search"  ><span>Find Your Place</span></button>
-            </form>
-        </div>
-        <div class="jumbotron index-best-rated-jumbo">
-            <h1 class="display-4 text-center">Piri's Best Rated Cities</h1>
-            <hr class="my-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="index-top-rated-box">
-                    <h3 class="lead text-center">Overall Rating</h3>
-                        <ol>
-                            <li th:each="city: ${topOverallRated}" th:text="${city.cityName}"></li>
-                        </ol>
+        <h1 class="display-4 text-center">Piri's Best Rated Cities</h1>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="index-top-rated-box">
+                    <div class="top-rated-title">
+                        <h3 class="lead font-weight-bold text-center">Overall Rating</h3>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="index-top-rated-box">
-                        <h3 class="lead text-center">Most Affordable</h3>
-                        <ol>
-                            <li th:each="city: ${topAffordableRated}" th:text="${city.cityName}"></li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="index-top-rated-box">
-                        <h3 class="lead text-center">Safest Rated</h3>
-                        <ol>
-                            <li th:each="city: ${topSafestRated}" th:text="${city.cityName}"></li>
-                        </ol>
+                    <div class="top-rated-list">
+                        <ul class="list-unstyled">
+                            <th:block th:each="city: ${topOverallRated}">
+                                <a th:href="@{/view/${city.cityId}/1}"> <li class="lead" th:text="${city.cityName}+', '+${city.stateID}"></li></a>
+                            </th:block>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="index-top-rated-box">
-                        <h3 class="lead text-center">Best Job Growth</h3>
-                        <ol>
-                            <li th:each="city: ${topBestJobGrowth}" th:text="${city.cityName}"></li>
-                        </ol>
+            <div class="col-md-4">
+                <div class="index-top-rated-box">
+                    <div class="top-rated-title">
+                        <h3 class="lead font-weight-bold text-center">Most Affordable</h3>
+                    </div>
+                    <div class="top-rated-list">
+                        <ul class="list-unstyled">
+                            <th:block th:each="city: ${topAffordableRated}">
+                                <a th:href="@{/view/${city.cityId}/1}"> <li class="lead" th:text="${city.cityName}+', '+${city.stateID}"></li></a>
+                            </th:block>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="index-top-rated-box">
-                        <h3 class="lead text-center">Best Schools</h3>
-                        <ol>
-                            <li th:each="city: ${topBestSchools}" th:text="${city.cityName}"></li>
-                        </ol>
+            </div>
+            <div class="col-md-4">
+                <div class="index-top-rated-box">
+                    <div class="top-rated-title">
+                        <h3 class="lead font-weight-bold text-center">Safest Rated</h3>
+                    </div>
+                    <div class="top-rated-list">
+                        <ul class="list-unstyled">
+                            <th:block th:each="city: ${topSafestRated}">
+                                <a th:href="@{/view/${city.cityId}/1}"> <li class="lead" th:text="${city.cityName}+', '+${city.stateID}"></li></a>
+                            </th:block>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="index-top-rated-box">
-                        <h3 class="lead text-center">Best Transportation</h3>
-                        <ol>
-                            <li th:each="city: ${topBestTransportation}" th:text="${city.cityName}"></li>
-                        </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="index-top-rated-box">
+                    <div class="top-rated-title">
+                        <h3 class="lead font-weight-bold text-center">Best Job Growth</h3>
+                    </div>
+                    <div class="top-rated-list">
+                        <ul class="list-unstyled">
+                            <th:block th:each="city: ${topBestJobGrowth}">
+                                <a th:href="@{/view/${city.cityId}/1}"> <li class="lead" th:text="${city.cityName}+', '+${city.stateID}"></li></a>
+                            </th:block>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="index-top-rated-box">
+                    <div class="top-rated-title">
+                        <h3 class="lead font-weight-bold text-center">Best Schooling</h3>
+                    </div>
+                    <div class="top-rated-list">
+                        <ul class="list-unstyled">
+                            <th:block th:each="city: ${topBestSchools}">
+                                <a th:href="@{/view/${city.cityId}/1}"> <li class="lead" th:text="${city.cityName}+', '+${city.stateID}"></li></a>
+                            </th:block>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="index-top-rated-box">
+                    <div class="top-rated-title">
+                        <h3 class="lead font-weight-bold text-center">Best Transportation</h3>
+                    </div>
+                    <div class="top-rated-list">
+                        <ul class="list-unstyled">
+                            <th:block th:each="city: ${topBestTransportation}">
+                                <a th:href="@{/view/${city.cityId}/1}"> <li class="lead" th:text="${city.cityName}+', '+${city.stateID}"></li></a>
+                            </th:block>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 <div class="index-footer">
     <div th:replace="fragments :: footer"></div>
 </div>
+
 </html>

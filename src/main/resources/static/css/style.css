@@ -17,23 +17,30 @@
 }
 /* CSS for navigation bar ends here*/
 
-.index-search-box{
-    width: 75%;
-    margin: 0 auto;
-}
-
 .index{
-    background-image: url("https://i0.wp.com/ahotcupofjoe.net/wp-content/uploads/2017/02/piri-reis-.jpg?resize=678%2C381&ssl=1");
-    /*background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-    height: 100vh; */
+    /*background-image: url("https://i0.wp.com/ahotcupofjoe.net/wp-content/uploads/2017/02/piri-reis-.jpg?resize=678%2C381&ssl=1"); */
+    background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+    /*height: 100vh; */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
 }
 
-.index-intro-jumbo{
-    margin-top: 35px;
+.index-wrapper{
+    background-color: #FF8242;
+    opacity: 0.9;
 }
 
+.index-intro-jumbo{
+    background-color: #FF8242 !important;
+    opacity: 1;
+    color: #fff;
+}
+
+.index-search-box{
+    width: 75%;
+    margin: 0 auto;
+    padding: 35px 0;
+}
 .index-search-input{
     border: 1px solid grey;
     border-radius: 12px;
@@ -88,15 +95,30 @@
   right: 0;
 }
 
-.index-best-rated-jumbo{
-
+.index-best-rated-container{
+    background-color: #e1e4e8;
+    padding: 35px 0;
 }
 
 .index-top-rated-box{
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 0 5px 10px 0;
-    padding: 10px;
+    margin: 0 auto 15px auto;
+    width: 75%;
+}
+
+.top-rated-list{
+    border: none;
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
+    color: black;
+    padding: 15px 0 5px 15px;
+}
+
+.top-rated-title{
+    border: none;
+    border-radius: 10px 10px 0 0;
+    background-color: #663a82;
+    color: white;
+    padding: 10px 0;
 }
 
 .index-footer{

@@ -37,7 +37,6 @@ public class HelloController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @RequestMapping("home")
     @Autowired
     private ReviewData reviewData;
 
@@ -99,15 +98,15 @@ public class HelloController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
 
-        Iterable<Review> reviews;
-        reviews = city.getReviews();
+        Iterable<Review> someReviews;
+        someReviews = city.getReviews();
 
 
         if(optCity.isPresent()) {
             model.addAttribute("city", city);
             model.addAttribute("cityId", cityId);
             model.addAttribute("overallRating", ReviewData.calculateAverageOverallRating(city));
-            model.addAttribute("reviews", reviews);
+            model.addAttribute("reviews", someReviews);
             model.addAttribute("affordabilityRating", ReviewData.calculateAverageAffordabilityRating(city));
             model.addAttribute("safetyRating", ReviewData.calculateAverageSafetyRating(city));
             model.addAttribute("transportationRating", ReviewData.calculateAverageTransportationRating(city));

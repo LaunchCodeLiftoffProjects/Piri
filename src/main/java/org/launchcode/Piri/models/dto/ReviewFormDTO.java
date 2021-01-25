@@ -17,9 +17,10 @@ public class ReviewFormDTO {
     @NotNull
     private City city;
 
-    public ReviewFormDTO(){}
+    public ReviewFormDTO() {
+    }
 
-    public ReviewFormDTO(Review review, User user, City city){
+    public ReviewFormDTO(Review review, User user, City city) {
         this.review = review;
         this.user = user;
         this.city = city;
@@ -48,8 +49,5 @@ public class ReviewFormDTO {
     public void setCity(City city) {
         this.city = city;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/merge-conflicts
+

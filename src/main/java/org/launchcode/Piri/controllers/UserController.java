@@ -3,6 +3,8 @@ package org.launchcode.Piri.controllers;
 
 import com.mysql.cj.protocol.x.XAuthenticationProvider;
 import org.launchcode.Piri.models.User;
+import org.launchcode.Piri.models.data.CityRepository;
+import org.launchcode.Piri.models.data.ReviewRepository;
 import org.launchcode.Piri.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,16 +16,19 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("user")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ReviewRepository reviewRepository;
+    @Autowired
+    CityRepository cityRepository;
 
     @Autowired
     AuthenticationController authenticationController;
 
-    @GetMapping("view-profile/{userId}")
+    @GetMapping("view-profile")
     public String displayViewUserProfile(Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();

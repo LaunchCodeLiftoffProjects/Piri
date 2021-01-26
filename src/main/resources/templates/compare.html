@@ -17,7 +17,7 @@
     <!-- if neither cities are present -->
     <div th:if="${cityOne == null && cityTwo == null}">
 
-        <div class="compNav centered">
+        <div class="compNav">
             <form th:action="@{'/page/' + 1}" method="get" >
                 <input type="text" class="search" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
                 <button type="submit" class="button1" value="Search"  ><span>Find Your First City</span></button>
@@ -38,29 +38,11 @@
             </form>
             <div class="split">
                 <div class="box">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div th:if="${cityOne.images != null && cityOne.images.size() > 0}">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${cityOne.getImages().get(0)}}" alt="First slide">
-                                </div>
-                                <div class="carousel-item" th:each="image : ${cityOne.images}">
-                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="Second slide">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <div th:if="${cityOne.images == null}">
-                            <img src="/images/default.jpg" alt="..." class="img-fluid">
-                        </div>
-
+                    <div th:if="${cityOne.images == null}">
+                        <img src="/images/default.jpg" alt="..." class="img-fluid">
+                    </div>
+                    <div th:unless="${cityOne.images == null}">
+                        <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${cityOne.getImages().get(0)}}" alt="First slide">
                     </div>
                     <h3 th:text="${cityOne.cityName} +', ' +${cityOne.stateName}" ></h3>
                 </div>

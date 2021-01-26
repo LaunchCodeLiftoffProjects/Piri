@@ -2,34 +2,44 @@ package org.launchcode.Piri.controllers;
 
 
 import org.launchcode.Piri.models.User;
+import org.launchcode.Piri.models.data.CityRepository;
+import org.launchcode.Piri.models.data.ReviewRepository;
 import org.launchcode.Piri.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("user")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ReviewRepository reviewRepository;
+    @Autowired
+    CityRepository cityRepository;
 
-    @GetMapping("view-profile/{userId}")
-    public String displayViewUserProfile(Model model, @PathVariable int userId) {
+    @Autowired
+    AuthenticationController authenticationController;
 
-        Optional<User> optUser = userRepository.findById(userId);
+    @GetMapping("view-profile")
+    public String displayViewUserProfile(Model model, HttpServletRequest request) {
 
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        Optional<User> optUser = userRepository.findById(user.getId());
         if (optUser.isPresent()) {
-            User user = (User) optUser.get();
             model.addAttribute("user", user);
-            model.addAttribute("title", "${user.username}");
+
+            return "view-profile";
         } else {
-            model.addAttribute("title", "'Cannot find user with ID: ' + ${userID} ");
-            model.addAttribute("error", "'Cannot find user with ID: ' + ${userID}");
+            model.addAttribute("title", "user does not exist");
+            return "redirect: ";
         }
-        return "user/view-profile";
     }
 }

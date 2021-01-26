@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="index">
+<!--<h1 th:text="${'Job: ' + job.name}">Default Title</h1>-->
+
+<div th:replace="fragments :: header-login-register"></div>
+</div>
+<div class="profile-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 order-first">
+                <img class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="title-name"><h2 th:text="${user.username}">Username</h2></div>
+                    <div><h5 th:text="${user.firstName} + ' ' + ${user.lastName}">FIRSTNAME
+                        LASTNAME</h5></div>
+                    <br>LOCATION
+                </div>
+            </div>
+            <div class="col-5 order-last">
+                <div class="card">
+                    <h3>USERS FAVORITE CITIES</h3>
+                    <ul>
+                        <li>CITY 1</li>
+                        <li>CITY 2</li>
+                        <li>CITY 3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h2>review 1</h2>
+                </div>
+                <div class="card">
+                    <h2>review 2</h2>
+                </div>
+                <div class="card">
+                    <h2>review 3</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

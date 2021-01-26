@@ -18,10 +18,14 @@
     <div th:if="${cityOne == null && cityTwo == null}">
 
         <div class="compNav">
-            <form th:action="@{'/page/' + 1}" method="get" >
-                <input type="text" class="search" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
-                <button type="submit" class="button1" value="Search"  ><span>Find Your First City</span></button>
-            </form>
+            <div class="container index-search-container text-center">
+                <div class="index-search-box">
+                    <form th:action="@{'/page/' + 1}" method="get">
+                        <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
+                        <button type="submit" class="index-search-btn" value="Search"  ><span>Pick City One</span></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -29,13 +33,14 @@
 
     <div th:if="${cityOne != null && cityTwo == null}">
         <div class="compNav">
-            <form th:action="@{'/compare/'+ ${cityOne.id} +'/page/' + 1}" method="get">
-
-
-                <input type="text" class="search" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
-                <button type="submit" class="button1" value="Search"  ><span>Find Your Second City</span></button>
-
-            </form>
+            <div class="container index-search-container text-center">
+                <div class="index-search-box">
+                    <form th:action="@{'/compare/{cityOne.id}/page/' + 1}" method="get">
+                        <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
+                        <button type="submit" class="index-search-btn" value="Search"  ><span>Pick City Two</span></button>
+                    </form>
+                </div>
+            </div>
             <div class="split">
                 <div class="box">
                     <div th:if="${cityOne.images == null}">

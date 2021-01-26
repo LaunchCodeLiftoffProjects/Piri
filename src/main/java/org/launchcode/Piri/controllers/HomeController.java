@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.attoparser.IDocumentHandler;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
-//import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.ReviewData;
+import org.launchcode.Piri.models.User;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +20,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.DefaultHighlighter;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
+import org.launchcode.Piri.models.City;
+import org.launchcode.Piri.models.data.PagingAndSortingCityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
 public class HomeController {
 
+
+    @Autowired
+    private PagingAndSortingCityRepository pagingAndSortingCityRepository;
+
+
+    @Autowired
+    private AuthenticationController authenticationController;
 
     @Autowired
     private CityRepository cityRepository;
@@ -51,7 +67,11 @@ public class HomeController {
     public String listCities(Model model) { return "list-cities";}
 
     @GetMapping("view/{cityId}/{pageNo}")
-    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+    public String displayView(Model model, HttpServletRequest request, @PathVariable int cityId, @PathVariable(value = "pageNo") int pageNo, @RequestParam(required = false, value = "") String searchTermForReviews, @RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
 
         if(searchTermForReviews == null){
             searchTermForReviews = "";
@@ -124,6 +144,38 @@ public class HomeController {
         model.addAttribute("wordsForFilterReviews", wordsForFilterReviews);
 
         return "view";
+    }
+
+
+
+
+    @GetMapping()
+    public String displayTopRated(Model model){
+
+        List<City> bestOverallRated = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallCityRating"));
+        List<City> bestFiveOverallRated = bestOverallRated.subList(0, 5);
+        model.addAttribute("topOverallRated", bestFiveOverallRated);
+
+        List<City> mostAffordableRated = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallAffordabilityRating"));
+        List<City> fiveMostAffordableRated = mostAffordableRated.subList(0, 5);
+        model.addAttribute("topAffordableRated", fiveMostAffordableRated);
+
+        List<City> safestRated = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallSafetyRating"));
+        List<City> fiveSafestRated = safestRated.subList(0, 5);
+        model.addAttribute("topSafestRated", fiveSafestRated);
+
+        List<City> bestJobGrowth = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallJobGrowthRating"));
+        List<City> fiveBestJobGrowth = bestJobGrowth.subList(0, 5);
+        model.addAttribute("topBestJobGrowth", fiveBestJobGrowth);
+
+        List<City> bestSchoolRated = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallSchoolRating"));
+        List<City> fiveBestSchoolRated = bestJobGrowth.subList(0, 5);
+        model.addAttribute("topBestSchools", fiveBestSchoolRated);
+
+        List<City> bestTransportationRated = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallTransportationRating"));
+        List<City> fiveBestTransportationRated = bestJobGrowth.subList(0, 5);
+        model.addAttribute("topBestTransportation", fiveBestTransportationRated);
+        return "index";
     }
 
 }

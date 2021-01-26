@@ -98,105 +98,69 @@ public class ReviewController {
 
     }
 
-//    @GetMapping("edit/{reviewId}")
-//        public String displayEditForm(Model model, @PathVariable int reviewId) {
-//
-//
-//            Optional<Review> optReview = reviewRepository.findById(reviewId);
-//
-//            Review review = optReview.get();
-//            City city = review.getCity();
-//            User user = review.getUser();
-//
-//            model.addAttribute("review", review);
-//            model.addAttribute("city", city);
-//            model.addAttribute("user", user);
-//            //model.addAttribute("title", "Edit Event " + event.getName() + " (ID=" + event.getId() + ")");
-//            return "edit";
-//    }
-
-//    @PostMapping("edit/{reviewId}")
-//        public String processEditForm(Model model,  String title,
-//                                      String comment,
-//                                      Errors errors, @PathVariable int reviewId) {
-//
-//        Optional<Review> optReview = reviewRepository.findById(reviewId);
-//        Review review = optReview.get();
-//
-//        City city = review.getCity();
-//        int cityId = city.getId();
-//
-//        if (errors.hasErrors()){
-//            return "review";
-//        }
-//
-//        review.setTitle(title);
-//        review.setComment(comment);
-//        //review.setCity(city);
-//        //review.setUser(user);
-//        //reviewRepository.save(oldReview);
-//        model.addAttribute("cityId", cityId);
-//
-//        return "redirect:../view/{cityId}";
-//
-//    }
-
     @GetMapping("edit/{reviewId}")
-    public String displayEditForm(Model model, @PathVariable int reviewId, HttpServletRequest request) {
+    public String displayEditForm(Model model, @PathVariable int reviewId) {
+
 
         Optional<Review> optReview = reviewRepository.findById(reviewId);
-        Review review = optReview.get();
-        User user = authenticationController.getUserFromSession(request.getSession());
-        City city = review.getCity();
-        model.addAttribute("city", city);
-        model.addAttribute("user", user);
 
-        if(review != null){
+        Review review = optReview.get();
+        City city = review.getCity();
+        int cityId = city.getId();
+        model.addAttribute("cityId", cityId);
+        User user = review.getUser();
+
+        if(review != null) {
             ReviewFormDTO reviewFormDTO = new ReviewFormDTO(review, user, city);
             model.addAttribute("reviewFormDTO", reviewFormDTO);
-            model.addAttribute("review", review);
 
-            return "edit";
-        }else{
-            return "redirect:";
+            model.addAttribute("review", review);
+            model.addAttribute("city", city);
+            model.addAttribute("user", user);
         }
         //model.addAttribute("title", "Edit Event " + event.getName() + " (ID=" + event.getId() + ")");
-//        return "edit";
+        return "edit";
     }
 
+
     @PostMapping("edit/{reviewId}")
-    public String processEditForm(@ModelAttribute @Valid ReviewFormDTO reviewFormDTO, Errors errors, @PathVariable Integer reviewId, HttpServletRequest request, Model model) {
+    public String processEditForm(@ModelAttribute @Valid Review review, Errors errors,
+                                  Model model, String title, String comment,
+                                  int overallRating, int affordabilityRating, int safetyRating,
+                                  int transportationRating, int jobGrowthRating, int schoolRating,
+                                  @PathVariable int reviewId) {
 
 
         Optional<Review> optReview = reviewRepository.findById(reviewId);
-        if(optReview.isPresent()) {
-            Review review = optReview.get();
-            User user = authenticationController.getUserFromSession(request.getSession());
-            Optional<City> optCity = cityRepository.findById(review.getCity().getId());
-            if (optCity.isPresent()) {
-                City city = optCity.get();
+        review = optReview.get();
+        model.addAttribute("review", review);
+        City city = review.getCity();
+        model.addAttribute("city", city);
+        //int cityId = city.getId();
+        //model.addAttribute("cityId", cityId);
+        User user = review.getUser();
+        model.addAttribute("user", user);
 
-                if (review != null) {
-                    review.setUser(user);
-                    review.setCity(city);
-                    review.setTitle(reviewFormDTO.getReview().getTitle());
-                    review.setComment(reviewFormDTO.getReview().getComment());
-                    review.setOverallRating(reviewFormDTO.getReview().getOverallRating());
-                    review.setAffordabilityRating(reviewFormDTO.getReview().getAffordabilityRating());
-                    review.setJobGrowthRating(reviewFormDTO.getReview().getJobGrowthRating());
-                    review.setSafetyRating(reviewFormDTO.getReview().getSafetyRating());
-                    review.setSchoolRating(reviewFormDTO.getReview().getSchoolRating());
-                    review.setTransportationRating(reviewFormDTO.getReview().getTransportationRating());
-                    review.setReviewDate(reviewFormDTO.getReview().getReviewDate());
-                    reviewRepository.save(review);
-                    return "redirect:";
-                }
-            }
+        if (errors.hasErrors()){
+            model.addAttribute("errorMsg", "Bad data!");
+            return "edit";
         }
-        return "edit";
-//        return "redirect:";
 
+        review.setOverallRating(overallRating);
+        review.setAffordabilityRating(affordabilityRating);
+        review.setSafetyRating(safetyRating);
+        review.setTransportationRating(transportationRating);
+        review.setJobGrowthRating(jobGrowthRating);
+        review.setSchoolRating(schoolRating);
+        review.setTitle(title);
+        review.setComment(comment);
+
+
+
+        reviewRepository.save(review);
+        return "redirect:../../";
     }
+
 
 
 

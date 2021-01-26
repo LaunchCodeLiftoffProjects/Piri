@@ -17,10 +17,11 @@
 }
 /* CSS for navigation bar ends here*/
 
+
+/*CSS for index page starts here */
+
 .index{
-    /*background-image: url("https://i0.wp.com/ahotcupofjoe.net/wp-content/uploads/2017/02/piri-reis-.jpg?resize=678%2C381&ssl=1"); */
     background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-    /*height: 100vh; */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
 }
@@ -139,6 +140,8 @@
 .index-footer{
     background-color: #fff;
 }
+
+/* CSS for index page ends here */
 
 .centered {
   position: fixed;

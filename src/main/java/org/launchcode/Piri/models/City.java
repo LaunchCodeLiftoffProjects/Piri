@@ -43,8 +43,6 @@ public class City extends AbstractEntity{
 
     private double overallSchoolRating;
 
-    private ArrayList<String> images;
-
     public City(){
 
     }

@@ -41,24 +41,14 @@ public class Review extends AbstractEntity implements Serializable {
 
 
     @ManyToOne
-    private User username;
-
-    @Lob
-    @Column(name = "city_image")
-    private ArrayList<String> cityImage;
-
-    @ManyToOne
-    private User username;
-
-    @ManyToOne
-    private City city;
-
-    @ManyToOne
     private User user;
 
     @Lob
     @Column(name = "city_image")
     private ArrayList<String> cityImage;
+
+    @ManyToOne
+    private City city;
 
     public Review(){
     }
@@ -145,6 +135,7 @@ public class Review extends AbstractEntity implements Serializable {
 
     public void setSchoolRating(int schoolRating) {
         this.schoolRating = schoolRating;
+    }
 
     public ArrayList<String> getCityImage() {
         return cityImage;

@@ -19,51 +19,79 @@
 /* CSS for navigation bar ends here*/
 
 
+/*CSS for index page starts here */
+
 .index{
     background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
-    height: 100vh;
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
 }
 
-.search{
+.index-intro-wrapper{
+    background-color: #FF8242;
+}
+
+.index-wrapper{
+    background-color: #663a82;
+    opacity: 0.9;
+}
+
+.index-intro-jumbo{
+    background-color: #FF8242 !important;
+    background: none;
+    color: #fff;
+}
+
+.index-search-container{
+    padding: 50px;
+}
+
+.index-search-header{
+    color: #663a82;
+}
+
+.index-search-box{
+    width: 75%;
+    margin: 0 auto;
+    padding: 45px 0;
+}
+.index-search-input{
     border: 1px solid grey;
     border-radius: 12px;
-    height: 40px;
     width: 100%;
+    height: 50px;
     padding-left: 20px;
     outline: 0;
     background-color: #ffffff;
     background-image: url("https://media.discordapp.net/attachments/579823439167094806/785639801742557184/unknown.png");
     background-repeat: no-repeat;
     background-position: right;
-
+    margin-bottom: 5px;
 }
 
-.button1 {
-  display: inline-block;
-  border-radius: 12px;
-  background-color: #FF8242;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  font-family: "Pacifico", cursive;
-  padding: 20px;
-  width: 100%;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin-top: 5px;
+.index-search-btn{
+    display: inline-block;
+    border-radius: 12px;
+    background-color: #FF8242;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: "Pacifico", cursive;
+    padding: 10px;
+    width: 40%;
+    transition: all 0.5s;
+    cursor: pointer;
 }
 
-.button1 span {
+.index-search-btn span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.button1 span:after {
+.index-search-btn span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -72,15 +100,49 @@
   transition: 0.5s;
 }
 
-.button1:hover span {
+.index-search-btn:hover span {
   padding-right: 25px;
 }
 
-.button1:hover span:after {
+.index-search-btn:hover span:after {
   opacity: 1;
   right: 0;
 }
 
+.index-best-rated-container{
+    padding: 35px 0;
+}
+
+.index-top-rated-box{
+    margin: 0 auto 15px auto;
+    width: 75%;
+}
+
+.top-rated-header{
+    color: #fff;
+}
+
+.top-rated-list{
+    border: none;
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
+    color: black;
+    padding: 15px 0 5px 15px;
+}
+
+.top-rated-title{
+    border: none;
+    border-radius: 10px 10px 0 0;
+    background-color: #FF8242;
+    color: white;
+    padding: 10px 0;
+}
+
+.index-footer{
+    background-color: #fff;
+}
+
+/* CSS for index page ends here */
 
 .centered {
   position: fixed;
@@ -322,8 +384,10 @@ color: #FFF0F5 !important;
   font-size: var(--star-size);
   font-family: Times;
   line-height: 1;
+  margin-top:20 px;
 }
 .Stars::before {
+
   content: '★★★★★';
   letter-spacing: 3px;
   background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
@@ -338,8 +402,8 @@ color: #FFF0F5 !important;
 
 .starrating > label:before {
   content: "\f005"; /* Star */
-  margin: 15px;
-  font-size: 4.5vw;
+  margin: 10px;
+  font-size: 3.5vw;
   font-family: FontAwesome;
   display: inline-block;
 }
@@ -354,6 +418,31 @@ color: #FFF0F5 !important;
 
 .starrating > input:hover ~ label
 { color: #ffca08 ;  } /* Set yellow color when star hover */
+/*ratings ends*/
+
+
+
+.starratingO > input {display: none;}  /* Remove radio buttons */
+
+.starratingO > label:before {
+  content: "\f005"; /* Star */
+  margin: 15px;
+  font-size: 5vw;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.starratingO > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starratingO > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starratingO > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+/*ratings ends*/
 
 /* CSS for login.html & register.html  starts here */
 

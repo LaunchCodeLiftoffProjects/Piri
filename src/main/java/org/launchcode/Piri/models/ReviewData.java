@@ -2,6 +2,7 @@ package org.launchcode.Piri.models;
 
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.PagingAndSortingReviewRepository;
+import org.launchcode.Piri.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
@@ -301,6 +302,11 @@ public class ReviewData {
 
         return results;
 
+    }
+
+    public static ArrayList<Review> findReviewByUser (Review review, User user) {
+        ReviewRepository reviewRepository;
+        List<Review> reviews = reviewRepository.findAll();
     }
 
 

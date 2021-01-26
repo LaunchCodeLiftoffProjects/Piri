@@ -36,6 +36,7 @@ public class UserController {
         Optional<User> optUser = userRepository.findById(user.getId());
         if (optUser.isPresent()) {
             model.addAttribute("user", user);
+
             return "view-profile";
         } else {
             model.addAttribute("title", "user does not exist");

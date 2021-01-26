@@ -304,10 +304,10 @@ public class ReviewData {
 
     }
 
-    public static ArrayList<Review> findReviewByUser (Review review, User user) {
-        ReviewRepository reviewRepository;
-        List<Review> reviews = reviewRepository.findAll();
-    }
+//    public static ArrayList<Review> findReviewByUser (Review review, User user) {
+//        ReviewRepository reviewRepository;
+//        List<Review> reviews = reviewRepository.findAll();
+//    }
 
 
 

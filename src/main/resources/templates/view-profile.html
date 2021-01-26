@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
@@ -11,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-3 order-first">
-                <img src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
+                <img class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
             </div>
             <div class="col-4">
                 <div class="card">
@@ -25,7 +26,6 @@
                 <div class="card">
                     <h3>USERS FAVORITE CITIES</h3>
                     <ul>
-<!--                <ul th:each="faveCities : ${user.faveCities}">-->
                         <li>CITY 1</li>
                         <li>CITY 2</li>
                         <li>CITY 3</li>
@@ -35,7 +35,6 @@
         </div>
         <div class="row">
             <div class="col-12">
-<!--        <div class="col-12" th:each="reviews : ${user.reviews}">-->
                 <div class="card">
                     <h2>review 1</h2>
                 </div>
@@ -51,3 +50,7 @@
 </div>
 </body>
 </html>
+
+
+
+

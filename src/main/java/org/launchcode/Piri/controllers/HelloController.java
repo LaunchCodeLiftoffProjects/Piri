@@ -1,9 +1,7 @@
 package org.launchcode.Piri.controllers;
 
-import org.attoparser.IDocumentHandler;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
-//import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.ReviewRepository;
@@ -13,9 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.DefaultHighlighter;
-import java.awt.*;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 

@@ -11,12 +11,11 @@
         <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
 
+<div class="" th:replace="fragments :: search-form"></div>
+
 <div class="jumbotron">
         <div class="row">
                 <div class="col-md-4">
-<!--                        <div>-->
-<!--                                <img src="/images/nycskyline.png" alt="..." class="img-fluid">-->
-<!--                        </div>-->
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div th:if="${city.images != null && city.images.size() > 0}">
                                         <div class="carousel-inner">
@@ -158,9 +157,10 @@
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">
-                                <h3>
-                                    <p th:text = "${reviews[i].title}"></p>
-                                </h3>
+                                <div class="row">
+                                    <h3 th:text = "${reviews[i].title}"></h3>
+                                    <div class="Stars px-md-5" th:style="|--rating: ${reviews[i].overallRating}|" ></div>
+                                </div>
 
                                 <div th:if="${searchTermForReviews == null || searchTermForReviews == ''}">
                                 <p class="lead">

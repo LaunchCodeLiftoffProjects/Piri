@@ -264,24 +264,11 @@ public class ReviewData {
                 if(!results.contains(strArray[0])){
                     results.add(strArray[0]);
                 }
-            }else{
-                results.add("No result");
             }
         }
 
         return results;
 
     }
-
-    public ArrayList<String> findComments(List<Review> reviews){
-        ArrayList<String> results = new ArrayList<>();
-
-        for(Review review : reviews){
-            results.add(review.getComment());
-        }
-        return results;
-    }
-
-
 
 }

@@ -44,7 +44,11 @@ public class HelloController {
 
 
     @GetMapping("view/{cityId}/{pageNo}")
-    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRatingForReviews){
+    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,
+                              @RequestParam(required = false, value = "") String searchTermForReviews,
+                              @RequestParam(required = false) String sortField,
+                              @RequestParam(required = false) String sortDirection,
+                              @RequestParam(required = false) Integer starRatingForReviews, HttpServletRequest request){
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);

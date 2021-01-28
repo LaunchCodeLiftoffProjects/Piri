@@ -182,7 +182,9 @@
 
 
                                 <hr class="my-4">
-                                <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <a class="review-date" th:href="@{/view-profile(userId=${reviews[i].getUser().id})}"
+                                   th:text =
+                                        "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></a>
                                 <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
                                         <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
                                 </p>

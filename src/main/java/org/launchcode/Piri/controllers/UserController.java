@@ -50,8 +50,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("view-profile/{userId}")
-    public String displayViewProfile(Model model, @Valid @NotNull @RequestParam int userId) {
+    @GetMapping("view-profile")
+    public String displayViewProfile(Model model, @RequestParam int userId) {
         Optional<User> result = userRepository.findById(userId);
         if (result.isPresent()) {
             User user = (User) result.get();

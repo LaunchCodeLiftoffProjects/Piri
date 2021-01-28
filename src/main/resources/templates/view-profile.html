@@ -4,9 +4,11 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="index">
-<!--<h1 th:text="${'Job: ' + job.name}">Default Title</h1>-->
-
-<div th:replace="fragments :: header-login-register"></div>
+<div th:if="${session.user}">
+    <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
 <div class="profile-body">
     <div class="container">
@@ -15,7 +17,7 @@
                 <img class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
             </div>
             <div class="col-4">
-                <div class="card">
+                <div class="card-profile">
                     <div class="title-name"><h2 th:text="${user.username}">Username</h2></div>
                     <div><h5 th:text="${user.firstName} + ' ' + ${user.lastName}">FIRSTNAME
                         LASTNAME</h5></div>
@@ -23,7 +25,7 @@
                 </div>
             </div>
             <div class="col-5 order-last">
-                <div class="card">
+                <div class="card-profile">
                     <h3>USERS FAVORITE CITIES</h3>
                     <ul>
                         <li>CITY 1</li>
@@ -35,15 +37,15 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <h2>review 1</h2>
+                <div class="jumbotron review-display" th:each="review : ${reviews}">
+                    <h3><p th:text="${review.title}"></p></h3>
+                    <p class="lead">
+                    <p th:utext="${review.comment}"></p>
+                    </p>
+                    <hr class="my-4">
+                    <p class="review-date" th:text="${review.getUser().username} + ' submitted the review on ' + ${review.reviewDate}"></p>
                 </div>
-                <div class="card">
-                    <h2>review 2</h2>
-                </div>
-                <div class="card">
-                    <h2>review 3</h2>
-                </div>
+
             </div>
         </div>
     </div>

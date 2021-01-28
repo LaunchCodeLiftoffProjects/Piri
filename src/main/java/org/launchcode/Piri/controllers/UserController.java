@@ -2,6 +2,7 @@ package org.launchcode.Piri.controllers;
 
 
 import com.mysql.cj.protocol.x.XAuthenticationProvider;
+import org.launchcode.Piri.models.Review;
 import org.launchcode.Piri.models.User;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.ReviewRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -35,7 +37,9 @@ public class UserController {
         User user = authenticationController.getUserFromSession(session);
         Optional<User> optUser = userRepository.findById(user.getId());
         if (optUser.isPresent()) {
+            List<Review> reviews = user.getReviews();
             model.addAttribute("user", user);
+            model.addAttribute("reviews", reviews);
 
             return "view-profile";
         } else {
@@ -44,6 +48,5 @@ public class UserController {
         }
     }
 }
-
 
 

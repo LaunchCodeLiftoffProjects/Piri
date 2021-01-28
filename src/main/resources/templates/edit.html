@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: header-login-register"></div>
+
+
+
+<div class="container">
+    <h1 class="review-header">Edit Review</h1>
+    <div class="jumbotron city-view-card">
+        <h1 class = "text-center" th:text ="${review.getCity().cityName}"></h1>
+
+        <form method="post">
+
+            <div class="form-group">
+                <div class="text-center">
+                    <div class="container">
+                        <h3>Overall Rating</h3>
+                        <div class="starratingO risingstar d-flex justify-content-center flex-row-reverse">
+                            <input type="radio" id="star5" name="overallRating" value="5" th:field="${review.overallRating}"/><label for="star5" title="5 star"></label>
+                            <input type="radio" id="star4" name="overallRating" value="4" th:field="${review.overallRating}"/><label for="star4" title="4 star"></label>
+                            <input type="radio" id="star3" name="overallRating" value="3" th:field="${review.overallRating}"/><label for="star3" title="3 star"></label>
+                            <input type="radio" id="star2" name="overallRating" value="2" th:field="${review.overallRating}"/><label for="star2" title="2 star"></label>
+                            <input type="radio" id="star1" name="overallRating" value="1" th:field="${review.overallRating}"/><label for="star1" title="1 star"></label>
+                        </div>
+                        <p class="error" th:errors="${review.overallRating}"></p>
+                    </div>
+
+                    <div class="container">
+                        <h3>Affordability Rating</h3>
+                        <div class="starrating risingstar d-flex justify-content-center flex-row-reverse" style="font-size: 3vw" >
+                            <input type="radio" id="star10" name="affordabilityRating" value="5" th:field="${review.affordabilityRating}"/><label for="star10" title="5 star"></label>
+                            <input type="radio" id="star9" name="affordabilityRating" value="4" th:field="${review.affordabilityRating}"/><label for="star9" title="4 star"></label>
+                            <input type="radio" id="star8" name="affordabilityRating" value="3" th:field="${review.affordabilityRating}"/><label for="star8" title="3 star"></label>
+                            <input type="radio" id="star7" name="affordabilityRating" value="2" th:field="${review.affordabilityRating}"/><label for="star7" title="2 star"></label>
+                            <input type="radio" id="star6" name="affordabilityRating" value="1" th:field="${review.affordabilityRating}"/><label for="star6" title="1 star"></label>
+                        </div>
+                        <p class="error" th:errors="${review.affordabilityRating}"></p>
+                    </div>
+
+                    <div class="container">
+                        <h3>Safety Rating</h3>
+                        <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                            <input type="radio" id="star15" name="safetyRating" value="5" th:field="${review.safetyRating}"/><label for="star15" title="5 star"></label>
+                            <input type="radio" id="star14" name="safetyRating" value="4" th:field="${review.safetyRating}"/><label for="star14" title="4 star"></label>
+                            <input type="radio" id="star13" name="safetyRating" value="3" th:field="${review.safetyRating}"/><label for="star13" title="3 star"></label>
+                            <input type="radio" id="star12" name="safetyRating" value="2" th:field="${review.safetyRating}"/><label for="star12" title="2 star"></label>
+                            <input type="radio" id="star11" name="safetyRating" value="1" th:field="${review.safetyRating}"/><label for="star11" title="1 star"></label>
+                        </div>
+                        <p class="error" th:errors="${review.safetyRating}"></p>
+                    </div>
+
+                    <div class="container">
+                        <h3>Transportation Rating</h3>
+                        <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                            <input type="radio" id="star20" name="transportationRating" value="5" th:field="${review.transportationRating}"/><label for="star20" title="5 star"></label>
+                            <input type="radio" id="star19" name="transportationRating" value="4" th:field="${review.transportationRating}"/><label for="star19" title="4 star"></label>
+                            <input type="radio" id="star18" name="transportationRating" value="3" th:field="${review.transportationRating}"/><label for="star18" title="3 star"></label>
+                            <input type="radio" id="star17" name="transportationRating" value="2" th:field="${review.transportationRating}"/><label for="star17" title="2 star"></label>
+                            <input type="radio" id="star16" name="transportationRating" value="1" th:field="${review.transportationRating}"/><label for="star16" title="1 star"></label>
+                        </div>
+                        <p class="error" th:errors="${review.transportationRating}"></p>
+                    </div>
+
+                    <div class="container">
+                        <h3>Job Growth Rating</h3>
+                        <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                            <input type="radio" id="star25" name="jobGrowthRating" value="5" th:field="${review.jobGrowthRating}"/><label for="star25" title="5 star"></label>
+                            <input type="radio" id="star24" name="jobGrowthRating" value="4" th:field="${review.jobGrowthRating}"/><label for="star24" title="4 star"></label>
+                            <input type="radio" id="star23" name="jobGrowthRating" value="3" th:field="${review.jobGrowthRating}"/><label for="star23" title="3 star"></label>
+                            <input type="radio" id="star22" name="jobGrowthRating" value="2" th:field="${review.jobGrowthRating}"/><label for="star22" title="2 star"></label>
+                            <input type="radio" id="star21" name="jobGrowthRating" value="1" th:field="${review.jobGrowthRating}"/><label for="star21" title="1 star"></label>
+                        </div>
+                        <p class="error" th:errors="${review.jobGrowthRating}"></p>
+                    </div>
+
+                    <div class="container">
+                        <h3>School Rating</h3>
+                        <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                            <input type="radio" id="star30" name="schoolRating" value="5" th:field="${review.schoolRating}"/><label for="star30" title="5 star"></label>
+                            <input type="radio" id="star29" name="schoolRating"  value="4" th:field="${review.schoolRating}"/><label for="star29" title="4 star"></label>
+                            <input type="radio" id="star28" name="schoolRating"  value="3" th:field="${review.schoolRating}"/><label for="star28" title="3 star"></label>
+                            <input type="radio" id="star27" name="schoolRating"  value="2" th:field="${review.schoolRating}"/><label for="star27" title="2 star"></label>
+                            <input type="radio" id="star26" name="schoolRating"  value="1" th:field="${review.schoolRating}"/><label for="star26" title="1 star"></label>
+                        </div>
+                        <p class="error" th:errors="${review.schoolRating}">
+                    </div>
+
+                    <div class="form-group">
+                        <label th:for="title">Review Title</label>
+                        <input class="form-control" th:value="${review.title}" name="title"/>
+                        <p class="error" th:errors="${review.title}"></p>
+                        <p th:text="${errorMsg}" style="color:red;"></p>
+
+                    </div>
+                    <div class="form-group">
+                        <label th:for="comment">Review Body</label>
+                        <textarea class="form-control" rows="5" th:field="${review.comment}" name="comment"></textarea>
+                        <p class="error" th:errors="${review.comment}"></p>
+
+                    </div>
+                    <!--
+                    <input type="hidden" th:value="${review.id}" name="reviewId" />
+                    <input type="hidden" th:value="${user.id}" name="userId" />
+                    -->
+                    <input type="hidden" th:value="${city.id}" name="cityId" />
+                    <input class="btn btn-success" type="submit" value="Save changes" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<div th:replace="fragments :: footer"></div>
+</html>

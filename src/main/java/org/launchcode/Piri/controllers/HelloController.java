@@ -3,6 +3,7 @@ package org.launchcode.Piri.controllers;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
 import org.launchcode.Piri.models.ReviewData;
+import org.launchcode.Piri.models.User;
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.swing.text.DefaultHighlighter;
+import java.awt.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -18,6 +25,8 @@ import java.util.List;
 @Controller
 public class HelloController {
 
+    @Autowired
+    private AuthenticationController authenticationController;
 
     @Autowired
     private CityRepository cityRepository;
@@ -36,6 +45,11 @@ public class HelloController {
 
     @GetMapping("view/{cityId}/{pageNo}")
     public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRatingForReviews){
+
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("user", user);
+
 
         if(starRatingForReviews == null){
             starRatingForReviews = 0;

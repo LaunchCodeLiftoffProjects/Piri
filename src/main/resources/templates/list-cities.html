@@ -89,7 +89,7 @@
 <!--                        <a th:href="@{'/view/' + ${city.id}}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>-->
                         <div class="row">
                             <a th:href="@{'/view/' + ${city.id} + '/1'}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>
-                            <div class="Stars" id="cityCardStar" th:style="|--rating: ${city.overallCityRating}|" ></div>
+                            <div class="Stars" id="cityCardStar" th:style="|--rating: ${city.getOverallCityRating()}|" ></div>
                             <a th:href="@{'/view/' + ${city.id} + '/1#targetUserReviews'}" th:text="${city.overallCityRating + ' (' + city.reviews.size() + ' Reviews)'}"></a>
                         </div>
 

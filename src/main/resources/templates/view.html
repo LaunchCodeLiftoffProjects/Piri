@@ -56,13 +56,13 @@
                 <div class="col-md-2">
                         <div class = "nav justify-content-end">
                                 <a class="btn btn-success save-compare-btn" href="#" role="button">Save</a>
-                                <a class="btn btn-primary save-compare-btn" href="/compare" role="button">Compare</a>
+                                <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
                         </div>
                 </div>
         </div>
 </div>
 
-<div class="card city-rating-card">
+<!--<div class="card city-rating-card">
         <div class="card-body row">
                 <div class="col-sm-6">
                         <p class="rating-category">Affordability</p>
@@ -74,7 +74,44 @@
                         <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
                         <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
                         <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${jobRating}|" ></div>
+                        <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
+                </div>
+        </div>
+</div>
+-->
+
+
+<div class="card city-rating-card">
+        <div class="card-body row">
+                <div class="col-sm-6">
+                        <table>
+                              <tr>
+                                      <td class="rating-category" >Affordability</td>
+                                      <td >
+                                              <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
+                                      </td>
+                              </tr>
+                              <tr>
+                                      <td class="rating-category">Safety</td>
+                                      <td >
+                                              <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
+                                        </td>
+                              </tr>
+                              <tr>
+                                      <td class="rating-category">Transportation</td>
+
+                                      <td>
+                                              <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
+                                      </td>
+                              </tr>
+                              <tr>
+                                      <td class="rating-category">Affordability</td>
+                                      <td>
+                                              <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
+                                      </td>
+                              </tr>
+
+                        </table>
                 </div>
         </div>
 </div>
@@ -177,7 +214,10 @@
                                 </span>
 
                                 <hr class="my-4">
-                                <p class="review-date" th:text = "'User submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
+                                        <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
+                                </p>
                         </div>
                 </th:block>
         </div>

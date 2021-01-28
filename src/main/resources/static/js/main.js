@@ -1,6 +1,6 @@
 $(".imgAdd").click(function(){
   $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-3 imgUp"><div class="imagePreview"></div>' +
-  '<label class="btn btn-primary">Upload' +
+  '<label class="btn btn-primary upload-btn">Upload' +
   '<input type="file" class="uploadFile img" name="files" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label>' +
   '<i class="fa fa-times del"></i></div>');
 });

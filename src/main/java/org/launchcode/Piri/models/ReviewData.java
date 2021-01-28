@@ -184,41 +184,7 @@ public class ReviewData {
 
     }
 
-
-//    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount, City city, String sortField, String sortDirection){
-//
-//        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-//                Sort.by(sortField).descending();
-//
-//        Iterable<Review> reviews = this.pagingAndSortingReviewRepository.findAll(sort);
-//        ArrayList<Review> results = new ArrayList<>();
-//
-//
-//        for(Review review : reviews){
-//            if(city.getId() == review.getCity().getId()){
-//                results.add(review);
-//            }
-//        }
-//        Pageable pageable = PageRequest.of(pageNo - 1, reviewCount);
-//
-//        int total = results.size();
-//        int start = toIntExact(pageable.getOffset());
-//        int end = Math.min((start + pageable.getPageSize()), total);
-//
-//        List<Review> output = new ArrayList<>();
-//
-//
-//        if (start <= end) {
-//            output = results.subList(start, end);
-//        }
-//
-//        return new PageImpl<>(
-//                output,
-//                pageable,
-//                total);
-//       }
-
-    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount,String searchTermForReviews, City city, String sortField, String sortDirection){
+    public Page<Review> findPaginatedReviews(int pageNo, int reviewCount,String searchTermForReviews, City city, String sortField, String sortDirection, Integer starRatingForReview){
 
         String lower_val = null;
 
@@ -240,19 +206,32 @@ public class ReviewData {
 
 
         for(Review review: reviews){
-            if(lower_val == ""){
+            if(city.getId() == review.getCity().getId() && lower_val == ""){
                 results.add(review);
             }
-            if(review.getComment().toLowerCase().contains(lower_val)){
+            if(city.getId() == review.getCity().getId() && review.getComment().toLowerCase().contains(lower_val) && !results.contains(review)){
                 results.add(review);
             }
         }
 
-        for(Review review : results){
-            if(city.getId() == review.getCity().getId() && !sortedResults.contains(review)){
-                sortedResults.add(review);
+        if(starRatingForReview == 0){
+            sortedResults.addAll(results);
+        }else if(starRatingForReview != null) {
+
+            for(int i = 0; i < results.size(); i++){
+                Review review = results.get(i);
+                if(starRatingForReview == 4 && review.getOverallRating() >= 4){
+                    sortedResults.add(review);
+                }else if(starRatingForReview == 3 && review.getOverallRating() >= 3){
+                    sortedResults.add(review);
+                }else if(starRatingForReview == 2 && review.getOverallRating() >= 2){
+                    sortedResults.add(review);
+                }else if(starRatingForReview == 1 && review.getOverallRating() >= 1){
+                    sortedResults.add(review);
+                }
             }
         }
+
         Pageable pageable = PageRequest.of(pageNo - 1, reviewCount);
 
         int total = sortedResults.size();
@@ -285,17 +264,11 @@ public class ReviewData {
                 if(!results.contains(strArray[0])){
                     results.add(strArray[0]);
                 }
-            }else{
-                results.add("No result");
             }
         }
 
         return results;
 
     }
-
-
-
-
 
 }

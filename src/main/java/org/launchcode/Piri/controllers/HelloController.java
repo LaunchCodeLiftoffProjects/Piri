@@ -1,9 +1,7 @@
 package org.launchcode.Piri.controllers;
 
-import org.attoparser.IDocumentHandler;
 import org.launchcode.Piri.models.City;
 import org.launchcode.Piri.models.Review;
-//import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.ReviewData;
 import org.launchcode.Piri.models.User;
 import org.launchcode.Piri.models.data.CityRepository;
@@ -13,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,12 +44,16 @@ public class HelloController {
 
 
     @GetMapping("view/{cityId}/{pageNo}")
-    public String displayView(Model model, HttpServletRequest request, @PathVariable int cityId, @PathVariable(value = "pageNo") int pageNo, @RequestParam(required = false, value = "") String searchTermForReviews, @RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+    public String displayView(Model model, @PathVariable int cityId,@PathVariable(value = "pageNo") int pageNo,@RequestParam(required = false, value = "") String searchTermForReviews,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRatingForReviews){
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
         model.addAttribute("user", user);
 
+
+        if(starRatingForReviews == null){
+            starRatingForReviews = 0;
+        }
         if(searchTermForReviews == null){
             searchTermForReviews = "";
         }
@@ -70,7 +73,7 @@ public class HelloController {
 
         int sizeOfReviews = city.getReviews().size();
 
-        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField, sortDirection);
+        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField, sortDirection,starRatingForReviews);
         List<Review> reviews= page.getContent();
 
         Comparator<Review> byDate = new Comparator<Review>() {
@@ -91,7 +94,6 @@ public class HelloController {
         }
         model.addAttribute("reviews", reviews);
 
-
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
@@ -110,8 +112,9 @@ public class HelloController {
 
         ArrayList<String> wordListToHighlight = ReviewData.findWordToHighlight(reviews,searchTermForReviews);
         model.addAttribute("wordListToHighlight", wordListToHighlight);
-        model.addAttribute("highlightWordStyle", "<span STYLE='background-color:  #0066ff;color: #ffffff'>");
+        model.addAttribute("highlightWordStyle", "<span STYLE='background-color:  #00cc44;color: #ffffff'>");
         model.addAttribute("searchTermForReviews", searchTermForReviews);
+        model.addAttribute("starRatingForReviews", starRatingForReviews);
 
         String[] wordsForFilterReviews ={"safe", "education", "quiet", "walkable", "affordable", "friendly", "job", "school", "historic", "cultural", "transportation", "urban", "suburban", "sport",};
         model.addAttribute("wordsForFilterReviews", wordsForFilterReviews);

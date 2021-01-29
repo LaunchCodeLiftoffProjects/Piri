@@ -542,6 +542,12 @@ color: #FFF0F5 !important;
     margin-right: 10px;
 }
 
+.city-rating-container{
+    background-color: #fff !important;
+    padding: 35px 0;
+    margin: -35px 0 35px 0;
+}
+
 .city-view-card{
     width: 900px;
     max-width: 90%;
@@ -549,13 +555,24 @@ color: #FFF0F5 !important;
 }
 
 .city-rating-card{
-    width: 600px;
+    width: 450px;
     max-width: 90%;
     margin: 25px auto;
+    background-color: #f6f8fa !important;
 }
 
 .rating-category{
     font-size: 1.5rem;
+}
+
+.city-rating-table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.city-rating-table td{
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .review-display{
@@ -572,6 +589,19 @@ color: #FFF0F5 !important;
     font-size: 12px;
     font-style: italic;
     text-align: right;
+}
+
+.user-rating-display{
+    padding-bottom: 15px;
+}
+
+.user-rating-display-table{
+    border: 1px solid #ced4da;
+    background-color: #f6f8fa;
+}
+
+.user-rating-display-table td{
+    padding-left: 15px;
 }
 
 /* CSS for city-view page ends here */

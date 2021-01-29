@@ -62,56 +62,45 @@
         </div>
 </div>
 
-<!--<div class="card city-rating-card">
-        <div class="card-body row">
-                <div class="col-sm-6">
-                        <p class="rating-category">Affordability</p>
-                        <p class="rating-category">Safety</p>
-                        <p class="rating-category">Transportation</p>
-                        <p class="rating-category">Job Growth</p>
-                </div>
-                <div class="col-sm-6">
-                        <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
-                </div>
-        </div>
-</div>
--->
+<div class="city-rating-container">
+        <h4 class="display-4 text-center" th:text="${city.cityName} +' Ratings'"></h4>
+        <div class="card city-rating-card">
+                <div class="card-body">
+                        <div>
+                                <table class="city-rating-table">
+                                      <tr>
+                                              <td class="rating-category" >Affordability</td>
+                                              <td >
+                                                      <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                              <td class="rating-category">Safety</td>
+                                              <td >
+                                                      <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
+                                                </td>
+                                      </tr>
+                                        <tr>
+                                                <td class="rating-category">Job Growth</td>
+                                                <td>
+                                                        <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="rating-category">Schooling</td>
+                                                <td>
+                                                        <div class="Stars" th:style="|--rating: ${schoolRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                      <tr>
+                                              <td class="rating-category">Transportation</td>
 
-
-<div class="card city-rating-card">
-        <div class="card-body row">
-                <div class="col-sm-6">
-                        <table>
-                              <tr>
-                                      <td class="rating-category" >Affordability</td>
-                                      <td >
-                                              <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
-                                      </td>
-                              </tr>
-                              <tr>
-                                      <td class="rating-category">Safety</td>
-                                      <td >
-                                              <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
-                                        </td>
-                              </tr>
-                              <tr>
-                                      <td class="rating-category">Transportation</td>
-
-                                      <td>
-                                              <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
-                                      </td>
-                              </tr>
-                              <tr>
-                                      <td class="rating-category">Affordability</td>
-                                      <td>
-                                              <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
-                                      </td>
-                              </tr>
-
-                        </table>
+                                              <td>
+                                                      <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
+                                              </td>
+                                      </tr>
+                                </table>
+                        </div>
                 </div>
         </div>
 </div>
@@ -194,9 +183,40 @@
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">
-                                <div class="row">
-                                    <h3 th:text = "${reviews[i].title}"></h3>
-                                    <div class="Stars px-md-5" th:style="|--rating: ${reviews[i].overallRating}|" ></div>
+<!--                                <div class="row">-->
+<!--                                    <h3 th:text = "${reviews[i].title}"></h3>-->
+<!--                                    <div class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].overallRating}|" ></div>-->
+<!--                                </div>-->
+
+                                <h3 th:text = "${reviews[i].title}"></h3>
+                                <hr class="my-4">
+                                <div class="user-rating-display">
+                                        <table class="user-rating-display-table">
+                                                <tr>
+                                                        <td>Overall Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].overallRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Affordability Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].affordabilityRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Safety Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].safetyRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Job Growth Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].jobGrowthRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>School Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].schoolRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Transportation Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].transportationRating}|"></td>
+                                                </tr>
+                                        </table>
                                 </div>
 
                                 <div th:if="${searchTermForReviews == null || searchTermForReviews == ''}">

@@ -2,7 +2,9 @@ package org.launchcode.Piri.models;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +17,14 @@ public class User extends AbstractEntity {
     private String pwHash;
     private String firstName;
     private String lastName;
-    private ArrayList<Integer> savedCities;
+
+
 
 
     @OneToMany (mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
+
+
 
     public User() {
     }
@@ -57,12 +62,5 @@ public class User extends AbstractEntity {
         return reviews;
     }
 
-    public ArrayList<Integer> getSavedCities() {
-        return savedCities;
-    }
-
-    public void addSavedCity(Integer id){
-        savedCities.add(id);
-    }
 }
 

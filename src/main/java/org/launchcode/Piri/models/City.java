@@ -1,6 +1,8 @@
 package org.launchcode.Piri.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 
 
 @Entity
-public class City extends AbstractEntity{
+public class City extends AbstractEntity {
 
 
     private String cityName;
@@ -31,6 +33,7 @@ public class City extends AbstractEntity{
     //@JoinColumn (name="reviews_id")
     private List<Review> reviews = new ArrayList<>();
 
+
     private @Min(1) double overallCityRating;
 
     private double overallAffordabilityRating;
@@ -43,13 +46,13 @@ public class City extends AbstractEntity{
 
     private double overallSchoolRating;
 
-    public City(){
+    public City() {
 
     }
 
 
     public City(String cityName, String stateName, String stateID, String zipCodes, String county, Double latitude,
-                Double longitude, @Min(1) int overallCityRating,int overallAffordabilityRating, int overallSafetyRating, int overallTransportationRating, int overallJobGrowthRating, int overallSchoolRating, ArrayList<String> images){
+                Double longitude, @Min(1) int overallCityRating, int overallAffordabilityRating, int overallSafetyRating, int overallTransportationRating, int overallJobGrowthRating, int overallSchoolRating, ArrayList<String> images) {
 
         super();
         this.cityName = cityName;
@@ -69,15 +72,15 @@ public class City extends AbstractEntity{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String output = "";
-        if (cityName.equals("")){
+        if (cityName.equals("")) {
             cityName = "Data not available";
         }
-        if (stateName.equals("")){
+        if (stateName.equals("")) {
             stateName = "Data not available";
         }
-        if (county.equals("")){
+        if (county.equals("")) {
             county = "Data not available";
         }
 
@@ -152,7 +155,7 @@ public class City extends AbstractEntity{
     }
 
 
-    public void setReviews(List<Review> reviews){
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
@@ -211,10 +214,10 @@ public class City extends AbstractEntity{
     public void setImages(ArrayList<String> images) {
 
         ArrayList<String> imagesArr = new ArrayList<>();
-        if(!images.isEmpty()) {
+        if (!images.isEmpty()) {
             imagesArr.addAll(images);
         }
-        if(getImages() != null) {
+        if (getImages() != null) {
             imagesArr.addAll(getImages());
         }
         this.images = imagesArr;

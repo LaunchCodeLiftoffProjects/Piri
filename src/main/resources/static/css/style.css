@@ -597,7 +597,7 @@ color: #FFF0F5 !important;
 
 .user-rating-display-table{
     border: 1px solid #ced4da;
-    background-color: #f6f8fa;
+    background-color: #d6dadf;
 }
 
 .user-rating-display-table td{
@@ -609,6 +609,10 @@ color: #FFF0F5 !important;
     height: 100px;
     border: 1px solid #ced4da;
     border-radius: 5px;
+}
+
+.view-lg-img-btn{
+    padding-top: 15px;
 }
 
 /* CSS for city-view page ends here */

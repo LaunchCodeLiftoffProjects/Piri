@@ -223,42 +223,43 @@
                                         <th:block th:each="img:${reviews[i].cityImage}">
                                                 <img class="user-submitted-images" th:src="@{'data:image/jpeg;base64,' + ${img}}">
                                         </th:block>
-<!--                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imagesModalCenter" th:data-images="${reviews[i].cityImage}">-->
-<!--                                                View Images-->
-<!--                                        </button>-->
-
-<!--                                        <div class="modal fade bs-example-modal-lg" id="imagesModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:data-images="${reviews[i].cityImage}">-->
-<!--                                                <div class="modal-dialog modal-dialog-centered">-->
-<!--                                                        <div class="modal-content">-->
-<!--                                                                <div class="modal-header">-->
-<!--                                                                        <h5 class="modal-title" id="exampleModalLongTitle">User Submitted Images</h5>-->
-<!--                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                                                                <span aria-hidden="true">&times;</span>-->
-<!--                                                                        </button>-->
-<!--                                                                </div>-->
-<!--                                                                <div class="modal-body">-->
-<!--                                                                        <div id="carouselControls" class="carousel slide" data-ride="carousel">-->
-<!--                                                                                <div class="carousel-inner">-->
-<!--                                                                                        <div class="carousel-item active">-->
-<!--                                                                                                <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${reviews[i].cityImage.get(0)}}">-->
-<!--                                                                                        </div>-->
-<!--                                                                                        <div class="carousel-item" th:each="image : ${reviews[i].cityImage}">-->
-<!--                                                                                                <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}">-->
-<!--                                                                                        </div>-->
-<!--                                                                                </div>-->
-<!--                                                                                <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">-->
-<!--                                                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--                                                                                        <span class="sr-only">Previous</span>-->
-<!--                                                                                </a>-->
-<!--                                                                                <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">-->
-<!--                                                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--                                                                                        <span class="sr-only">Next</span>-->
-<!--                                                                                </a>-->
-<!--                                                                        </div>-->
-<!--                                                                </div>-->
-<!--                                                        </div>-->
-<!--                                                </div>-->
-<!--                                        </div>-->
+                                        <div class="view-lg-img-btn">
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imagesModalCenter" th:attr="data-target='#imagesModalCenter'+${reviews[i].id}" th:data-images="${reviews[i].cityImage}">
+                                                View Images in Larger Size
+                                        </button>
+                                        </div>
+                                        <div class="modal fade bs-example-modal-lg" th:id="imagesModalCenter+${reviews[i].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:data-images="${reviews[i].cityImage}">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">User Submitted Images</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                        <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                                                                                <div class="carousel-inner">
+                                                                                        <div class="carousel-item active">
+                                                                                                <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${reviews[i].cityImage.get(0)}}">
+                                                                                        </div>
+                                                                                        <div class="carousel-item" th:each="image : ${reviews[i].cityImage}">
+                                                                                                <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}">
+                                                                                        </div>
+                                                                                </div>
+                                                                                <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                                                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                                        <span class="sr-only">Previous</span>
+                                                                                </a>
+                                                                                <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                                                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                                        <span class="sr-only">Next</span>
+                                                                                </a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 </div>
 
                                 <div th:if="${searchTermForReviews == null || searchTermForReviews == ''}">
@@ -281,6 +282,12 @@
                                 <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
                                         <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
                                 </p>
+<!--                                <th:block th:if="${reviews[i].getUser() != null}">-->
+<!--                                        <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>-->
+<!--                                        <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">-->
+<!--                                                <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>-->
+<!--                                        </p>-->
+<!--                                </th:block>-->
                         </div>
                 </th:block>
         </div>

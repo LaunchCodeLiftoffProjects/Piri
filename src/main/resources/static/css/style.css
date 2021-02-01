@@ -303,12 +303,14 @@ color: #FFF0F5 !important;
 
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
-  margin-left: 100%;
 }
 
 #filter-btn-toolbar{
   padding: 20px 0px;
-  margin-left: 8%;
+}
+
+.search-sort-bar{
+    margin-left: 23%;
 }
 
 #no-results{
@@ -316,6 +318,7 @@ color: #FFF0F5 !important;
     font-size: 42px;
     text-align:center;
 }
+
 
 /*css for search view ends here*/
 
@@ -371,7 +374,10 @@ color: #FFF0F5 !important;
     background-color: #f6f8fa
 }
 
-
+.sort-btn-view{
+    margin-top: 35px;
+    margin-left: 10px;
+}
 
 /*css for view page ends here*/
 
@@ -677,7 +683,7 @@ margin-top: 20px;
 
 .split {
 width: 50vw;
-margin-top: 100px;
+margin-top: 50px;
 display: flex;
 align-items: center;
 align-content: flex-start;
@@ -723,7 +729,7 @@ margin-top: 20px;
 .compNav{
 width: 50%;
 margin: 0 auto;
-padding-top: 120px;
+padding-top: 50px;
 }
 
 .scrollable{

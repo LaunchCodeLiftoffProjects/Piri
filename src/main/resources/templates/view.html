@@ -11,12 +11,11 @@
         <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
 </div>
 
+<div class="" th:replace="fragments :: search-form"></div>
+
 <div class="jumbotron">
         <div class="row">
                 <div class="col-md-4">
-<!--                        <div>-->
-<!--                                <img src="/images/nycskyline.png" alt="..." class="img-fluid">-->
-<!--                        </div>-->
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div th:if="${city.images != null && city.images.size() > 0}">
                                         <div class="carousel-inner">
@@ -98,6 +97,7 @@
 </div>
 -->
 
+
 <div class="card city-rating-card">
         <div class="card-body row">
                 <div class="col-sm-6">
@@ -133,42 +133,78 @@
         </div>
 </div>
 
-<div class="city-view-card">
+<div class="container-fluid view-filtering-container">
 
+
+        <div class="row">
+                <div class="col-xs px-md-5 justify-content-start">
+                        <h6 class="text-center"><em th:text="${sizeOfReviews + ' Ratings'}"></em></h6>
+                        <div class="container-item-filter-by-star">
+                                <div class="Stars" th:style="|--rating: 4|" ></div>
+                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=desc' + '&starRatingForReviews=' + 4 +'#targetUserReviews'}">4 & up</a>
+                        </div>
+                        <div class="container-item-filter-by-star">
+                                <div class="Stars" th:style="|--rating: 3|" ></div>
+                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=desc' + '&starRatingForReviews=' + 3 +'#targetUserReviews'}">3 & up</a>
+                        </div>
+                        <div class="container-item-filter-by-star">
+                                <div class="Stars" th:style="|--rating: 2|" ></div>
+                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=desc' + '&starRatingForReviews=' + 2 +'#targetUserReviews'}">2 & up</a>
+                        </div>
+                        <div class="container-item-filter-by-star">
+                                <div class="Stars" th:style="|--rating: 1|" ></div>
+                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=desc' + '&starRatingForReviews=' + 1 +'#targetUserReviews'}">1 & up</a>
+                        </div>
+                </div>
+
+                <div class="col-xs w-50">
+                        <h4 class="text-center lead">Read reviews that mention</h4>
+                        <div class="row p-2 justify-content-center">
+                                <div  class="btn-group " th:each="x :${#numbers.sequence(0,wordsForFilterReviews.length-1)}"  >
+                                        <form th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
+                                                <input type="hidden" class="search" th:value="${wordsForFilterReviews[x]}" id="searchTermForReviews" name="searchTermForReviews"/>
+                                                <button type="submit" class="btn btn-outline-success mr-1" value="Search" ><span th:text="${wordsForFilterReviews[x]}"></span></button>
+                                        </form>
+                                </div>
+                                <form th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
+                                        <input type="hidden" class="search" value="" id="searchTermForReviews2" name="searchTermForReviews"/>
+                                        <button type="submit" class="btn btn-secondary mr-1" value="Search" >Clear</button>
+                                </form>
+                        </div>
+                        <form class="col-xs-3" th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
+                                <div class="input-group mb-3 p-4 justify-content-center">
+                                        <input type="text" class="search form-control" id="searchTermForReviews1" name="searchTermForReviews" placeholder="Search user reviews"/>
+                                        <div class="input-group-append">
+                                                <button type="submit" class="btn btn-info" value="Search">Search</button>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
+
+                <div class="dropdown col px-md-5 p-5 sort-btn-view" id="sort-by-dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort by:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=desc' + '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Most Recent</a>
+                                <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=reviewDate&sortDirection=asc' + '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Oldest</a>
+                                <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=overallRating&sortDirection=asc' + '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Highest Overall Rating</a>
+                                <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=overallRating&sortDirection=desc' + '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Lowest Overall Rating</a>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<div class="city-view-card">
 
         <h2 class="review-header"><a id="targetUserReviews">User Reviews</a></h2>
 
-        <div class="dropdown" id="sort-by-dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-by-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sort by:
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=reviewDate&sortDirection=desc' + '#targetUserReviews'}">Most Recent</a>
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=reviewDate&sortDirection=asc' + '#targetUserReviews'}">Oldest</a>
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=overallRating&sortDirection=asc' + '#targetUserReviews'}">Highest Overall Rating</a>
-                        <a class="dropdown-item" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage} + '?sortField=overallRating&sortDirection=desc' + '#targetUserReviews'}">Lowest Overall Rating</a>
-                </div>
+        <div class="jumbotron review-display" th:if="${reviews.size()==0 && searchTermForReviews != ''}">
+                <h5 th:text="${'No reviews with `' + searchTermForReviews  + '`'}"></h5>
+                <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
         </div>
 
-        <div class="row justify-content-center">
-        <form class="col-xs-3" th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
-                <input type="text" class="search" id="searchTermForReviews1" name="searchTermForReviews" placeholder="Enter a search Term"/>
-                <button type="submit" class="btn btn-primary" value="Search"  ><span>Search</span></button>
-        </form>
-        </div>
-
-        <div class="container w-50 p-3">
-        <div class="row justify-content-center">
-        <div  class="btn-group" th:each="x :${#numbers.sequence(0,wordsForFilterReviews.length-1)}"  >
-                <form th:action="@{'/view/' + ${city.id} + '/1'+ '#targetUserReviews'}" method="get">
-                        <input type="hidden" class="search" th:value="${wordsForFilterReviews[x]}" id="searchTermForReviews" name="searchTermForReviews" placeholder="Enter a search Term"/>
-                        <button type="submit" class="btn btn-outline-primary mr-1" value="Search" ><span th:text="${wordsForFilterReviews[x]}"></span></button>
-                </form>
-        </div>
-        </div>
-        </div>
-
-        <div class="jumbotron review-display" th:if="${reviews.size()==0}">
+        <div class="jumbotron review-display" th:if="${reviews.size()==0 && searchTermForReviews == ''}">
                 <h5>No reviews submitted yet.</h5>
                 <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
         </div>
@@ -176,9 +212,10 @@
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">
-                                <h3>
-                                    <p th:text = "${reviews[i].title}"></p>
-                                </h3>
+                                <div class="row">
+                                    <h3 th:text = "${reviews[i].title}"></h3>
+                                    <div class="Stars px-md-5" th:style="|--rating: ${reviews[i].overallRating}|" ></div>
+                                </div>
 
                                 <div th:if="${searchTermForReviews == null || searchTermForReviews == ''}">
                                 <p class="lead">
@@ -194,7 +231,6 @@
                                         </div>
                                 </span>
 
-
                                 <hr class="my-4">
                                 <a class="review-date" th:href="@{/view-profile(userId=${reviews[i].getUser().id})}"
                                    th:text =
@@ -204,9 +240,7 @@
                                 </p>
                         </div>
                 </th:block>
-
         </div>
-
 
 
         <div th:if = "${totalPages > 1}">
@@ -216,16 +250,16 @@
                                         <ul class="pagination justify-content-center flex-wrap">
 
                                                 <li class="page-item">
-                                                        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/view/' + ${city.id} + '/1' + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}">First</a>
+                                                        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/view/' + ${city.id} + '/1' + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '&starRatingForReviews=' + ${starRatingForReviews} + '#targetUserReviews'}">First</a>
                                                 </li>
                                                 <li class="page-item">
-                                                        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage - 1} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}">Previous</a>
+                                                        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage - 1} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Previous</a>
                                                         <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
                                                 </li>
 
                                                 <th:block th:if="${totalPages <= 10}">
                                                         <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                                                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}">[[${i}]]</a>
+                                                                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">[[${i}]]</a>
                                                                 <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                                         </li>
@@ -234,14 +268,14 @@
                                                 <th:block th:if="${totalPages > 10}">
                                                         <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
                                                                 <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
-                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}">[[${i}]]</a>
+                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">[[${i}]]</a>
                                                                         <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                                                 </li>
                                                                 <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
 
                                                                 <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
-                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}" >[[${i}]]</a>
+                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}" >[[${i}]]</a>
                                                                         <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                                                 </li>
@@ -249,27 +283,27 @@
 
                                                         <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
 
-                                                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage - 5} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +  '#targetUserReviews'}" class="page-link">...</a>
+                                                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage - 5} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}" class="page-link">...</a>
 
                                                                 <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
-                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'#targetUserReviews'}">[[${i}]]</a>
+                                                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/view/' + ${city.id} + '/' + ${i} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} + '#targetUserReviews'}">[[${i}]]</a>
                                                                         <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
 
                                                                 </li>
 
-                                                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage + 5} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}" class="page-link">...</a>
+                                                                <a th:href="@{'/view/' + ${city.id} + '/' + ${currentPage + 5} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}" class="page-link">...</a>
 
                                                         </th:block>
 
                                                 </th:block>
 
                                                 <li class="page-item">
-                                                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage + 1} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +  '#targetUserReviews'}">Next</a>
+                                                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/view/' + ${city.id} + '/' + ${currentPage + 1} + '?searchTermForReviews=' + ${searchTermForReviews} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Next</a>
                                                         <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Next</a></span>-->
                                                 </li>
 
                                                 <li class="page-item">
-                                                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/view/' + ${city.id} + '/' + ${totalPages} + '?searchTermForReviews=' + ${searchTermForReviews} +'&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} + '#targetUserReviews'}">Last</a>
+                                                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/view/' + ${city.id} + '/' + ${totalPages} + '?searchTermForReviews=' + ${searchTermForReviews} +'&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}+ '&starRatingForReviews=' + ${starRatingForReviews} +'#targetUserReviews'}">Last</a>
                                                         <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Last</a></span>-->
                                                 </li>
                                         </ul>
@@ -277,15 +311,7 @@
                         </div>
                 </div>
         </div>
-
-
 </div>
-
-
-
-
-
-
 
 </body>
 <div th:replace="fragments :: footer"></div>

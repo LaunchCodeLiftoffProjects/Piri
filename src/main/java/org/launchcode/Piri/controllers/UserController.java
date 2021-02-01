@@ -10,6 +10,7 @@ import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.ReviewRepository;
 import org.launchcode.Piri.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +32,10 @@ public class UserController {
     ReviewRepository reviewRepository;
     @Autowired
     CityRepository cityRepository;
-
     @Autowired
     AuthenticationController authenticationController;
+    @Autowired
+    private  UserData userData;
 
     @GetMapping("profile")
     public String displayViewUserProfile(Model model, HttpServletRequest request) {
@@ -109,6 +111,23 @@ public class UserController {
             model.addAttribute("reviews", reviews);
         }
         return "profile";
+    }
+    @GetMapping("/savedCities/page/{pageNo}")
+    public String displaySavedCitiesList(@PathVariable(value = "pageNo") int pageNo, Model model,@RequestParam(required = false) String searchTerm, HttpServletRequest request){
+        int cityCount = 6;
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        Optional<User> optUser = userRepository.findById(user.getId());
+        if(optUser.isPresent()) {
+            Page<City> page = userData.findPaginatedSavedCities(user, pageNo, cityCount, searchTerm);
+            List<City> cities = page.getContent();
+            model.addAttribute("searchTerm", searchTerm);
+            model.addAttribute("currentPage", pageNo);
+            model.addAttribute("totalPages", page.getTotalPages());
+            model.addAttribute("totalItems", page.getTotalElements());
+            model.addAttribute("cities", cities);
+        }
+        return "saved-cities-view";
     }
 
 

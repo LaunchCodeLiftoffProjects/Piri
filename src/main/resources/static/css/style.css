@@ -604,6 +604,13 @@ color: #FFF0F5 !important;
     padding-left: 15px;
 }
 
+.user-submitted-images{
+    width: 150px;
+    height: 100px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
 /* CSS for city-view page ends here */
 
 /* CSS for image-uploading function starts here */

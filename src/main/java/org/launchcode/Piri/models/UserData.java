@@ -4,6 +4,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 
 public class UserData {
@@ -21,5 +22,15 @@ public class UserData {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void saveCityToFavoritesList(City city, User user){
+        ArrayList<City> savedCities = new ArrayList<>();
+        savedCities.addAll(user.getSavedCities());
+        if(!savedCities.contains(city)){
+            savedCities.add(city);
+        }
+        user.setSavedCities(savedCities);
+
     }
 }

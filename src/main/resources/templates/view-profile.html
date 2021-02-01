@@ -50,9 +50,10 @@
                 <div class="card-profile">
                     <h3>USERS FAVORITE CITIES</h3>
                     <ul>
-                        <li>CITY 1</li>
-                        <li>CITY 2</li>
-                        <li>CITY 3</li>
+<!--                        <li th:text="${favoriteCity}"></li>-->
+                        <th:block th:each="favoriteCity : ${favoriteCities}">
+                        <li th:text="${favoriteCity.cityName}" ></li>
+                        </th:block>
                     </ul>
                 </div>
             </div>

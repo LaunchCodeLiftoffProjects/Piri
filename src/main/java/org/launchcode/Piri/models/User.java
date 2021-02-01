@@ -23,6 +23,9 @@ public class User extends AbstractEntity {
     @OneToMany (mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<City> savedCities = new ArrayList<>();
+
     public User() {
     }
 
@@ -65,6 +68,14 @@ public class User extends AbstractEntity {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public List<City> getSavedCities() {
+        return savedCities;
+    }
+
+    public void setSavedCities(List<City> savedCities) {
+        this.savedCities = savedCities;
     }
 }
 

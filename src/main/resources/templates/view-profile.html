@@ -28,13 +28,18 @@
             </div>
             <div class="col-5 order-last">
                 <div class="card-profile">
-                    <h3>USERS FAVORITE CITIES</h3>
-                    <ul>
-<!--                        <li th:text="${favoriteCity}"></li>-->
-                        <th:block th:each="favoriteCity : ${favoriteCities}">
-                        <li th:text="${favoriteCity.cityName}" ></li>
-                        </th:block>
-                    </ul>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col"><h3 class="display-4">Favorite Cities</h3></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="city : ${favoriteCities}">
+                            <td th:text="${city.cityName} + ', ' + ${city.stateName}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

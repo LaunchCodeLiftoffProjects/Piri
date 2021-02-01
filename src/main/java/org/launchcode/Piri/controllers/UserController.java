@@ -73,7 +73,7 @@ public class UserController {
     }
 
 
-    @PostMapping("view-profile")
+    @PostMapping("profile")
     public String processUploadProfilePicture(HttpServletRequest request, Model model, @RequestParam(value = "file") MultipartFile file){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -83,7 +83,7 @@ public class UserController {
             model.addAttribute("favoriteCities", user.getSavedCities());
             UserData.uploadProfilePicture(file, user);
             userRepository.save(user);
-        return "view-profile";
+        return "profile";
     }
 
 

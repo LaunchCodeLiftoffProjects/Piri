@@ -18,7 +18,7 @@
                     <img th:if="${user.profilePicture != null && user.profilePicture.length() > 0}" class="profile-img" th:src="@{'data:image/jpeg;base64,' + ${user.getProfilePicture()}}">
                     <img th:if="${user.profilePicture == null || user.profilePicture.length() == 0}" class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
 
-                    <form method="post" enctype="multipart/form-data" action="/view-profile" id="profile-picture-form">
+                    <form method="post" enctype="multipart/form-data" action="/profile" id="profile-picture-form">
                         <div class="dropdown dropdown-profile-picture">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Change Profile Picture

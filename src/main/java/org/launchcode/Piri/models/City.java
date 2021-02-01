@@ -3,6 +3,8 @@ package org.launchcode.Piri.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
@@ -32,6 +34,9 @@ public class City extends AbstractEntity {
     @OneToMany(mappedBy = "city")
     //@JoinColumn (name="reviews_id")
     private List<Review> reviews = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
 
     private @Min(1) double overallCityRating;
@@ -222,5 +227,13 @@ public class City extends AbstractEntity {
         }
         this.images = imagesArr;
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

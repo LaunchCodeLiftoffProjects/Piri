@@ -17,7 +17,7 @@ public class User extends AbstractEntity {
     private String pwHash;
     private String firstName;
     private String lastName;
-    private List<Integer> savedCities = new ArrayList<>();
+
 
 
 
@@ -28,6 +28,8 @@ public class User extends AbstractEntity {
     private final List<Review> reviews = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "user")
+    private List<City> savedCities = new ArrayList<>();
 
     public User() {
     }
@@ -65,13 +67,6 @@ public class User extends AbstractEntity {
         return reviews;
     }
 
-    public ArrayList<Integer> getSavedCities() {
-        return savedCities;
-    }
-
-    public void addSavedCity(Integer id) {
-        savedCities.add(id);
-    }
 
     public String getProfilePicture() {
         return profilePicture;
@@ -82,5 +77,12 @@ public class User extends AbstractEntity {
 
     }
 
+    public List<City> getSavedCities() {
+        return savedCities;
+    }
+
+    public void setSavedCities(List<City> savedCities) {
+        this.savedCities = savedCities;
+    }
 }
 

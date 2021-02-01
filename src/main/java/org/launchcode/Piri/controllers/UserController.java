@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,18 +43,10 @@ public class UserController {
         User user = authenticationController.getUserFromSession(session);
         Optional<User> optUser = userRepository.findById(user.getId());
         if (optUser.isPresent()) {
-            List<Integer> cityIds = user.getSavedCities();
-            for (Integer id: cityIds){
-                Optional<City> optCity =cityRepository.findById(id);
-                if(optCity.isPresent()) {
-                    City city = (City) optCity.get();
-                    savedCities.add(city);
-                }
-            }
             List<Review> reviews = user.getReviews();
             model.addAttribute("user", user);
             model.addAttribute("reviews", reviews);
-            model.addAttribute("savedCities",savedCities);
+            model.addAttribute("favoriteCities", user.getSavedCities());
 
             return "profile";
         } else {
@@ -72,6 +63,7 @@ public class UserController {
             List<Review> reviews = user.getReviews();
             model.addAttribute("user", user);
             model.addAttribute("reviews", reviews);
+            model.addAttribute("favoriteCities", user.getSavedCities());
 
             return "view-profile";
         } else {
@@ -85,11 +77,40 @@ public class UserController {
     public String processUploadProfilePicture(HttpServletRequest request, Model model, @RequestParam(value = "file") MultipartFile file){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
+            List<Review> reviews = user.getReviews();
             model.addAttribute("user", user);
+            model.addAttribute("reviews", reviews);
+            model.addAttribute("favoriteCities", user.getSavedCities());
             UserData.uploadProfilePicture(file, user);
             userRepository.save(user);
         return "view-profile";
     }
+
+
+    @PostMapping("save-city")
+    public String processSavingCityToFavoritesList(HttpServletRequest request, Model model, @RequestParam int savedCityId){
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        Optional<User> optUser = userRepository.findById(user.getId());
+
+        Optional<City> optionalCity = cityRepository.findById(savedCityId);
+        City city = optionalCity.get();
+        model.addAttribute("savedCityName", city.getCityName());
+
+        if(optUser.isPresent()){
+            List<Review> reviews = user.getReviews();
+            city.setUser(user);
+            UserData.saveCityToFavoritesList(city,user);
+            userRepository.save(user);
+            model.addAttribute("user", user);
+            model.addAttribute("city", city);
+            model.addAttribute("favoriteCities", user.getSavedCities());
+            model.addAttribute("reviews", reviews);
+        }
+        return "view-profile";
+    }
+
+
 }
 
 

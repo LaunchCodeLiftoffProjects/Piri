@@ -1,6 +1,7 @@
 /* CSS for navigation bar starts here */
 .navbar{
     background-color: #663a82;
+    z-index:1;
 }
 
 .navbar-brand{
@@ -629,3 +630,104 @@ color: #FFF0F5 !important;
     font-size:15px;
 }
 /* CSS for image-uploading function ends here */
+
+/*CSS for Compare starts here */
+
+.compare-box{
+ margin: 20px 0px 5px 10px;
+ padding: 10px;
+ width: 50vh;
+}
+
+.splitscreen h3{
+padding-top: 20px;
+}
+
+.splitscreen {
+width: 100vw;
+margin-top: 100px;
+display: flex;
+align-items: flext-start;
+align-content: flex-start;
+text-align: center;
+justify-content: center;
+}
+
+.splitscreen .box{
+    flex-grow: 1;
+    flex: 1;
+
+}
+
+.splitscreen .middle{
+    min-width: 200px;
+    font-size: 20px;
+    box-shadow: 10px 10px 5px grey;
+    border: 1px outset lightgrey;
+    background-color: white;
+    margin-left: 6px;
+    margin-right: 6px;
+    o
+}
+
+.splitscreen table{
+margin: 0 auto;
+margin-top: 20px;
+ }
+
+.split {
+width: 50vw;
+margin-top: 100px;
+display: flex;
+align-items: center;
+align-content: flex-start;
+text-align: center;
+justify-content: center;
+box-shadow: 10px 10px 5px grey;
+border: 1px outset lightgrey;
+margin-bottom: 20px;
+}
+
+.split .box{
+    flex-grow: 1;
+    flex: 1;
+
+}
+
+.split table{
+margin: 0 auto;
+margin-top: 20px;
+ }
+
+.equal{ color: green; }
+
+.leftbetter{ color: blue; }
+
+.rightbetter{ color: red; }
+
+.SmallStars{
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: 20px;
+  font-family: Times;
+  line-height: 1;
+}
+.SmallStars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.compNav{
+width: 50%;
+margin: 0 auto;
+padding-top: 120px;
+}
+
+.scrollable{
+overflow-y:auto;
+overflow-x:auto;
+background-color: #f6f6f6;
+}

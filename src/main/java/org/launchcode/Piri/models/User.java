@@ -2,6 +2,7 @@ package org.launchcode.Piri.models;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -16,13 +17,17 @@ public class User extends AbstractEntity {
     private String pwHash;
     private String firstName;
     private String lastName;
-    private ArrayList<Integer> savedCities;
+    private List<Integer> savedCities = new ArrayList<>();
+
+
 
     @Lob
     private String profilePicture;
 
     @OneToMany (mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
+
+
 
     public User() {
     }
@@ -60,7 +65,6 @@ public class User extends AbstractEntity {
         return reviews;
     }
 
-
     public ArrayList<Integer> getSavedCities() {
         return savedCities;
     }
@@ -77,5 +81,6 @@ public class User extends AbstractEntity {
         this.profilePicture = profilePicture;
 
     }
+
 }
 

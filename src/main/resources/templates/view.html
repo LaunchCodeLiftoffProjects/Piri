@@ -56,9 +56,11 @@
                 </div>
                 <div class="col-md-2">
                         <div class = "nav justify-content-end">
-                                <a type="submit" class="btn btn-success save-compare-btn" href="#"
-                                   role="button">Add To Favorites
-                                </a>
+                                <form method="post" action="/save-city">
+                                        <label class="btn btn-success save-compare-btn" for="saveCity" >Save
+                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >
+                                        </label>
+                                </form>
                                 <a class="btn btn-primary save-compare-btn" href="/compare" role="button">Compare</a>
                         </div>
                 </div>

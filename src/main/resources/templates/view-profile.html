@@ -34,42 +34,69 @@
                             <th scope="col"><h3 class="display-4">Favorite Cities</h3></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr th:each="city : ${favoriteCities}">
-                            <td th:text="${city.cityName} + ', ' + ${city.stateName}"></td>
+                        <tbody th:switch="${#lists.size(favoriteCities)}">
+                        <tr th:case="0">
+                            <td>
+                                NO FAVORITES YET!
+                            </td>
                         </tr>
+                        <tr th:case="1">
+                            <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                        </tr>
+                        <span th:case="2">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                            </span>
+                        <span th:case="3">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                            th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                            th:text="${favoriteCities[2].cityName} + ', ' + ${favoriteCities[2].stateName}"></td>
+                                </tr>
+                            </span>
                         </tbody>
                     </table>
+                    <a href="#"><cite>View More Favorites</cite></a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="jumbotron review-display" th:each="review : ${reviews}">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div th:if="${city.images != null && city.images.size() > 0}">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
-                                </div>
-                                <div class="carousel-item" th:each="image : ${city.images}">
-                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="Second slide">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <div th:if="${city.images[0] == null}">
-                            <img src="/images/default.jpg" alt="..."  class="profile-review-img">
-                        </div>
+<!--                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">-->
+<!--                        <div th:if="${city.images != null && city.images.size() > 0}">-->
+<!--                            <div class="carousel-inner">-->
+<!--                                <div class="carousel-item active">-->
+<!--                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">-->
+<!--                                </div>-->
+<!--                                <div class="carousel-item" th:each="image : ${city.images}">-->
+<!--                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="Second slide">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">-->
+<!--                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                                <span class="sr-only">Previous</span>-->
+<!--                            </a>-->
+<!--                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">-->
+<!--                                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                                <span class="sr-only">Next</span>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div th:if="${city.images[0] == null}">-->
+<!--                            <img src="/images/default.jpg" alt="..."  class="profile-review-img">-->
+<!--                        </div>-->
 
-                    </div>
+<!--                    </div>-->
                     <h3><p th:text="${review.title}"></p></h3>
                     <p class="lead">
                     <p th:utext="${review.comment}"></p>

@@ -74,12 +74,20 @@
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
 <!--                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>-->
+<!--                                        <form method="post" action="/save-city">-->
+<!--                                            <label class="btn btn-primary" for="saveCity" >add-->
+<!--                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >-->
+<!--                                            </label>-->
+<!--&lt;!&ndash;                                            <input type="submit" value="2" name="cityId" >&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>&ndash;&gt;-->
+<!--                                        </form>-->
+<!--                                        <form method="post" action="/save-city">-->
+<!--                                            <label for="saveCity"><i class="text-dark far fa-heart fa-2x" data-toggle="tooltip" title="Save this city"></i></label>-->
+<!--                                            <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >-->
+<!--                                        </form>-->
                                         <form method="post" action="/save-city">
-                                            <label class="btn btn-primary" for="saveCity" >add
-                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >
-                                            </label>
-<!--                                            <input type="submit" value="2" name="cityId" >-->
-<!--                                            <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>-->
+                                            <label for="saveCity"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a></label>
+                                            <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >
                                         </form>
                                     </div>
                                 </div>

@@ -18,7 +18,7 @@
                     <img th:if="${user.profilePicture != null && user.profilePicture.length() > 0}" class="profile-img" th:src="@{'data:image/jpeg;base64,' + ${user.getProfilePicture()}}">
                     <img th:if="${user.profilePicture == null || user.profilePicture.length() == 0}" class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
 
-                    <form method="post" enctype="multipart/form-data" action="/profile" id="profile-picture-form">
+                    <form method="post" enctype="multipart/form-data" action="/view-profile" id="profile-picture-form">
                         <div class="dropdown dropdown-profile-picture">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Change Profile Picture
@@ -53,16 +53,39 @@
                                 <th scope="col"><h3 class="display-4">Favorite Cities</h3></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr th:each="city : ${favoriteCities}">
-                                <td th:text="${city.cityName} + ', ' + ${city.stateName}"></td>
+                        <tbody th:switch="${#lists.size(favoriteCities)}">
+                            <tr th:case="0">
+                                <td>
+                                    NO FAVORITES YET!
+                                </td>
                             </tr>
+                            <tr th:case="1">
+                                <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                            </tr>
+                            <span th:case="2">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                            </span>
+                            <span th:case="*">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        th:text="${favoriteCities[2].cityName} + ', ' + ${favoriteCities[2].stateName}"></td>
+                                </tr>
+                            </span>
                         </tbody>
                     </table>
-<!--                    <h3>USERS FAVORITE CITIES</h3>-->
-<!--                    <ul th:each="city : ${savedCities}">-->
-<!--                        <li th:text="${city.cityName} + ', ' + ${city.stateName}">CITY 1</li>-->
-<!--                    </ul>-->
+                    <a href="#"><cite>View More Favorites</cite></a>
                 </div>
             </div>
         </div>

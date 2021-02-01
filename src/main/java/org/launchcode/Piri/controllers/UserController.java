@@ -99,8 +99,9 @@ public class UserController {
 
         if(optUser.isPresent()){
             List<Review> reviews = user.getReviews();
-            city.setUser(user);
+            city.setUser(authenticationController.getUserFromSession(session));
             UserData.saveCityToFavoritesList(city,user);
+            cityRepository.save(city);
             userRepository.save(user);
             model.addAttribute("user", user);
             model.addAttribute("city", city);

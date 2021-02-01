@@ -21,9 +21,10 @@
 /*CSS for index page starts here */
 
 .index{
-    background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+    background-image: url("../images/pirireismap.png");
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .index-intro-wrapper{

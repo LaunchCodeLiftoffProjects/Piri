@@ -107,7 +107,7 @@ public class UserController {
             model.addAttribute("favoriteCities", user.getSavedCities());
             model.addAttribute("reviews", reviews);
         }
-        return "view-profile";
+        return "profile";
     }
 
 

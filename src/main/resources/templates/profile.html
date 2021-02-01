@@ -40,17 +40,29 @@
                 </div>            </div>
             <div class="col-4">
                 <div class="card-profile">
-                    <div class="title-name"><h2 th:text="${user.username}">Username</h2></div>
+                    <div class="title-name"><h2 th:text="${user.username}" class="display-4">Username</h2></div>
                     <div><h5 th:text="${user.firstName} + ' ' + ${user.lastName}">FIRSTNAME
                         LASTNAME</h5></div>
                 </div>
             </div>
             <div class="col-5 order-last">
                 <div class="card-profile">
-                    <h3>USERS FAVORITE CITIES</h3>
-                    <ul th:each="city : ${savedCities}">
-                        <li th:text="${city.cityName} + ', ' + ${city.stateName}">CITY 1</li>
-                    </ul>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"><h3 class="display-4">Favorite Cities</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="city : ${favoriteCities}">
+                                <td th:text="${city.cityName} + ', ' + ${city.stateName}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+<!--                    <h3>USERS FAVORITE CITIES</h3>-->
+<!--                    <ul th:each="city : ${savedCities}">-->
+<!--                        <li th:text="${city.cityName} + ', ' + ${city.stateName}">CITY 1</li>-->
+<!--                    </ul>-->
                 </div>
             </div>
         </div>

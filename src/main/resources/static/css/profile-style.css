@@ -36,6 +36,12 @@
     object-fit: cover;
 }
 
+.profile-review-img{
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+}
+
 .dropdown-profile-picture{
     margin: 40px;
     margin-top: -10px;

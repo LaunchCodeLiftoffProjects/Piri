@@ -56,6 +56,7 @@ public class HomeController {
     @Autowired
     private ReviewData reviewData;
 
+    @GetMapping("home")
     public String hello(){
 
         return "index";
@@ -67,7 +68,9 @@ public class HomeController {
     public String listCities(Model model) { return "list-cities";}
 
     @GetMapping("view/{cityId}/{pageNo}")
-    public String displayView(Model model, HttpServletRequest request, @PathVariable int cityId, @PathVariable(value = "pageNo") int pageNo, @RequestParam(required = false, value = "") String searchTermForReviews, @RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection){
+    public String displayView(Model model, HttpServletRequest request, @PathVariable int cityId, @PathVariable(value
+            = "pageNo") int pageNo, @RequestParam(required = false, value = "") String searchTermForReviews,
+                              @RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRatingForReviews){
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
@@ -92,7 +95,8 @@ public class HomeController {
 
         int sizeOfReviews = city.getReviews().size();
 
-        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField, sortDirection);
+        Page<Review> page = reviewData.findPaginatedReviews(pageNo, reviewCount,searchTermForReviews, city, sortField
+                , sortDirection, starRatingForReviews);
         List<Review> reviews= page.getContent();
 
         Comparator<Review> byDate = new Comparator<Review>() {

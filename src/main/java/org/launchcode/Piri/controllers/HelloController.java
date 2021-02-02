@@ -37,6 +37,7 @@ public class HelloController {
     @Autowired
     private ReviewData reviewData;
 
+
     public String hello(){
 
         return "index";

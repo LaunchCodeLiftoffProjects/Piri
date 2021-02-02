@@ -46,6 +46,7 @@ public class CompareController {
     public String findComparePaginated(@PathVariable(value = "pageNo") int pageNo, Model model, @PathVariable String cityIdOne, @RequestParam String searchTerm){
 
         int cityCount = 6;
+        City cityOne = cityRepository.findById(Integer.valueOf(cityIdOne)).get();
 
 
         Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, "cityName", "asc", 0);
@@ -55,7 +56,7 @@ public class CompareController {
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("cityOne",cityRepository.findById(Integer.valueOf(cityIdOne)).get());
+        model.addAttribute("cityOne",cityOne);
 
         model.addAttribute("cities", cities);
 

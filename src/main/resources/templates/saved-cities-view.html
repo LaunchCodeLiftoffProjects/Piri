@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<div th:if="${session.user}">
+    <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<body>
+<div class="search-btn-container">
+    <form class="top-search-btn" th:action="@{'/savedCities/page/' + 1}" method="get">
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">
+            <div class="input-group-append">
+                <button class="btn" type="submit" id="search-btn">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:replace="list-cities :: listCities"></div>
+</body>
+</html>

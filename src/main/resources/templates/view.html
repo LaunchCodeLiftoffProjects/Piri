@@ -55,8 +55,22 @@
                 </div>
                 <div class="col-md-2">
                         <div class = "nav justify-content-end">
-                                <a class="btn btn-success save-compare-btn" href="#" role="button">Save</a>
-                                <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
+                                <ul class="list-unstyled">
+                                        <li>
+                                                <form method="post" action="/save-city">
+                                                        <label class="btn btn-success save-compare-btn" for="saveCity" >Save to
+                                                                Favorites
+                                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >
+                                                        </label>
+                                                </form>
+                                        </li>
+                                        <li>
+                                                <a class="btn btn-primary save-compare-btn"
+                                                   th:href="@{'/compare/' + ${city.id}}"
+                                                   role="button">Compare 2 Cities</a>
+                                        </li>
+                                </ul>
+
                         </div>
                 </div>
         </div>
@@ -214,7 +228,9 @@
                                 </span>
 
                                 <hr class="my-4">
-                                <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>
+                                <a class="review-date"
+                                   th:href="@{/view-profile(userId=${reviews[i].getUser().id})}" th:text =
+                                        "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></a>
                                 <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
                                         <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
                                 </p>

@@ -22,9 +22,10 @@
 /*CSS for index page starts here */
 
 .index{
-    background-image: url("https://www.ancient-origins.net/sites/default/files/field/image/Piri-Reis-sml.jpg");
+    background-image: url("../images/pirireismap.png");
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .index-intro-wrapper{
@@ -299,14 +300,12 @@ color: #FFF0F5 !important;
 
 #sort-by-dropdown-btn{
   background-color: #2E8B57 !important;
+  margin-left: 100%;
 }
 
 #filter-btn-toolbar{
   padding: 20px 0px;
-}
-
-.search-sort-bar{
-    margin-left: 23%;
+  margin-left: 8%;
 }
 
 #no-results{
@@ -314,7 +313,6 @@ color: #FFF0F5 !important;
     font-size: 42px;
     text-align:center;
 }
-
 
 /*css for search view ends here*/
 
@@ -368,10 +366,7 @@ color: #FFF0F5 !important;
     background-color: #f6f8fa
 }
 
-.sort-btn-view{
-    margin-top: 35px;
-    margin-left: 10px;
-}
+
 
 /*css for view page ends here*/
 
@@ -720,4 +715,55 @@ padding-top: 50px;
 overflow-y:auto;
 overflow-x:auto;
 background-color: #f6f6f6;
+}
+
+/*Here begins user profile CSS */
+
+
+.card-profile{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: auto;
+    margin: 20px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 20px;
+    background-color: white;
+}
+
+
+.card-user{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.title-name {
+  text-shadow: 2px 2px rgb(140, 140, 140);
+  font-size: 22px;
+}
+
+
+.profile-img{
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 20px;
+    border: solid;
+    border-color: #FFFFFF;
+    object-fit: cover;
+}
+
+.profile-review-img{
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+}
+
+.dropdown-profile-picture{
+    margin: 40px;
+    margin-top: -10px;
 }

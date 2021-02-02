@@ -1,6 +1,7 @@
 package org.launchcode.Piri.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
@@ -26,6 +27,10 @@ public class City extends AbstractEntity{
     private Double longitude;
 
     private ArrayList<String> images;
+
+    @ManyToOne
+    private User user;
+
 
     @OneToMany(mappedBy = "city")
     //@JoinColumn (name="reviews_id")
@@ -219,5 +224,13 @@ public class City extends AbstractEntity{
         }
         this.images = imagesArr;
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

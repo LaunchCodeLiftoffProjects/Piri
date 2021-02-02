@@ -70,11 +70,15 @@
                             <div class="carousel-inner">
 
                                 <div class="carousel-item active">
-                                    <div class="wrapper">
-                                        <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
-                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    <div class="carousel-item active">
+                                        <div class="wrapper">
+                                            <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+                                            <form method="post" action="/save-city">
+                                                <label for="saveCity"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a></label>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
 
                             </div>
                         </div>
@@ -117,8 +121,8 @@
                 </div>
             </div>
         </div>
+        </div>
     </th:block>
-
 
         <div id="no-results">
             <p th:unless="${cities} and ${cities.size()}">No results!</p>

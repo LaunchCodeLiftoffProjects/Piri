@@ -47,7 +47,7 @@
                                 <div class="Stars"
                                      th:style="|--rating: ${overallRating}|" >
                                 </div>
-<!--                                <p th:text="'Overall rating is ' + ${overallRating} + ' based on ' + ${reviews.size()} + ' total reviews.'" ></p>-->
+                                <!--                                <p th:text="'Overall rating is ' + ${overallRating} + ' based on ' + ${reviews.size()} + ' total reviews.'" ></p>-->
                                 <p th:text="'Overall rating is ' + ${overallRating} + ' based on ' + ${sizeOfReviews} + ' total reviews.'" ></p>
 
                                 <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
@@ -55,77 +55,52 @@
                 </div>
                 <div class="col-md-2">
                         <div class = "nav justify-content-end">
-                                <ul class="list-unstyled">
-                                        <li>
-                                                <form method="post" action="/save-city">
-                                                        <label class="btn btn-success save-compare-btn" for="saveCity" >Save to
-                                                                Favorites
-                                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >
-                                                        </label>
-                                                </form>
-                                        </li>
-                                        <li>
-                                                <a class="btn btn-primary save-compare-btn"
-                                                   th:href="@{'/compare/' + ${city.id}}"
-                                                   role="button">Compare 2 Cities</a>
-                                        </li>
-                                </ul>
-
+                                <a class="btn btn-success save-compare-btn" href="#" role="button">Save</a>
+                                <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
                         </div>
                 </div>
         </div>
 </div>
 
-<!--<div class="card city-rating-card">
-        <div class="card-body row">
-                <div class="col-sm-6">
-                        <p class="rating-category">Affordability</p>
-                        <p class="rating-category">Safety</p>
-                        <p class="rating-category">Transportation</p>
-                        <p class="rating-category">Job Growth</p>
-                </div>
-                <div class="col-sm-6">
-                        <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
-                        <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
-                </div>
-        </div>
-</div>
--->
+<div class="city-rating-container">
+        <h4 class="display-4 text-center" th:text="${city.cityName} +' Ratings'"></h4>
+        <div class="card city-rating-card">
+                <div class="card-body">
+                        <div>
+                                <table class="city-rating-table">
+                                        <tr>
+                                                <td class="rating-category" >Affordability</td>
+                                                <td >
+                                                        <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="rating-category">Safety</td>
+                                                <td >
+                                                        <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="rating-category">Job Growth</td>
+                                                <td>
+                                                        <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="rating-category">Schooling</td>
+                                                <td>
+                                                        <div class="Stars" th:style="|--rating: ${schoolRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class="rating-category">Transportation</td>
 
-
-<div class="card city-rating-card">
-        <div class="card-body row">
-                <div class="col-sm-6">
-                        <table>
-                              <tr>
-                                      <td class="rating-category" >Affordability</td>
-                                      <td >
-                                              <div class="Stars" th:style="|--rating: ${affordabilityRating}|" ></div>
-                                      </td>
-                              </tr>
-                              <tr>
-                                      <td class="rating-category">Safety</td>
-                                      <td >
-                                              <div class="Stars" th:style="|--rating: ${safetyRating}|" ></div>
-                                        </td>
-                              </tr>
-                              <tr>
-                                      <td class="rating-category">Transportation</td>
-
-                                      <td>
-                                              <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
-                                      </td>
-                              </tr>
-                              <tr>
-                                      <td class="rating-category">Affordability</td>
-                                      <td>
-                                              <div class="Stars" th:style="|--rating: ${jobGrowthRating}|" ></div>
-                                      </td>
-                              </tr>
-
-                        </table>
+                                                <td>
+                                                        <div class="Stars" th:style="|--rating: ${transportationRating}|" ></div>
+                                                </td>
+                                        </tr>
+                                </table>
+                        </div>
                 </div>
         </div>
 </div>
@@ -208,32 +183,112 @@
         <div th:each="i : ${#numbers.sequence(reviews.size() -1, 0, -1)}">
                 <th:block th:unless="${reviews[i].title=='' and reviews[i].comment==''}">
                         <div class="jumbotron review-display">
-                                <div class="row">
-                                    <h3 th:text = "${reviews[i].title}"></h3>
-                                    <div class="Stars px-md-5" th:style="|--rating: ${reviews[i].overallRating}|" ></div>
+                                <!--                                <div class="row">-->
+                                <!--                                    <h3 th:text = "${reviews[i].title}"></h3>-->
+                                <!--                                    <div class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].overallRating}|" ></div>-->
+                                <!--                                </div>-->
+
+                                <h3 th:text = "${reviews[i].title}"></h3>
+                                <hr class="my-4">
+                                <div class="user-rating-display">
+                                        <table class="user-rating-display-table">
+                                                <tr>
+                                                        <td>Overall Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].overallRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Affordability Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].affordabilityRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Safety Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].safetyRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Job Growth Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].jobGrowthRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>School Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].schoolRating}|"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Transportation Rating</td>
+                                                        <td class="Stars px-md-5" th:style="|&#45;&#45;rating: ${reviews[i].transportationRating}|"></td>
+                                                </tr>
+                                        </table>
+                                </div>
+
+                                <div th:if="${reviews[i].cityImage != null && reviews[i].cityImage.size() > 0}" class="user-images-display">
+                                        <th:block th:each="img:${reviews[i].cityImage}">
+                                                <img class="user-submitted-images" th:src="@{'data:image/jpeg;base64,' + ${img}}">
+                                        </th:block>
+                                        <div class="view-lg-img-btn">
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imagesModalCenter" th:attr="data-target='#imagesModalCenter'+${reviews[i].id}" th:data-images="${reviews[i].cityImage}">
+                                                        View Images in Larger Size
+                                                </button>
+                                        </div>
+                                        <div class="modal fade bs-example-modal-lg" th:id="imagesModalCenter+${reviews[i].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:data-images="${reviews[i].cityImage}">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">User Submitted Images</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                        <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                                                                                <div class="carousel-inner">
+                                                                                        <div class="carousel-item active">
+                                                                                                <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${reviews[i].cityImage.get(0)}}">
+                                                                                        </div>
+                                                                                        <div class="carousel-item" th:each="image : ${reviews[i].cityImage}">
+                                                                                                <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}">
+                                                                                        </div>
+                                                                                </div>
+                                                                                <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                                                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                                        <span class="sr-only">Previous</span>
+                                                                                </a>
+                                                                                <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                                                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                                        <span class="sr-only">Next</span>
+                                                                                </a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 </div>
 
                                 <div th:if="${searchTermForReviews == null || searchTermForReviews == ''}">
-                                <p class="lead">
-                                <p th:utext = "${reviews[i].comment}"></p>
-                                </p>
+                                        <hr class="my-4">
+                                        <p class="lead">
+                                        <p th:utext = "${reviews[i].comment}"></p>
+                                        </p>
                                 </div>
 
                                 <span th:each="j :${#numbers.sequence(0,wordListToHighlight.size()-1)}">
                                         <div th:if="${searchTermForReviews != null && searchTermForReviews != '' && reviews[i].comment.matches('(.* )?' + wordListToHighlight[j] + '( .*)?')}" >
                                                  <p class="lead">
                                                         <p th:utext="${reviews[i].comment.replace(wordListToHighlight[j], highlightWordStyle + wordListToHighlight[j] + '</span>')}"></p>
-                                                 </p>
+                                                </p>
                                         </div>
                                 </span>
 
                                 <hr class="my-4">
                                 <a class="review-date"
                                    th:href="@{/view-profile(userId=${reviews[i].getUser().id})}" th:text =
-                                        "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></a>
-                                <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
+                                           "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></a>                                <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
                                         <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
                                 </p>
+                                <!--                                <th:block th:if="${reviews[i].getUser() != null}">-->
+                                <!--                                        <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>-->
+                                <!--                                        <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">-->
+                                <!--                                                <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>-->
+                                <!--                                        </p>-->
+                                <!--                                </th:block>-->
                         </div>
                 </th:block>
         </div>

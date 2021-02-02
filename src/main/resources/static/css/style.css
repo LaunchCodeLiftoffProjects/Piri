@@ -568,7 +568,9 @@ color: #FFF0F5 !important;
     font-style: italic;
     text-align: right;
 }
-
+.view-lg-img-btn{
+    padding-top: 15px;
+}
 /* CSS for city-view page ends here */
 
 /* CSS for image-uploading function starts here */

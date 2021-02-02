@@ -63,9 +63,10 @@ public class UserController {
         if (result.isPresent()) {
             User user = (User) result.get();
             List<Review> reviews = user.getReviews();
+            List<City> favoriteCities = user.getSavedCities();
             model.addAttribute("user", user);
             model.addAttribute("reviews", reviews);
-            model.addAttribute("favoriteCities", user.getSavedCities());
+            model.addAttribute("favoriteCities", favoriteCities);
 
             return "view-profile";
         } else {

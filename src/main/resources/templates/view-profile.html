@@ -54,7 +54,7 @@
                                     <td th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
                                 </tr>
                             </span>
-                        <span th:case="3">
+                        <span th:case="*">
                                 <tr>
                                     <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
                                 </tr>

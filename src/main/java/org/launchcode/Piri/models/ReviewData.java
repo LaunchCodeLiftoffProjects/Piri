@@ -2,8 +2,10 @@ package org.launchcode.Piri.models;
 
 import org.launchcode.Piri.models.data.CityRepository;
 import org.launchcode.Piri.models.data.PagingAndSortingReviewRepository;
+import org.launchcode.Piri.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ import static java.lang.StrictMath.toIntExact;
 
 @Service
 public class ReviewData {
+
+    private static final Map<Integer, Review> reviews = new HashMap<>();
+
 
     @Autowired
     private PagingAndSortingReviewRepository pagingAndSortingReviewRepository;
@@ -83,12 +88,14 @@ public class ReviewData {
         return rating;
     }
 
+
     public static double calculateAverageTransportationRating(City city){
         double rating = 0;
         double total = 0;
         List<Review> reviews = city.getReviews();
 
         for (int i =0; i<reviews.size(); i++){
+
             int a = reviews.get(i).getTransportationRating();
             total = total + a;
         }
@@ -104,12 +111,14 @@ public class ReviewData {
         return rating;
     }
 
+
     public static double calculateAverageJobGrowthRating(City city){
         double rating = 0;
         double total = 0;
         List<Review> reviews = city.getReviews();
 
         for (int i =0; i<reviews.size(); i++){
+
             int a = reviews.get(i).getJobGrowthRating();
             total = total + a;
         }
@@ -131,6 +140,7 @@ public class ReviewData {
         List<Review> reviews = city.getReviews();
 
         for (int i =0; i<reviews.size(); i++){
+
             int a = reviews.get(i).getSchoolRating();
             total = total + a;
         }
@@ -270,5 +280,6 @@ public class ReviewData {
         return results;
 
     }
+
 
 }

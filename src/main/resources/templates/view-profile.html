@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="index">
+<div th:if="${session.user}">
+    <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div class="profile-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 order-first profile-picture">
+                    <img th:if="${user.profilePicture != null && user.profilePicture.length() > 0}" class="profile-img" th:src="@{'data:image/jpeg;base64,' + ${user.getProfilePicture()}}">
+                    <img th:if="${user.profilePicture == null || user.profilePicture.length() == 0}" class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
+
+            </div>
+
+            <div class="col-4">
+                <div class="card-profile">
+                    <div class="title-name"><h2 th:text="${user.username}">Username</h2></div>
+                    <div><h5 th:text="${user.firstName} + ' ' + ${user.lastName}">FIRSTNAME
+                        LASTNAME</h5></div>
+                </div>
+            </div>
+            <div class="col-5 order-last">
+                <div class="card-profile">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col"><h3 class="display-4">Favorite Cities</h3></th>
+                        </tr>
+                        </thead>
+                        <tbody th:switch="${#lists.size(favoriteCities)}">
+                        <tr th:case="0">
+                            <td>
+                                NO FAVORITES YET!
+                            </td>
+                        </tr>
+                        <tr th:case="1">
+                            <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                        </tr>
+                        <span th:case="2">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                            </span>
+                        <span th:case="3">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                            th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                            th:text="${favoriteCities[2].cityName} + ', ' + ${favoriteCities[2].stateName}"></td>
+                                </tr>
+                            </span>
+                        </tbody>
+                    </table>
+                    <a th:href="@{'savedCities/page/1'}"><cite>View More Favorites</cite></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron review-display" th:each="review : ${reviews}">
+<!--                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">-->
+<!--                        <div th:if="${city.images != null && city.images.size() > 0}">-->
+<!--                            <div class="carousel-inner">-->
+<!--                                <div class="carousel-item active">-->
+<!--                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">-->
+<!--                                </div>-->
+<!--                                <div class="carousel-item" th:each="image : ${city.images}">-->
+<!--                                    <img class="d-block w-100" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="Second slide">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">-->
+<!--                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                                <span class="sr-only">Previous</span>-->
+<!--                            </a>-->
+<!--                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">-->
+<!--                                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                                <span class="sr-only">Next</span>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div th:if="${city.images[0] == null}">-->
+<!--                            <img src="/images/default.jpg" alt="..."  class="profile-review-img">-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+                    <h3><p th:text="${review.title}"></p></h3>
+                    <p class="lead">
+                    <p th:utext="${review.comment}"></p>
+                    </p>
+                    <hr class="my-4">
+                    <p class="review-date" th:text="${review.getUser().username} + ' submitted the review on ' + ${review.reviewDate}"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</html>
+
+
+
+

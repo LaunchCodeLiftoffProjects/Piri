@@ -2,8 +2,9 @@ package org.launchcode.Piri.models;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +12,24 @@ import java.util.List;
 @Entity
 public class User extends AbstractEntity {
 
-    //    @NotNull
-    private String username;
 
-    //    @NotNull
+    private String username;
     private String pwHash;
+    private String firstName;
+    private String lastName;
+
+
+
+
+    @Lob
+    private String profilePicture;
 
     @OneToMany (mappedBy = "user")
-    //@JoinColumn (name="city_id")
     private final List<Review> reviews = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "user")
+    private List<City> savedCities = new ArrayList<>();
 
     public User() {
     }
@@ -31,17 +41,48 @@ public class User extends AbstractEntity {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public boolean isMatchingPassword(String password) {
-
-        return encoder.matches(password, pwHash);
-    }
+    public boolean isMatchingPassword(String password) { return encoder.matches(password, pwHash);}
 
     public String getUsername() {
         return username;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public List<Review> getReviews() {
         return reviews;
+    }
+
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+
+    }
+
+    public List<City> getSavedCities() {
+        return savedCities;
+    }
+
+    public void setSavedCities(List<City> savedCities) {
+        this.savedCities = savedCities;
     }
 }
 

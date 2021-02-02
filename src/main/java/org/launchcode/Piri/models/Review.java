@@ -15,7 +15,7 @@ import java.util.Optional;
 public class Review extends AbstractEntity implements Serializable {
 
     @NotBlank(message = "Title is required")
-    @Size(min = 3, max=20, message = "Title must be between 3 and 20 characters long")
+    @Size(min = 3, max=40, message = "Title must be between 3 and 20 characters long")
     private String title;
 
     @NotBlank(message = "Comment is required")
@@ -26,18 +26,14 @@ public class Review extends AbstractEntity implements Serializable {
 
     @Min(1)
     private int overallRating;
-    private LocalDate reviewDate = LocalDate.now();
 
     private int affordabilityRating;
-
     private int safetyRating;
-
     private int transportationRating;
-
     private int jobGrowthRating;
-
     private int schoolRating;
 
+    private LocalDate reviewDate = LocalDate.now();
 
 
     @ManyToOne
@@ -64,6 +60,7 @@ public class Review extends AbstractEntity implements Serializable {
         this.transportationRating = transportationRating;
         this.jobGrowthRating = jobGrowthRating;
         this.schoolRating = schoolRating;
+        //this.city = aCity;
         this.reviewDate = reviewDate;
         this.cityImage = cityImage;
     }
@@ -95,7 +92,6 @@ public class Review extends AbstractEntity implements Serializable {
     public void setOverallRating(int overallRating) {
         this.overallRating = overallRating;
     }
-
 
     public int getAffordabilityRating() {
         return affordabilityRating;
@@ -162,6 +158,9 @@ public class Review extends AbstractEntity implements Serializable {
         this.user = user;
     }
 
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
+    }
     //public User getUsername() {
     //    return username;
     //}

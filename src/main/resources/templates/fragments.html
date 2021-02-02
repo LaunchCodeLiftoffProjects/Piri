@@ -5,6 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/profile-style.css}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,6 +20,60 @@
 </head>
 
 <body>
+
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/}" class="navbar-brand">Piri</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/search}">Search</a></li>
+                <li><a th:href="@{/register}">Suggest</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- user info here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div th:fragment="page-header-search" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+
+<!--<div th:fragment="page-header-search" class="navbar navbar-inverse navbar-fixed-top">-->
+<!--    <nav class="navbar">-->
+<!--        <a th:href="@{/}" class="navbar-brand">Piri</a>-->
+<!--    </nav>-->
+
+<!--    <ul class="nav justify-content-center">-->
+
+<!--        <form class="form-inline "  th:action="@{'/page/' + 1}" method="get">-->
+<!--            <div class="input-group" id="search-input-group">-->
+<!--                <input type="text" class="form-control" placeholder="Search" id="searchTerm" name="searchTerm">-->
+<!--                <div class="input-group-append">-->
+<!--                    <button class="btn" type="submit" id="search-btn">-->
+<!--                        <i class="fa fa-search "></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </form>-->
+
+<!--    </ul>-->
+
+
+
+<!--    <ul class="nav justify-content-end">-->
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>-->
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{/help}">Help</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+
 
 
 // Search form codes start here
@@ -49,7 +104,19 @@
         <li class="nav-item"><a class="nav-link navigation-link" th:href="@{/register}">Sign Up</a></li>
     </ul>
 </div>
+//Search form  codes end here
 
+
+//Navigation header codes start here
+<div th:fragment="header-anonymous" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar">
+        <a th:href="@{/}" class="navbar-brand">Piri</a>
+    </nav>
+    <ul class="nav justify-content-end">
+        <li class="nav-item"><a class="nav-link navigation-link" th:href="@{/login}">Sign In</a></li>
+        <li class="nav-item"><a class="nav-link navigation-link" th:href="@{/register}">Sign Up</a></li>
+    </ul>
+</div>
 <div th:fragment="header-authenticated" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar">
         <a th:href="@{/}" class="navbar-brand">Piri</a>
@@ -58,7 +125,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link navigation-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
                 <a class="dropdown-item" href="#">Saved Searches</a>
                 <a class="dropdown-item" href="#">Something else</a>
                 <div class="dropdown-divider"></div>

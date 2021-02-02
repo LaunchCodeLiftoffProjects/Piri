@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="index">
+<div th:if="${session.user}">
+    <div th:replace="fragments :: header-authenticated" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div th:unless="${session.user}">
+    <div th:replace="fragments :: header-anonymous" class="navbar navbar-inverse navbar-fixed-top"></div>
+</div>
+<div class="profile-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 order-first">
+                <div class="col-3 order-first profile-picture">
+                    <img th:if="${user.profilePicture != null && user.profilePicture.length() > 0}" class="profile-img" th:src="@{'data:image/jpeg;base64,' + ${user.getProfilePicture()}}">
+                    <img th:if="${user.profilePicture == null || user.profilePicture.length() == 0}" class="profile-img" src="https://foundrychurch.org/wp-content/uploads/2015/11/temporary-profile-placeholder-300x300.jpg">
+
+                    <form method="post" enctype="multipart/form-data" action="/view-profile" id="profile-picture-form">
+                        <div class="dropdown dropdown-profile-picture">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Change Profile Picture
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="form-group">
+                                    <label class="btn btn-primary dropdown-item" for="profilePictureFile">Choose from Library
+                                        <input type="file" class="submitForm" id="profilePictureFile" name="file" style="width: 0px;height: 0px;overflow: hidden;" onchange="form.submit()">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="btn btn-primary dropdown-item" for="deleteProfilePictureFile">Remove Current Photo
+                                        <input type="submit" value="" class="submitForm" id="deleteProfilePictureFile" name="file" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>            </div>
+            <div class="col-4">
+                <div class="card-profile">
+                    <div class="title-name"><h2 th:text="${user.username}" class="display-4">Username</h2></div>
+                    <div><h5 th:text="${user.firstName} + ' ' + ${user.lastName}">FIRSTNAME
+                        LASTNAME</h5></div>
+                </div>
+            </div>
+            <div class="col-5 order-last">
+                <div class="card-profile">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"><h3 class="display-4">Favorite Cities</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody th:switch="${#lists.size(favoriteCities)}">
+                            <tr th:case="0">
+                                <td>
+                                    NO FAVORITES YET!
+                                </td>
+                            </tr>
+                            <tr th:case="1">
+                                <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                            </tr>
+                            <span th:case="2">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                            </span>
+                            <span th:case="*">
+                                <tr>
+                                    <td th:text="${favoriteCities[0].cityName} + ', ' + ${favoriteCities[0].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        th:text="${favoriteCities[1].cityName} + ', ' + ${favoriteCities[1].stateName}"></td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        th:text="${favoriteCities[2].cityName} + ', ' + ${favoriteCities[2].stateName}"></td>
+                                </tr>
+                            </span>
+                        </tbody>
+                    </table>
+                    <a th:href="@{'savedCities/page/1'}"><cite>View More Favorites</cite></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron review-display" th:each="review : ${reviews}">
+                    <h3><p th:text="${review.title}"></p></h3>
+                    <p class="lead">
+                    <p th:utext="${review.comment}"></p>
+                    </p>
+                    <hr class="my-4">
+                    <p class="review-date" th:text="${review.getUser().username} + ' submitted the review on ' + ${review.reviewDate}"></p>
+                    <p class="review-date" th:if="${review.getUser().equals(user)}">
+                        <a th:href="@{'/review/edit/' + ${review.id}}">Edit this review</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

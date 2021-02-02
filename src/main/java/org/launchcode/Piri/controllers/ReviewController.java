@@ -36,7 +36,6 @@ public class ReviewController {
     @Autowired
     private AuthenticationController authenticationController;
 
-
     @GetMapping("{cityId}")
     public String writeReview(Model model, @PathVariable int cityId, HttpServletRequest request){
 
@@ -93,6 +92,7 @@ public class ReviewController {
         city.setOverallAffordabilityRating(averageOverallAffordabilityRate);
 
         reviewRepository.save(newReview);
+
 
         return "redirect:../view/{cityId}/1";
 

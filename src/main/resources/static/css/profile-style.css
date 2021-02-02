@@ -1,0 +1,49 @@
+
+.card-profile{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: auto;
+    margin: 20px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 20px;
+    background-color: white;
+}
+
+
+.card-user{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.title-name {
+  text-shadow: 2px 2px rgb(140, 140, 140);
+  font-size: 22px;
+}
+
+
+.profile-img{
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 20px;
+    border: solid;
+    border-color: #FFFFFF;
+    object-fit: cover;
+}
+
+.profile-review-img{
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+}
+
+.dropdown-profile-picture{
+    margin: 40px;
+    margin-top: -10px;
+}
+

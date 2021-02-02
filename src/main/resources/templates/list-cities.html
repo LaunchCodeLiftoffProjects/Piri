@@ -13,6 +13,7 @@
 <div th:fragment="listCities" class="city-listing" >
     <th:block th:each="city : ${cities}">
 
+
         <div class="card mb-3 border border-info" style="max-width: 1000px" id="cityCard">
 
             <div class="row g-0">
@@ -72,7 +73,22 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
-                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+<!--                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>-->
+<!--                                        <form method="post" action="/save-city">-->
+<!--                                            <label class="btn btn-primary" for="saveCity" >add-->
+<!--                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" onchange="form.submit()" >-->
+<!--                                            </label>-->
+<!--&lt;!&ndash;                                            <input type="submit" value="2" name="cityId" >&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>&ndash;&gt;-->
+<!--                                        </form>-->
+<!--                                        <form method="post" action="/save-city">-->
+<!--                                            <label for="saveCity"><i class="text-dark far fa-heart fa-2x" data-toggle="tooltip" title="Save this city"></i></label>-->
+<!--                                            <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >-->
+<!--                                        </form>-->
+                                        <form method="post" action="/save-city">
+                                            <label for="saveCity"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a></label>
+                                            <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >
+                                        </form>
                                     </div>
                                 </div>
 
@@ -125,11 +141,24 @@
         </div>
 
 
-        <div th:if = "${totalPages > 1}">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3 py-5 border">
-                    <nav>
-                        <ul class="pagination justify-content-center flex-wrap">
+    <div th:if = "${totalPages > 1}">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 py-5 border">
+                <nav>
+                    <ul class="pagination justify-content-center flex-wrap">
+
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm}}">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm}}">Previous</a>
+                            <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
+                        </li>
+
+                        <th:block th:if="${totalPages <= 10}">
+                            <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?searchTerm=' + ${searchTerm}}">[[${i}]]</a>
+                                <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                             <li class="page-item">
                                 <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">First</a>
@@ -138,6 +167,8 @@
                                 <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Previous</a>
                                 <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
                             </li>
+                        </th:block>
+
 
                             <th:block th:if="${totalPages <= 10}">
                                 <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
@@ -163,21 +194,22 @@
                                     </li>
                                 </th:block>
 
-                                <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
-
+                                </li>
+                            </th:block>
                                     <a th:href="@{'/page/' + ${currentPage - 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
 
                                     <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
                                         <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
                                         <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
 
-                                    </li>
 
-                                    <a th:href="@{'/page/' + ${currentPage + 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
+                                </li>
 
-                                </th:block>
+
+                                <a th:href="@{'/page/' + ${currentPage + 5} + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
 
                             </th:block>
+
 
                             <li class="page-item">
                                 <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Next</a>
@@ -196,5 +228,6 @@
 
 
     </div>
+</div>
 </body>
 </html>

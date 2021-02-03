@@ -54,8 +54,11 @@
                         </div>
                 </div>
                 <div class="col-md-2">
-                        <div class = "nav justify-content-end">
-                                <a class="btn btn-success save-compare-btn" href="#" role="button">Save</a>
+                        <div class = "nav justify-content-end btn-group">
+                                <form method="post" action="/save-city">
+                                        <label class="btn btn-success save-compare-btn" for="saveCity">Save</label>
+                                        <input type="submit" th:value="${city.id}" id="saveCity" name="savedCityId" onchange="form.submit()" style="display: none;">
+                                </form>
                                 <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
                         </div>
                 </div>

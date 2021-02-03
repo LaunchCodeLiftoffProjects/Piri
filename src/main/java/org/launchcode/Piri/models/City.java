@@ -36,7 +36,7 @@ public class City extends AbstractEntity{
     //@JoinColumn (name="reviews_id")
     private List<Review> reviews = new ArrayList<>();
 
-    private @Min(1) double overallCityRating;
+    private @Min(0) double overallCityRating;
 
     private double overallAffordabilityRating;
 
@@ -54,7 +54,7 @@ public class City extends AbstractEntity{
 
 
     public City(String cityName, String stateName, String stateID, String zipCodes, String county, Double latitude,
-                Double longitude, @Min(1) int overallCityRating,int overallAffordabilityRating, int overallSafetyRating, int overallTransportationRating, int overallJobGrowthRating, int overallSchoolRating, ArrayList<String> images){
+                Double longitude, @Min(0) int overallCityRating,int overallAffordabilityRating, int overallSafetyRating, int overallTransportationRating, int overallJobGrowthRating, int overallSchoolRating, ArrayList<String> images){
 
         super();
         this.cityName = cityName;
@@ -161,11 +161,11 @@ public class City extends AbstractEntity{
         this.reviews = reviews;
     }
 
-    public @Min(1) double getOverallCityRating() {
+    public @Min(0) double getOverallCityRating() {
         return overallCityRating;
     }
 
-    public void setOverallCityRating(@Min(1) double overallCityRating) {
+    public void setOverallCityRating(@Min(0) double overallCityRating) {
         this.overallCityRating = overallCityRating;
     }
 

@@ -70,15 +70,15 @@
                             <div class="carousel-inner">
 
                                 <div class="carousel-item active">
-                                    <div class="carousel-item active">
-                                        <div class="wrapper">
-                                            <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
-                                            <form method="post" action="/save-city">
-                                                <label for="saveCity"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a></label>
-                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >
-                                            </form>
-                                        </div>
+                                    <div class="wrapper">
+                                        <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+<!--                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>-->
+                                        <form method="post" action="/save-city">
+                                            <label for="saveCity"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a></label>
+                                            <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >
+                                        </form>
                                     </div>
+                                </div>
 
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
 
-<!--                        <a th:href="@{'/view/' + ${city.id}}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>-->
+                        <!--                        <a th:href="@{'/view/' + ${city.id}}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>-->
                         <div class="row">
                             <a th:href="@{'/view/' + ${city.id} + '/1'}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>
                             <div class="Stars" id="cityCardStar" th:style="|--rating: ${city.getOverallCityRating()}|" ></div>
@@ -100,105 +100,105 @@
                         <br>
 
                         <div class="wrapper">
-                        <p class="card-text affordable" ><em>
-                            Affordable <i th:if="${city.overallAffordabilityRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallAffordabilityRating < 3.5 && city.overallAffordabilityRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallAffordabilityRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
-                        </em></p>
-                        <p class="card-text safe"><em>
-                            Safe <i th:if="${city.overallSafetyRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSafetyRating < 3.5 && city.overallSafetyRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSafetyRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
-                        </em></p>
-                        <p class="card-text transportation" ><em>
-                            Transportation <i th:if="${city.overallTransportationRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallTransportationRating < 3.5 && city.overallTransportationRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallTransportationRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
-                        </em></p>
-                        <p class="card-text jobGrowth" ><em>
-                            Job Growth <i th:if="${city.overallJobGrowthRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallJobGrowthRating < 3.5 && city.overallJobGrowthRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallJobGrowthRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
-                        </em></p>
-                        <p class="card-text school" ><em>
-                            School <i th:if="${city.overallSchoolRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSchoolRating < 3.5 && city.overallSchoolRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSchoolRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
-                        </em></p>
+                            <p class="card-text affordable" ><em>
+                                Affordable <i th:if="${city.overallAffordabilityRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallAffordabilityRating < 3.5 && city.overallAffordabilityRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallAffordabilityRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text safe"><em>
+                                Safe <i th:if="${city.overallSafetyRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSafetyRating < 3.5 && city.overallSafetyRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSafetyRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text transportation" ><em>
+                                Transportation <i th:if="${city.overallTransportationRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallTransportationRating < 3.5 && city.overallTransportationRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallTransportationRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text jobGrowth" ><em>
+                                Job Growth <i th:if="${city.overallJobGrowthRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallJobGrowthRating < 3.5 && city.overallJobGrowthRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallJobGrowthRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text school" ><em>
+                                School <i th:if="${city.overallSchoolRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSchoolRating < 3.5 && city.overallSchoolRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSchoolRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </th:block>
 
-        <div id="no-results">
-            <p th:unless="${cities} and ${cities.size()}">No results!</p>
-        </div>
+
+    <div id="no-results">
+        <p th:unless="${cities} and ${cities.size()}">No results!</p>
+    </div>
 
 
-        <div th:if = "${totalPages > 1}">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3 py-5 border">
-                    <nav>
-                        <ul class="pagination justify-content-center flex-wrap">
+    <div th:if = "${totalPages > 1}">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 py-5 border">
+                <nav>
+                    <ul class="pagination justify-content-center flex-wrap">
 
-                            <li class="page-item">
-                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">First</a>
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Previous</a>
+                            <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
+                        </li>
+
+                        <th:block th:if="${totalPages <= 10}">
+                            <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
+                                <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
                             </li>
-                            <li class="page-item">
-                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Previous</a>
-                                <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Previous</a></span>-->
-                            </li>
+                        </th:block>
 
-                            <th:block th:if="${totalPages <= 10}">
-                                <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
+                        <th:block th:if="${totalPages > 10}">
+                            <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
+                                <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
+                                    <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                </li>
+                                <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
+
+                                <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" >[[${i}]]</a>
                                     <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                 </li>
                             </th:block>
 
-                            <th:block th:if="${totalPages > 10}">
-                                <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
-                                    <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
-                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
-                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+                            <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
 
-                                    </li>
-                                    <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
+                                <a th:href="@{'/page/' + ${currentPage - 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
 
-                                    <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
-                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" >[[${i}]]</a>
-                                        <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+                                <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
+                                    <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
 
-                                    </li>
-                                </th:block>
+                                </li>
 
-                                <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
-
-                                    <a th:href="@{'/page/' + ${currentPage - 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
-
-                                    <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
-                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">[[${i}]]</a>
-                                        <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
-
-                                    </li>
-
-                                    <a th:href="@{'/page/' + ${currentPage + 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
-
-                                </th:block>
+                                <a th:href="@{'/page/' + ${currentPage + 5}  + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
 
                             </th:block>
 
-                            <li class="page-item">
-                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Next</a>
-                                <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Next</a></span>-->
-                            </li>
+                        </th:block>
 
-                            <li class="page-item">
-                                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Last</a>
-                                <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Last</a></span>-->
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Next</a>
+                            <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Next</a></span>-->
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}">Last</a>
+                            <!--                                                        <span th:unless="${currentPage < totalPages}"><a class="page-link">Last</a></span>-->
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-
-
     </div>
+
+
+</div>
 </body>
 </html>

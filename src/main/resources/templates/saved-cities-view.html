@@ -21,6 +21,188 @@
         </div>
     </form>
 </div>
-<div th:replace="list-cities :: listCities"></div>
+
+<div class="city-listing" >
+    <th:block th:each="city : ${cities}">
+
+        <div class="card mb-3 border border-info" style="max-width: 1000px" id="cityCard">
+
+            <div class="row g-0">
+                <div class="col-md-4">
+
+                    <div th:if="${city.images != null && city.images.size() == 1}">
+
+                        <div id="carouselControls2" class="carousel slide carouselCity" data-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="wrapper">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
+                                        <a href="#" class="text-white " data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div th:if="${city.images != null && city.images.size() > 1}">
+                        <div id="carouselControls" class="carousel slide carouselCity" data-ride="carousel">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <div class="wrapper">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
+                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item" th:each="image : ${city.images}">
+                                    <div class="wrapper">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="">
+                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                    <div th:if="${city.images == null}">
+                        <div id="carouselControls3" class="carousel slide carouselCity" data-ride="carousel">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <div class="wrapper">
+                                        <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <a th:href="@{'/view/' + ${city.id} + '/1'}" ><h4 class="card-title text-dark" th:text="${city.cityName} + '/' + ${city.stateID}"></h4></a>
+                            <div class="Stars" id="cityCardStar" th:style="|--rating: ${city.getOverallCityRating()}|" ></div>
+                            <a th:href="@{'/view/' + ${city.id} + '/1#targetUserReviews'}" th:text="${city.overallCityRating + ' (' + city.reviews.size() + ' Reviews)'}"></a>
+                        </div>
+
+                        <br>
+
+                        <div class="wrapper">
+                            <p class="card-text affordable" ><em>
+                                Affordable <i th:if="${city.overallAffordabilityRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallAffordabilityRating < 3.5 && city.overallAffordabilityRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallAffordabilityRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text safe"><em>
+                                Safe <i th:if="${city.overallSafetyRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSafetyRating < 3.5 && city.overallSafetyRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSafetyRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text transportation" ><em>
+                                Transportation <i th:if="${city.overallTransportationRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallTransportationRating < 3.5 && city.overallTransportationRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallTransportationRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text jobGrowth" ><em>
+                                Job Growth <i th:if="${city.overallJobGrowthRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallJobGrowthRating < 3.5 && city.overallJobGrowthRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallJobGrowthRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                            <p class="card-text school" ><em>
+                                School <i th:if="${city.overallSchoolRating >= 3.5}" class="fas fa-check-square fa-lg checkSquareCityCard" ></i><i th:if="${city.overallSchoolRating < 3.5 && city.overallSchoolRating > 0}" class="far fa-times-circle fa-lg crossCircleCityCard"></i><i th:if="${city.overallSchoolRating == 0}" class="fas fa-question-circle fa-lg questionCircleIconCityCard"></i>
+                            </em></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+
+    <div id="no-results">
+        <p th:unless="${cities} and ${cities.size()}">No results!</p>
+    </div>
+
+
+
+    <div th:if = "${totalPages > 1}">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 py-5 border">
+                <nav>
+                    <ul class="pagination justify-content-center flex-wrap">
+
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/savedCities/page/' + 1 + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/savedCities/page/' + ${currentPage - 1} + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">Previous</a>
+                        </li>
+
+                        <th:block th:if="${totalPages <= 10}">
+                            <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/savedCities/page/' + ${i}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">[[${i}]]</a>
+                                <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                            </li>
+                        </th:block>
+
+                        <th:block th:if="${totalPages > 10}">
+                            <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
+                                <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}">
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/savedCities/page/' + ${i}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">[[${i}]]</a>
+                                    <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                </li>
+                                <a th:href="@{'/savedCities/page/' + 6 + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}" class="page-link">...</a>
+
+                                <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/savedCities/page/' + ${i}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}" >[[${i}]]</a>
+                                    <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
+
+                                </li>
+                            </th:block>
+
+                            <th:block th:if="${currentPage > 5 && currentPage < totalPages -4}">
+
+                                <a th:href="@{'/savedCities/page/' + ${currentPage - 5}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}" class="page-link">...</a>
+
+                                <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4 , currentPage + 4)}">
+                                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/savedCities/page/' + ${i}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">[[${i}]]</a>
+                                    <span th:unless="${currentPage != i }" ><a class="page-link">[[${i}]]</a></span>
+
+                                </li>
+
+                                <a th:href="@{'/savedCities/page/' + ${currentPage + 5}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}" class="page-link">...</a>
+
+                            </th:block>
+
+                        </th:block>
+
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/savedCities/page/' + ${currentPage + 1}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">Next</a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/savedCities/page/' + ${totalPages}  + '?savedCitiesSearchTerm=' + ${savedCitiesSearchTerm}}">Last</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

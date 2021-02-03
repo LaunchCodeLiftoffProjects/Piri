@@ -35,7 +35,7 @@
         <div class="compNav">
             <div class="container index-search-container text-center">
                 <div class="index-search-box">
-                    <form th:action="@{'/compare/{cityOne.id}/page/' + 1}" method="get">
+                    <form th:action="@{'/compare/'+ ${cityOne.id} +'/page/' + 1}" method="get">
                         <input type="text" class="index-search-input" id="searchTerm" name="searchTerm" placeholder="Enter a State, City, or Zip Code"/>
                         <button type="submit" class="index-search-btn" value="Search"  ><span>Pick City Two</span></button>
                     </form>

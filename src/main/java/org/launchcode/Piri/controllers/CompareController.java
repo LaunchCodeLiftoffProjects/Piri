@@ -43,23 +43,33 @@ public class CompareController {
 
 
     @GetMapping(value = "compare/{cityIdOne}/page/{pageNo}", params = "searchTerm")
-    public String findComparePaginated(@PathVariable(value = "pageNo") int pageNo, Model model, @PathVariable String cityIdOne, @RequestParam String searchTerm){
+    public String findPaginated(@PathVariable(value = "cityIdOne") int cityOne, @PathVariable(value = "pageNo") int pageNo, Model model,@RequestParam String searchTerm,@RequestParam(required = false) String sortField, @RequestParam(required = false) String sortDirection, @RequestParam(required = false) Integer starRating){
 
         int cityCount = 6;
-        City cityOne = cityRepository.findById(Integer.valueOf(cityIdOne)).get();
 
+        if(starRating == null){
+            starRating = 0;
+        }
+        if(sortField == null) {
+            sortField = "cityName";
+        }
+        if(sortDirection == null){
+            sortDirection = "asc";
+        }
 
-        Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, "cityName", "asc", 0);
+        Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, sortField, sortDirection, starRating);
         List<City> cities = page.getContent();
 
+        model.addAttribute("cityOne", cityRepository.findById(Integer.valueOf(cityOne)).get() );
         model.addAttribute("searchTerm", searchTerm);
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("cityOne",cityOne);
 
         model.addAttribute("cities", cities);
-
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+        model.addAttribute("starRating", starRating);
         return "compare-search";
     }
 

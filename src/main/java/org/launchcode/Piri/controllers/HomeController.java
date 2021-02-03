@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     private PagingAndSortingCityRepository pagingAndSortingCityRepository;
 
-    @GetMapping()
+    @GetMapping("")
     public String displayTopRated(Model model){
 
         List<City> bestOverallRated = (List<City>) pagingAndSortingCityRepository.findAll(Sort.by(Sort.Direction.DESC, "overallCityRating"));

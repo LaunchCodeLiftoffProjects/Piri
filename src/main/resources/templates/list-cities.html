@@ -158,7 +158,7 @@
                                     <span th:unless="${currentPage != i }"><a class="page-link">[[${i}]]</a></span>
 
                                 </li>
-                                <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm}}" class="page-link">...</a>
+                                <a th:href="@{'/page/' + 6 + '?searchTerm=' + ${searchTerm} + '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" class="page-link">...</a>
 
                                 <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4 , totalPages)}" >
                                     <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}  + '?searchTerm=' + ${searchTerm}+ '&sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection} +'&starRating=' + ${starRating}}" >[[${i}]]</a>

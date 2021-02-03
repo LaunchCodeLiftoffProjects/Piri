@@ -43,6 +43,14 @@
     color: #fff;
 }
 
+.index-welcome-header{
+    text-shadow: 1px 1px 1px #000;
+}
+
+.join-piri-btn{
+    font-size: 1.5rem !important;
+}
+
 .index-search-container{
     padding: 50px;
 }

@@ -29,7 +29,8 @@
                                         <form id="saveForm3" method="post" action="/save-city">
                                             <label style="display:block;" onclick="document.getElementById('saveForm3').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
-                                        </form>                                    </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +47,8 @@
                                         <form id="saveForm2" method="post" action="/save-city">
                                             <label style="display:block;" onclick="document.getElementById('saveForm2').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
-                                        </form>                                    </div>
+                                        </form>
+                                    </div>
                                 </div>
 
                                 <div class="carousel-item" th:each="image : ${city.images}">

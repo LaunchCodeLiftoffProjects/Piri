@@ -26,7 +26,10 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
-                                        <a href="#" class="text-white " data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                        <form id="saveForm3" method="post" action="/save-city">
+                                            <label style="display:block;" onclick="document.getElementById('saveForm3').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -41,14 +44,20 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
-                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                        <form id="saveForm2" method="post" action="/save-city">
+                                            <label style="display:block;" onclick="document.getElementById('saveForm2').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
+                                        </form>
                                     </div>
                                 </div>
 
                                 <div class="carousel-item" th:each="image : ${city.images}">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="">
-                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                        <form id="saveForm1" method="post" action="/save-city">
+                                            <label style="display:block;" onclick="document.getElementById('saveForm1').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -72,10 +81,9 @@
                                 <div class="carousel-item active">
                                     <div class="wrapper">
                                         <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
-<!--                                        <a href="#" class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>-->
-                                        <form method="post" action="/save-city">
-                                            <label for="saveCity"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a></label>
-                                            <input type="submit" th:value="${city.id}" class="submitForm" id="saveCity" name="savedCityId" style="width: 0px;height: 0px;overflow: hidden; display: none;" >
+                                        <form id="saveForm" method="post" action="/save-city">
+                                            <label style="display:block;" onclick="document.getElementById('saveForm').submit();" id="saveCitiesLabel" ><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" id="saveCities" name="savedCityId" style="display: none;"></label>
                                         </form>
                                     </div>
                                 </div>

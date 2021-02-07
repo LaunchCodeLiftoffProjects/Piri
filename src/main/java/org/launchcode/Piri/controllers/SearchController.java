@@ -30,10 +30,10 @@ public class SearchController {
            starRating = 0;
         }
         if(sortField == null) {
-        sortField = "cityName";
+        sortField = "overallCityRating";
         }
         if(sortDirection == null){
-        sortDirection = "asc";
+        sortDirection = "desc";
         }
 
         Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, sortField, sortDirection, starRating);

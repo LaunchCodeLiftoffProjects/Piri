@@ -1,5 +1,7 @@
 package org.launchcode.Piri.models;
 
+import org.launchcode.Piri.models.data.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -8,16 +10,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.text.html.Option;
+import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 import static java.lang.Math.toIntExact;
 
+@Transactional
 @Service
 public class UserData {
+
+    @Autowired
+    static
+    UserRepository userRepository;
 
     public static void uploadProfilePicture(MultipartFile file, User user){
         try{
@@ -42,6 +48,19 @@ public class UserData {
         }
         user.setSavedCities(savedCities);
 
+    }
+
+    @Transactional
+    public static void unSaveCityFromFavoritesList(City city, User user){
+        ArrayList<City> savedCities = new ArrayList<>();
+        savedCities.addAll(user.getSavedCities());
+
+        if(savedCities.contains(city)) {
+            savedCities.remove(city);
+        }
+
+        user.setSavedCities(savedCities);
+        city.setUser(null);
     }
 
     public Page<City> findPaginatedSavedCities(User user, int pageNo, int cityCount, String searchTerm){

@@ -115,7 +115,7 @@ public class UserController {
     }
 
 
-    @PostMapping("unSave-city")
+    @PostMapping("unsave-city")
     public String processUnSaveCityFromFavoritesList(HttpServletRequest request, Model model, @RequestParam int savedCityId){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);

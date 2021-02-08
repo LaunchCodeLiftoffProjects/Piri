@@ -79,12 +79,23 @@
                             <div class="carousel-inner">
 
                                 <div class="carousel-item active">
-                                    <div class="wrapper">
+                                    <div class="wrapper save-city-wrapper" th:if="${!user.savedCities.contains(city)}">
                                         <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+                                        <div >
                                         <form id="saveForm" method="post" action="/save-city">
                                             <label style="display:block;" onclick="document.getElementById('saveForm').submit();" id="saveCitiesLabel" ><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" id="saveCities" name="savedCityId" style="display: none;"></label>
                                         </form>
+                                        </div>
+                                    </div>
+                                    <div class="wrapper unsave-city-wrapper" th:if="${user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+                                        <div >
+                                            <form id="unSaveForm" method="post" action="/unsave-city">
+                                                <label style="display:block;" onclick="document.getElementById('saveForm').submit();" id="unsaveCitiesLabel" ><a title="Remove this city"><span class="fa fa-heart fa-2x unsave-heart-icon"></span></a>
+                                                    <input type="submit" th:value="${city.id}" class="submitForm" id="unsaveCities" name="savedCityId" style="display: none;"></label>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
 

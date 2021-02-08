@@ -212,13 +212,13 @@
     overflow: hidden;
 }
 
-.wrapper:hover a {
+.save-city-wrapper:hover a {
     opacity: 1;
     top: 0;
     z-index: 500;
 }
 
-.wrapper:hover a span {
+.save-city-wrapper:hover a span {
     top: 50%;
     position: absolute;
     left: 0;
@@ -226,7 +226,7 @@
     transform: translateY(-50%);
 }
 
-.wrapper a {
+.save-city-wrapper a {
     display: block;
     position: absolute;
     top: 0;
@@ -236,6 +236,23 @@
     right: 0;
     margin-left: 80%;
     margin-top: -65%;
+}
+
+.unsave-heart-icon{
+    color: red;
+}
+
+.unsave-city-wrapper a{
+    display: block;
+    position: absolute;
+    margin-left: 80%;
+    margin-top: -80%;
+}
+
+.unsave-city-wrapper: a span{
+    top: 50%;
+    position: absolute;
+
 }
 
 #cityCard{

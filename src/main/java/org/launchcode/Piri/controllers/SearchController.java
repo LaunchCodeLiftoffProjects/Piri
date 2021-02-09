@@ -37,11 +37,12 @@ public class SearchController {
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
-        Optional<User> optUser = userRepository.findById(user.getId());
-        if(optUser.isPresent()){
-            model.addAttribute("user", user);
+        if( user != null) {
+            Optional<User> optUser = userRepository.findById(user.getId());
+            if (optUser.isPresent()) {
+                model.addAttribute("user", user);
+            }
         }
-
         int cityCount = 6;
 
         if(starRating == null){

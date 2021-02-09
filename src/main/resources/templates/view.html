@@ -41,7 +41,7 @@
 
                         </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                         <div>
                                 <h1 th:text="${city.cityName} +', ' +${city.stateName}" ></h1>
                                 <div class="Stars"
@@ -53,22 +53,34 @@
                                 <a th:href="@{'/review/' + ${city.id}}" >Write a Review</a>
                         </div>
                 </div>
-                <div class="col-md-2">
-                        <div class = "nav justify-content-end">
-                                <div th:if="${user.savedCities.contains(city)}">
-                                <form method="post" action="/unsave-city">
-                                        <label class="btn btn-success save-compare-btn" for="unSaveCity">Remove</label>
-                                        <input type="submit" th:value="${city.id}" id="unSaveCity" name="savedCityId" onchange="form.submit()" style="display: none;">
-                                </form>
+                <div class="col-md-3">
+                        <div th:if="${session.user}">
+                                <div class = "nav justify-content-end">
+                                        <div th:if="${user.savedCities.contains(city)}">
+                                                <form method="post" action="/unsave-city">
+                                                        <label class="btn btn-danger save-compare-btn" for="unSaveCity">Remove</label>
+                                                        <input type="submit" th:value="${city.id}" id="unSaveCity" name="savedCityId" onchange="form.submit()" style="display: none;">
+                                                </form>
+                                        </div>
+                                        <div th:if="${!user.savedCities.contains(city)}">
+                                                <form method="post" action="/save-city">
+                                                        <label class="btn btn-success save-compare-btn" for="saveCity">Save</label>
+                                                        <input type="submit" th:value="${city.id}" id="saveCity" name="savedCityId" onchange="form.submit()" style="display: none;">
+                                                </form>
+                                        </div>
+                                        <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
                                 </div>
-                                <div th:if="${!user.savedCities.contains(city)}">
-                                <form method="post" action="/save-city">
-                                        <label class="btn btn-success save-compare-btn" for="saveCity">Save</label>
-                                        <input type="submit" th:value="${city.id}" id="saveCity" name="savedCityId" onchange="form.submit()" style="display: none;">
-                                </form>
-                                </div>
-                                <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
                         </div>
+                        <div th:unless="${session.user}">
+                                <div class = "nav justify-content-end">
+                                        <form method="post" action="/save-city">
+                                                <label class="btn btn-success save-compare-btn" for="saveCity">Save</label>
+                                                <input type="submit" th:value="${city.id}" id="saveCity" name="savedCityId" onchange="form.submit()" style="display: none;">
+                                        </form>
+                                        <a class="btn btn-primary save-compare-btn" th:href="@{'/compare/' + ${city.id}}" role="button">Compare</a>
+                                </div>
+                        </div>
+
                 </div>
         </div>
 </div>

@@ -37,21 +37,22 @@ public class SearchController {
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
-        Optional<User> optUser = userRepository.findById(user.getId());
-        if(optUser.isPresent()){
-            model.addAttribute("user", user);
+        if( user != null) {
+            Optional<User> optUser = userRepository.findById(user.getId());
+            if (optUser.isPresent()) {
+                model.addAttribute("user", user);
+            }
         }
-
         int cityCount = 6;
 
         if(starRating == null){
-           starRating = 0;
+            starRating = 0;
         }
         if(sortField == null) {
-        sortField = "overallCityRating";
+            sortField = "overallCityRating";
         }
         if(sortDirection == null){
-        sortDirection = "desc";
+            sortDirection = "desc";
         }
 
         Page<City> page = cityService.findPaginatedByValue(pageNo, cityCount, searchTerm, sortField, sortDirection, starRating);

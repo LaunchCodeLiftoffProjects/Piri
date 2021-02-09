@@ -95,6 +95,10 @@ public class UserController {
     public String processSavingCityToFavoritesList(HttpServletRequest request, Model model, @RequestParam int savedCityId){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
+        if(user == null){
+            return "redirect:login";
+        }
+
         Optional<User> optUser = userRepository.findById(user.getId());
 
         Optional<City> optionalCity = cityRepository.findById(savedCityId);
@@ -151,6 +155,7 @@ public class UserController {
             model.addAttribute("totalPages", page.getTotalPages());
             model.addAttribute("totalItems", page.getTotalElements());
             model.addAttribute("cities", cities);
+            model.addAttribute("user", user);
         }
         return "saved-cities-view";
     }

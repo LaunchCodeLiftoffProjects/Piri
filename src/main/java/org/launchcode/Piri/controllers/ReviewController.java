@@ -197,9 +197,9 @@ public class ReviewController {
 
     }*/
 
-    @PostMapping("delete/{reviewId}")
+    @GetMapping("delete/{reviewId}")
     public String deleteBuyer(@PathVariable int reviewId){
         reviewRepository.deleteById(reviewId);
-        return "redirect:../";
+        return "redirect:../../";
     }
 }

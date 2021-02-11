@@ -284,14 +284,12 @@
                                 <a class="review-date"
                                    th:href="@{/view-profile(userId=${reviews[i].getUser().id})}" th:text =
                                            "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></a>                                <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">
-                                        <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review</a>
+                                        <a th:href="@{'/review/edit/' + ${reviews[i].id}}">Edit this review </a>
+                                        <p></p>
+                                        <a th:href="@{'/review/delete/' + ${reviews[i].id}}"> Delete this review</a>
                                         <!--<a th:href="@{'/review/delete/' + ${reviews[i].id}}">Delete this review</a>-->
 
-                                        <form th:action="@{/ccvth:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"th:value="${city.id}"  vcbjreview/delete/{id}(id=${reviewId})}" th:object="${review}" method="post">
-                                                <input type="hidden" th:value="${reviewId}">Delete</input>
-                                                <button type="submit" onClick="return confirm('sure?')"/>
-                                        </form>
-                                </p>
+
                                 <!--                                <th:block th:if="${reviews[i].getUser() != null}">-->
                                 <!--                                        <p class="review-date" th:text = "${reviews[i].getUser().username} + ' submitted the review on ' + ${reviews[i].reviewDate}"></p>-->
                                 <!--                                        <p class="review-date" th:if="${reviews[i].getUser().equals(user)}">-->

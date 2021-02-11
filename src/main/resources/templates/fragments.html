@@ -59,8 +59,8 @@
             <a class="nav-link navigation-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
-                <a class="dropdown-item" href="#">Saved Searches</a>
-                <a class="dropdown-item" href="#">Something else</a>
+                <a class="dropdown-item" th:href="@{'/savedCities/page/' + 1}">Favorite Cities</a>
+<!--                <a class="dropdown-item" href="#">Something else</a>-->
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" th:href="@{/logout}">Log Out</a>
             </div>

@@ -18,17 +18,31 @@
             <div class="row g-0">
                 <div class="col-md-4">
 
+
                     <div th:if="${city.images != null && city.images.size() == 1}">
 
                         <div id="carouselControls2" class="carousel slide carouselCity" data-ride="carousel">
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <div class="wrapper">
+
+                                    <div class="wrapper" th:if="${user == null}">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
-                                        <form id="saveForm3" method="post" action="/save-city">
-                                            <label style="display:block;" onclick="document.getElementById('saveForm3').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    </div>
+
+                                    <div class="wrapper save-city-wrapper" th:if="${user != null && !user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
+                                        <form id="saveForm4" method="post" action="/save-city">
+                                            <label style="display:block;" onclick="document.getElementById('saveForm4').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
+                                        </form>
+                                    </div>
+
+                                    <div class="wrapper unsave-city-wrapper" th:if="${user != null && user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
+                                        <form id="unSaveForm4" method="post" action="/unsave-city">
+                                            <label style="display:block;" onclick="document.getElementById('unsaveForm4').submit();" ><a title="Remove this city"><span class="fa fa-heart fa-2x unsave-heart-icon"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm"  name="savedCityId" style="display: none;"></label>
                                         </form>
                                     </div>
                                 </div>
@@ -38,34 +52,62 @@
                     </div>
 
                     <div th:if="${city.images != null && city.images.size() > 1}">
-                        <div id="carouselControls" class="carousel slide carouselCity" data-ride="carousel">
+                        <div th:id="${city.id}" class="carousel slide carouselCity" data-ride="carousel">
                             <div class="carousel-inner">
 
                                 <div class="carousel-item active">
-                                    <div class="wrapper">
+                                    <div class="wrapper" th:if="${user == null}">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
+                                    </div>
+
+                                    <div class="wrapper save-city-wrapper" th:if="${user != null && !user.savedCities.contains(city)}">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
                                         <form id="saveForm2" method="post" action="/save-city">
                                             <label style="display:block;" onclick="document.getElementById('saveForm2').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
                                         </form>
                                     </div>
+
+                                    <div class="wrapper unsave-city-wrapper" th:if="${user != null && user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${city.getImages().get(0)}}" alt="First slide">
+                                        <form id="unSaveForm2" method="post" action="/unsave-city">
+                                            <label style="display:block;" onclick="document.getElementById('unsaveForm2').submit();" id="unsaveCitiesLabel1" ><a title="Remove this city"><span class="fa fa-heart fa-2x unsave-heart-icon"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" id="unsaveCities1" name="savedCityId" style="display: none;"></label>
+                                        </form>
+                                    </div>
+
                                 </div>
 
                                 <div class="carousel-item" th:each="image : ${city.images}">
-                                    <div class="wrapper">
+
+                                    <div class="wrapper" th:if="${user == null}">
                                         <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="">
-                                        <form id="saveForm1" method="post" action="/save-city">
-                                            <label style="display:block;" onclick="document.getElementById('saveForm1').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
+                                    </div>
+
+                                    <div class="wrapper save-city-wrapper" th:if="${user != null && !user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="">
+                                        <form id="saveForm3" method="post" action="/save-city">
+                                            <label style="display:block;" onclick="document.getElementById('saveForm3').submit();"><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" name="savedCityId" style="display: none;"></label>
                                         </form>
                                     </div>
+
+                                    <div class="wrapper unsave-city-wrapper" th:if="${user != null && user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" th:src="@{'data:image/jpeg;base64,' + ${image}}" alt="">
+                                        <form id="unSaveForm3" method="post" action="/unsave-city">
+                                            <label style="display:block;" onclick="document.getElementById('unsaveForm3').submit();" id="unsaveCitiesLabel2" ><a title="Remove this city"><span class="fa fa-heart fa-2x unsave-heart-icon"></span></a>
+                                                <input type="submit" th:value="${city.id}" class="submitForm" id="unsaveCities2" name="savedCityId" style="display: none;"></label>
+                                        </form>
+                                    </div>
                                 </div>
+
                             </div>
-                            <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+
+                            <a class="carousel-control-prev" th:href="@{'#' + ${city.id}}" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                            <a class="carousel-control-next" th:href="@{'#' + ${city.id}}" role="button" data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -77,14 +119,26 @@
                     <div th:if="${city.images == null}">
                         <div id="carouselControls3" class="carousel slide carouselCity" data-ride="carousel">
                             <div class="carousel-inner">
-
                                 <div class="carousel-item active">
-                                    <div class="wrapper">
+
+                                    <div class="wrapper" th:if="${user == null}">
+                                        <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+                                    </div>
+
+                                    <div class="wrapper save-city-wrapper" th:if="${user != null && !user.savedCities.contains(city)}">
                                         <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
                                         <form id="saveForm" method="post" action="/save-city">
                                             <label style="display:block;" onclick="document.getElementById('saveForm').submit();" id="saveCitiesLabel" ><a class="text-white" data-toggle="tooltip" title="Save this city"><span class="far fa-heart fa-2x"></span></a>
                                                 <input type="submit" th:value="${city.id}" class="submitForm" id="saveCities" name="savedCityId" style="display: none;"></label>
                                         </form>
+                                    </div>
+
+                                    <div class="wrapper unsave-city-wrapper" th:if="${user != null && user.savedCities.contains(city)}">
+                                        <img class="d-block w-100 rounded cityCardImage" src="/images/default.jpg" alt="First slide">
+                                            <form id="unSaveForm" method="post" action="/unsave-city">
+                                                <label style="display:block;" onclick="document.getElementById('saveForm').submit();" id="unsaveCitiesLabel" ><a title="Remove this city"><span class="fa fa-heart fa-2x unsave-heart-icon"></span></a>
+                                                    <input type="submit" th:value="${city.id}" class="submitForm" id="unsaveCities" name="savedCityId" style="display: none;"></label>
+                                            </form>
                                     </div>
                                 </div>
 

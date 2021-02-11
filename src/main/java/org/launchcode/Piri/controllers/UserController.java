@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,16 +95,19 @@ public class UserController {
     public String processSavingCityToFavoritesList(HttpServletRequest request, Model model, @RequestParam int savedCityId){
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
+        if(user == null){
+            return "redirect:login";
+        }
+
         Optional<User> optUser = userRepository.findById(user.getId());
 
         Optional<City> optionalCity = cityRepository.findById(savedCityId);
         City city = optionalCity.get();
-        model.addAttribute("savedCityName", city.getCityName());
 
         if(optUser.isPresent()){
             List<Review> reviews = user.getReviews();
             city.setUser(authenticationController.getUserFromSession(session));
-            UserData.saveCityToFavoritesList(city,user);
+            userData.saveCityToFavoritesList(city,user);
             cityRepository.save(city);
             userRepository.save(user);
             model.addAttribute("user", user);
@@ -113,6 +117,30 @@ public class UserController {
         }
         return "profile";
     }
+
+
+    @PostMapping("unsave-city")
+    public String processUnSaveCityFromFavoritesList(HttpServletRequest request, Model model, @RequestParam int savedCityId){
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        Optional<User> optUser = userRepository.findById(user.getId());
+
+        Optional<City> optionalCity = cityRepository.findById(savedCityId);
+        City city = optionalCity.get();
+
+        if(optUser.isPresent()){
+            List<Review> reviews = user.getReviews();
+            userData.unSaveCityFromFavoritesList(city,user);
+            cityRepository.save(city);
+            userRepository.save(user);
+            model.addAttribute("user", user);
+            model.addAttribute("city", city);
+            model.addAttribute("favoriteCities", user.getSavedCities());
+            model.addAttribute("reviews", reviews);
+        }
+        return "profile";
+    }
+
     @GetMapping("/savedCities/page/{pageNo}")
     public String displaySavedCitiesList(@PathVariable(value = "pageNo") int pageNo, Model model,@RequestParam(required = false) String searchTerm, HttpServletRequest request){
         int cityCount = 6;
@@ -127,6 +155,7 @@ public class UserController {
             model.addAttribute("totalPages", page.getTotalPages());
             model.addAttribute("totalItems", page.getTotalElements());
             model.addAttribute("cities", cities);
+            model.addAttribute("user", user);
         }
         return "saved-cities-view";
     }

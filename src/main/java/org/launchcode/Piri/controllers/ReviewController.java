@@ -161,7 +161,45 @@ public class ReviewController {
         return "redirect:../../";
     }
 
+    /* @GetMapping("delete/{reviewId}")
+    public String displayDelete(Model model, @PathVariable int reviewId) {
+        Optional<Review> optReview = reviewRepository.findById(reviewId);
 
+        Review review = optReview.get();
+        City city = review.getCity();
+        int cityId = city.getId();
+        model.addAttribute("cityId", cityId);
+        User user = review.getUser();
 
+        if(review != null) {
+            ReviewFormDTO reviewFormDTO = new ReviewFormDTO(review, user, city);
+            model.addAttribute("reviewFormDTO", reviewFormDTO);
 
+            model.addAttribute("review", review);
+            model.addAttribute("city", city);
+            model.addAttribute("user", user);
+        }
+        return "delete";
+    }
+
+    @PostMapping("delete/{reviewId}")
+    public String completeDelete(@ModelAttribute @Valid Review review, Model model,
+                                 @PathVariable int reviewId) {
+        Optional<Review> optReview = reviewRepository.findById(reviewId);
+        review = optReview.get();
+
+        model.addAttribute("review", review);
+        City city = review.getCity();
+        model.addAttribute("city", city);
+
+        reviewRepository.delete(review);
+        return "redirect:../../";
+
+    }*/
+
+    @GetMapping("delete/{reviewId}")
+    public String deleteBuyer(@PathVariable int reviewId){
+        reviewRepository.deleteById(reviewId);
+        return "redirect:../../";
+    }
 }

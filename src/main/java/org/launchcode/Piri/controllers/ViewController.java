@@ -23,7 +23,7 @@ import java.util.List;
 
 
 @Controller
-public class HelloController {
+public class ViewController {
 
     @Autowired
     private AuthenticationController authenticationController;

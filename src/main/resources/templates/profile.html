@@ -104,6 +104,7 @@
                     <p class="review-date" th:text="${review.getUser().username} + ' submitted the review on ' + ${review.reviewDate}"></p>
                     <p class="review-date" th:if="${review.getUser().equals(user)}">
                         <a th:href="@{'/review/edit/' + ${review.id}}">Edit this review</a>
+                        <a th:href="@{'/review/delete/' + ${review.id}}"> Delete this review</a>
                     </p>
                 </div>
 
